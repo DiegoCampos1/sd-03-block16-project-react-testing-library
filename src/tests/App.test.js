@@ -43,3 +43,13 @@ test('should redirect to the right route', () => {
   fireEvent.click(favLink);
   expect(getByText('Favorite pokémons')).toBeInTheDocument();
 });
+
+test('not Found', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={['/random']}>
+      <App />
+    </MemoryRouter>,
+  );
+
+  expect(getByText('Page requested not found')).toBeInTheDocument();
+});
