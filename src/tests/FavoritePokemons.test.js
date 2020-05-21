@@ -10,7 +10,7 @@ const renderWithRouter = (
   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) => ({
   ...render(<Router history={history}>{ui}</Router>),
-      history,
+  history,
 });
 
 describe('Favorite Pokémons', () => {
