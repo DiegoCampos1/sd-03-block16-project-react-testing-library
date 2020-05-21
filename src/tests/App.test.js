@@ -29,7 +29,7 @@ test('look for about link', () => {
       <App />
     </MemoryRouter>,
   );
-expect(getByText('About')).toBeInTheDocument();
+  expect(getByText('About')).toBeInTheDocument();
 });
 
 test('look for home link', () => {
@@ -38,7 +38,7 @@ test('look for home link', () => {
       <App />
     </MemoryRouter>,
   );
-expect(getByText('Home')).toBeInTheDocument();
+  expect(getByText('Home')).toBeInTheDocument();
 });
 
 test('look for favorites link', () => {
@@ -47,5 +47,5 @@ test('look for favorites link', () => {
       <App />
     </MemoryRouter>,
   );
-expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
 });
