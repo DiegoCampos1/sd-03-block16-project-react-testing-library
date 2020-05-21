@@ -2,7 +2,7 @@ import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from './testService';
 import App from '../App';
-import Pokedex from '../components/Pokedex';
+// import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
 afterEach(cleanup);
