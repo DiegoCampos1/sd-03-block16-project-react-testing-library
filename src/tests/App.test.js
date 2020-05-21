@@ -5,14 +5,14 @@ import { createMemoryHistory } from 'history';
 import PropTypes from 'prop-types';
 import App from '../App';
 
-const mock = jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
+// const mock = jest.mock('react-router-dom', () => {
+//   const originalModule = jest.requireActual('react-router-dom');
 
-  return ({
-    ...originalModule,
-    BrowserRouter: ({ children }) => (<div>{children}</div>),
-  });
-});
+//   return ({
+//     ...originalModule,
+//     BrowserRouter: ({ children }) => (<div>{children}</div>),
+//   });
+// });
 
 function renderWithRouter(
   ui,
@@ -27,35 +27,42 @@ function renderWithRouter(
 afterEach(cleanup);
 
 test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = renderWithRouter(<App />);
-  // const { getByText } = render(
-  //   <MemoryRouter>
-  //     <App />
-  //   </MemoryRouter>,
-  // );
+  // const { getByText } = renderWithRouter(<App />);
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
 
 test('testing if links Home, About and Favorite Pokemons exists', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  // const { getByText, history } = renderWithRouter(<App />);
+
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
 
   const homeLink = getByText(/Home/i);
   expect(homeLink).toBeInTheDocument();
-  fireEvent.click(homeLink);
-  expect(history.location.pathname).toBe('/');
+  expect(homeLink).toHaveAttribute('href', '/');
 
   const aboutLink = getByText(/About/i);
   expect(aboutLink).toBeInTheDocument();
+  expect(aboutLink).toHaveAttribute('href', '/about');
   fireEvent.click(aboutLink);
-  expect(history.location.pathname).toBe('/about');
+
   const textAbout = getByText(/About Pokédex/i);
   expect(textAbout).toBeInTheDocument();
 
   const favPokemon = getByText(/Favorite/i);
   expect(favPokemon).toBeInTheDocument();
+  expect(favPokemon).toHaveAttribute('href', '/favorites');
   fireEvent.click(favPokemon);
-  expect(history.location.pathname).toBe('/favorites');
+
   const favText = getByText('Favorite pokémons');
   expect(favText).toBeInTheDocument();
 });
@@ -75,7 +82,3 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
-
-mock.propTypes = {
-  children: PropTypes.node.isRequired,
-};
