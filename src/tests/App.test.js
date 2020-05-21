@@ -35,3 +35,49 @@ describe('should show the main page of Pokedex', () => {
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 });
+
+describe('links in the top', () => {
+  test('in the Home page', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <App/>
+      </MemoryRouter>
+    );
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
+
+  test('in the details page', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/pokemons/25'] /* Pikachu details*/}>
+        <App/>
+      </MemoryRouter>
+    );
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
+
+  test('in the favorites page', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/favorites']}>
+        <App/>
+      </MemoryRouter>
+    );
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
+
+  test('in the about page', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/about']}>
+        <App/>
+      </MemoryRouter>
+    );
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
+});
