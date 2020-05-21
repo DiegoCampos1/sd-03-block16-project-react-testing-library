@@ -2,10 +2,10 @@ import React from 'react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import App from '../App';
 import PropTypes from 'prop-types';
+import App from '../App';
 
-jest.mock('react-router-dom', () => {
+const mock = jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');
 
   return ({
@@ -76,6 +76,6 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-jest.mock.propTypes = {
+mock.propTypes = {
   children: PropTypes.node.isRequired,
 };
