@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, queryByAttribute } from '@testing-library/react';
-import { FavoritePokemons, NotFound } from '../components';
+import { render } from '@testing-library/react';
+import { NotFound } from '../components';
 
 test('404 not found', () => {
   const { getByText } = render(<NotFound />);
