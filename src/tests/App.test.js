@@ -22,3 +22,30 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+test('look for about link', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+expect(getByText('About')).toBeInTheDocument();
+});
+
+test('look for home link', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+expect(getByText('Home')).toBeInTheDocument();
+});
+
+test('look for favorites link', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+});
