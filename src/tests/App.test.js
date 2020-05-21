@@ -30,7 +30,7 @@ describe('tests App.js', () => {
 
   test('redirect to `/about` when click in the link About', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/about']}>
         <App />
       </MemoryRouter>,
     );
@@ -44,7 +44,7 @@ describe('tests App.js', () => {
 
   test('redirect to `/favorite` when click in the link Favorite Pokémons', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/favorite']}>
         <App />
       </MemoryRouter>,
     );
