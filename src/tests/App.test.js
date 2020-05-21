@@ -1,10 +1,13 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { Router, MemoryRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, cleanup } from '@testing-library/react';
+import {
+  render,
+  cleanup,
+  fireEvent,
+  waitForDomChange,
+} from '@testing-library/react';
 import App from '../App';
-
-afterEach(cleanup);
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
@@ -15,22 +18,55 @@ const renderWithRouter = (component) => {
 };
 
 describe('App.js tests', () => {
-  test('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
-  });
+  afterEach(cleanup);
 
-  test('shows the Pokédex when the route is `/`', () => {
-    const { getByText } = renderWithRouter(<App />);
-
-    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  test('renders Pokédex homepage on `/` URL', () => {
+    const { history } = renderWithRouter(<App />);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
 
   test('renders links navbar', () => {
-    const { getByRole } = renderWithRouter(<App />);
-
-    const navBar = getByRole('navigation');
+    const { queryByRole } = renderWithRouter(<App />);
+    const navBar = queryByRole('navigation');
     expect(navBar).toBeInTheDocument();
+  });
+
+  test('redirects to `/` URL after click Home link', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    fireEvent.click(getByText(/home/i));
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+  });
+
+  test('redirects to `/about` URL after click About link', async () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    fireEvent.click(getByText(/about/i));
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
+
+  test('redirects to `/favorites` URL after click Favorite Pokémons link', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    fireEvent.click(getByText(/favorite pokémons/i));
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
+
+  test('redirects to Not Found page after use invalid URL', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/xablau']}>
+        <App />
+      </MemoryRouter>,
+    );
+
+    const notFound = getByText(/Page requested not found/i);
+    expect(notFound).toBeInTheDocument();
   });
 });
