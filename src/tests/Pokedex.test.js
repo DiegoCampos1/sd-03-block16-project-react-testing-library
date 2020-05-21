@@ -41,7 +41,8 @@ describe('Pokedex', () => {
     const { getByText } = renderWithRouter((
       <Pokedex
         isPokemonFavoriteById={mockedPokemonFavoriteById}
-        pokemons={[pokemons[0], pokemons[1]]} />
+        pokemons={[pokemons[0], pokemons[1]]}
+      />
     ));
     expect(getByText('Pikachu')).toBeInTheDocument();
     fireEvent.click(getByText('Próximo pokémon'));
