@@ -16,4 +16,5 @@ test('testing next pokémon button', () => {
     expect(pokemonName).toHaveTextContent(e.name);
     fireEvent.click(nextPokeButton);
   });
+  expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
 });
