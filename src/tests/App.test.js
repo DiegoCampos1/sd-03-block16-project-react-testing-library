@@ -29,7 +29,7 @@ describe('should show the main page of Pokedex', () => {
   test('the title of the page', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/']}>
-        <App/>
+        <App />
       </MemoryRouter>
     );
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
@@ -38,44 +38,44 @@ describe('should show the main page of Pokedex', () => {
 
 describe('exist on the top links to', () => {
   test('Home page', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <MemoryRouter initialEntries={['/']}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
 
   test('details page', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <MemoryRouter initialEntries={['/pokemons/25'] /* Pikachu details*/}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
 
   test('favorites page', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <MemoryRouter initialEntries={['/favorites']}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
 
   test('about page', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <MemoryRouter initialEntries={['/about']}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
@@ -88,11 +88,11 @@ describe('clicking on link', () => {
     'a digital encliclopedia containing all Pokémons';
   const FavoriteText = 'Favorite pokémons';
   test('Home', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <MemoryRouter initialEntries={['/']}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText(HomeText)).toBeInTheDocument();
 
     fireEvent.click(getByText('Home'));
@@ -101,11 +101,11 @@ describe('clicking on link', () => {
   });
 
   test('About', () => {
-    const { getByText, queryByText } = render(
+    const { getByText, queryByText } = render((
       <MemoryRouter initialEntries={['/']}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText(HomeText)).toBeInTheDocument();
 
     fireEvent.click(getByText('About'));
@@ -115,11 +115,11 @@ describe('clicking on link', () => {
   });
 
   test('Favorite Pokémons', () => {
-    const { getByText, queryByText } = render(
+    const { getByText, queryByText } = render((
       <MemoryRouter initialEntries={['/']}>
-        <App/>
+        <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText(HomeText)).toBeInTheDocument();
 
     fireEvent.click(getByText('Favorite Pokémons'));
