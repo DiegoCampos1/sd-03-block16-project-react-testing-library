@@ -28,17 +28,17 @@ describe('Favorite Pokémons', () => {
   });
 
   test('No card of no favorited pokemons', () => {
-    const { queryByText } = renderWithRouter(
+    const { queryByText } = (renderWithRouter(
       <FavoritePokemons pokemons={pokemons.slice(0, -1)} />
-    );
+    ));
     expect(queryByText('No favorite pokemon found')).not.toBeInTheDocument();
     expect(queryByText('Dragonair')).not.toBeInTheDocument();
   });
 
   test('should show card of favorited pokemons', () => {
-    const { queryByText } = renderWithRouter(
+    const { queryByText } = (renderWithRouter(
       <FavoritePokemons pokemons={pokemons.slice(-3)} />
-    );
+    ));
     expect(queryByText('No favorite pokemon found')).not.toBeInTheDocument();
     expect(queryByText('Dragonair')).toBeInTheDocument();
     expect(queryByText('Rapidash')).toBeInTheDocument();
