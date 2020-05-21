@@ -69,7 +69,7 @@ describe('tests FavoritePokemons.js', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <FavoritePokemons />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const heading = getByText('Favorite pokémons');
@@ -81,7 +81,7 @@ describe('tests FavoritePokemons.js', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <FavoritePokemons />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const notFound = getByText('No favorite pokemon found');
@@ -93,7 +93,7 @@ describe('tests FavoritePokemons.js', () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <FavoritePokemons pokemons={data} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const cards = container.querySelectorAll('.favorite-pokemon');
