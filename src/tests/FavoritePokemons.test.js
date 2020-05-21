@@ -7,13 +7,11 @@ import pokemons from '../data';
 
 const renderWithRouter = (
   ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {}
-  ) => {
-    return ({
-      ...render(<Router history={history}>{ui}</Router>),
+  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
+) => ({
+  ...render(<Router history={history}>{ui}</Router>),
       history,
-    });
-};
+});
 
 describe('Favorite Pokémons', () => {
   afterEach(cleanup);
