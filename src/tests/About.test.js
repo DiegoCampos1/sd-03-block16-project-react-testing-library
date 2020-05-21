@@ -3,7 +3,7 @@ import React from 'react';
 // import { createMemoryHistory } from 'history';
 import { cleanup } from '@testing-library/react';
 import About from '../components/About';
-import renderWithRouter from './testService'/
+import renderWithRouter from './testService';
 
 
 // function renderWithRouter(
