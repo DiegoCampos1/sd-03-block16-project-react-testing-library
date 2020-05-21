@@ -4,7 +4,6 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 // import { createMemoryHistory } from 'history';
 import App from '../App';
 
-
 // function renderWithRouter(
 //   ui,
 //   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
