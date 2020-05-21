@@ -2,7 +2,6 @@ import React from 'react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import PropTypes from 'prop-types';
 import App from '../App';
 
 // const mock = jest.mock('react-router-dom', () => {
