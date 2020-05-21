@@ -1,19 +1,20 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render, cleanup } from '@testing-library/react';
+// import { Router } from 'react-router-dom';
+// import { createMemoryHistory } from 'history';
+import { cleanup } from '@testing-library/react';
 import About from '../components/About';
+import renderWithRouter from './testService'/
 
 
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+// function renderWithRouter(
+//   ui,
+//   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
+// ) {
+//   return {
+//     ...render(<Router history={history}>{ui}</Router>),
+//     history,
+//   };
+// }
 
 afterEach(cleanup);
 
