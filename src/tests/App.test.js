@@ -16,7 +16,7 @@ const renderWithRouter = (component) => {
 
 describe('App.js tests', () => {
   test('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = renderWithRouter(<App/>);
+    const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
@@ -28,11 +28,9 @@ describe('App.js tests', () => {
   });
 
   test('renders links navbar', () => {
-    const { getByText, getByRole, getAllByRole } = renderWithRouter(<App />);
+    const { getByRole } = renderWithRouter(<App />);
 
     const navBar = getByRole('navigation');
-    const {links} = navBar;
     expect(navBar).toBeInTheDocument();
-    expect(navBar.links.length).toBe(3);
   });
 });
