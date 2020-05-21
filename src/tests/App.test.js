@@ -1,7 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { cleanup, fireEvent } from '@testing-library/react';
-import PropTypes from 'prop-types';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
