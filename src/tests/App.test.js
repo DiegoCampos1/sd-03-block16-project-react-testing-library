@@ -1,21 +1,20 @@
 import React from 'react';
 import { Router, MemoryRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import {
-  render,
-  cleanup,
-  fireEvent,
-  waitForDomChange,
-} from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
 
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return {
-    ...render(<Router history={history}>{component}</Router>),
-    history,
-  };
-};
+const renderWithRouter = (
+  component,
+  {
+    route = '/',
+    history = createMemoryHistory({ initialEntries: [route] }),
+  } = {},
+) => ({
+  ...render(<Router history={history}>{component}</Router>),
+  history,
+});
 
 describe('App.js tests', () => {
   afterEach(cleanup);
@@ -26,10 +25,13 @@ describe('App.js tests', () => {
     expect(pathname).toBe('/');
   });
 
-  test('renders links navbar', () => {
-    const { queryByRole } = renderWithRouter(<App />);
-    const navBar = queryByRole('navigation');
-    expect(navBar).toBeInTheDocument();
+  test('renders navigation links', () => {
+    const { queryAllByRole } = renderWithRouter(<App />);
+    const links = queryAllByRole('link');
+    expect(links.length).toBe(4);
+    expect(links[0].innerHTML).toBe('Home');
+    expect(links[1].innerHTML).toBe('About');
+    expect(links[2].innerHTML).toBe('Favorite Pokémons');
   });
 
   test('redirects to `/` URL after click Home link', () => {
@@ -60,13 +62,8 @@ describe('App.js tests', () => {
   });
 
   test('redirects to Not Found page after use invalid URL', () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={['/xablau']}>
-        <App />
-      </MemoryRouter>,
-    );
-
-    const notFound = getByText(/Page requested not found/i);
+    const { getByText } = renderWithRouter(<App />, { route: '/xablau' });
+    const notFound = getByText(/page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
 });
