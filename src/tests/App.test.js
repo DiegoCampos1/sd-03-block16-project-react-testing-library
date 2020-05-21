@@ -44,12 +44,9 @@ test('shows the `Favorite Pokémons` link when the route is `/` and your destina
   expect(pathname).toBe('/favorites');
 });
 
-/*
 test('shows the `Not Found` if a incorrect link is digited', () => {
-  const { getByText, history } = renderWithRouter(<App />, { route: '/marcob' });
-  const pathname = history.location.pathname;
-  console.log(pathname);
-  const pageNotFound = getByText('😭');
+  const { getByText, history } = renderWithRouter(<App />);
+  history.push('/marcob');
+  const pageNotFound = getByText(/Page requested not found/i);
   expect(pageNotFound).toBeInTheDocument();
 });
-*/
