@@ -15,13 +15,12 @@ test('renders a reading with the text `NotFound`', () => {
 });
 
 test('look for the image', () => {
-  const { getByText } = render(
+  const { getByAltText } = render(
     <MemoryRouter>
       <App />
       <NotFound />
     </MemoryRouter>,
   );
-  expect(getByText('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
-  ))
-    .toBeInTheDocument();
+  const img = getByAltText('Pikachu crying because the page requested was not found');
+  expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
 });

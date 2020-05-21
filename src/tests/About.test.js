@@ -15,13 +15,12 @@ test('renders a reading with the text `About Pokédex`', () => {
 });
 
 test('look for the image', () => {
-  const { getByText } = render(
+  const { getByAltText } = render(
     <MemoryRouter>
       <App />
       <About />
     </MemoryRouter>,
   );
-  expect(getByText('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex',
-  ))
-    .toBeInTheDocument();
+  const img = getByAltText('Pokédex');
+  expect(img.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });
