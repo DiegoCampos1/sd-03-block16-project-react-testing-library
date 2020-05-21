@@ -54,6 +54,6 @@ describe('Testes app.tests.js', () => {
       </MemoryRouter>,
     );
 
-    expect(getByText('Page requested not found ')).toBeInTheDocument();
+    expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 });
