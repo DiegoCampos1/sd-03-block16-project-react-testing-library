@@ -1,30 +1,30 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+// import { createMemoryHistory } from 'history';
 import App from '../App';
 
 
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+// function renderWithRouter(
+//   ui,
+//   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
+// ) {
+//   return {
+//     ...render(<Router history={history}>{ui}</Router>),
+//     history,
+//   };
+// }
 
 afterEach(cleanup);
 
 test('testing favorite pokémons page', () => {
-  const { getByText } = renderWithRouter(<App />);
+  // const { getByText } = renderWithRouter(<App />);
 
-  // const { getByText } = render(
-  //   <MemoryRouter>
-  //     <App />
-  //   </MemoryRouter>,
-  // );
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
   const favPokeLink = getByText(/Favorite/i);
   fireEvent.click(favPokeLink);
   const noFavFound = getByText('No favorite pokemon found');
