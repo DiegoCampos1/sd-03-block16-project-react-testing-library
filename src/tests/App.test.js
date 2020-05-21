@@ -27,11 +27,11 @@ describe('should show the main page of Pokedex', () => {
   afterEach(cleanup);
 
   test('the title of the page', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>
-    );
+    ));
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 });
@@ -84,8 +84,7 @@ describe('exist on the top links to', () => {
 
 describe('clicking on link', () => {
   const HomeText = 'Encountered pokémons';
-  const AboutText = 'This application simulates a Pokédex, ' +
-    'a digital encliclopedia containing all Pokémons';
+  const AboutText = 'About Pokédex';
   const FavoriteText = 'Favorite pokémons';
   test('Home', () => {
     const { getByText } = render((
