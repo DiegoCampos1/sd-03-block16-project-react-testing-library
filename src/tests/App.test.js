@@ -61,7 +61,8 @@ describe('App.js tests', () => {
   });
 
   test('redirects to Not Found page after use invalid URL', () => {
-    const { getByText } = renderWithRouter(<App />, { route: '/xablau' });
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/xablau');
     const notFound = getByText(/page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
