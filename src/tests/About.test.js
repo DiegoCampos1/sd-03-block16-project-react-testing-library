@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { cleanup, fireEvent, getNodeText } from '@testing-library/react';
+import { cleanup, getNodeText } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -26,6 +26,5 @@ test('Testing image address of image on About Page', () => {
   const { getByRole, history } = renderWithRouter(<App />);
   history.push('/about');
   const image = getByRole('img');
-  expect(image.src).
-    toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  expect(image.src).toBe('https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });
