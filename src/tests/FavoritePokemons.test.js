@@ -36,7 +36,7 @@ describe('Favorite Pokémons', () => {
   });
 
   test('should show card of favorited pokemons', () => {
-    const { queryByText } = (renderWithRouter(
+    const { queryByText } = renderWithRouter((
       <FavoritePokemons pokemons={pokemons.slice(-3)} />
     ));
     expect(queryByText('No favorite pokemon found')).not.toBeInTheDocument();
