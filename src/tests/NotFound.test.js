@@ -6,6 +6,8 @@ import NotFound from '../components/NotFound';
 const takeType = (element) => Object.values(element)[0].type;
 
 describe('Not found', () => {
+  afterEach(cleanup);
+
   test('have message Page requested not found 😭', () => {
     const { getByText } = render(<NotFound />);
     const h2 = getByText('Page requested not found');
