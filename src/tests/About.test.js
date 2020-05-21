@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import About from '../components/About';
 
 describe('tests About.js', () => {
-  test('shows the About Pokédex', () => {
+  test('shows About Pokédex page', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={['/about']}>
         <About />
