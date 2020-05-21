@@ -3,6 +3,7 @@ import { MemoryRouter, Router } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import App from '../App';
+import PropTypes from 'prop-types';
 
 jest.mock('react-router-dom', () => {
   const originalModule = jest.requireActual('react-router-dom');
@@ -57,8 +58,6 @@ test('testing if links Home, About and Favorite Pokemons exists', () => {
   expect(history.location.pathname).toBe('/favorites');
   const favText = getByText('Favorite pokémons');
   expect(favText).toBeInTheDocument();
-
-
 });
 
 test('testing a nonexistent page', () => {
@@ -76,3 +75,7 @@ test('shows the Pokédex when the route is `/`', () => {
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+jest.mock.propTypes = {
+  children: PropTypes.node.isRequired,
+};
