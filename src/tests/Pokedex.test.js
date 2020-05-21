@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent, getAllByAltText, getAllByTestId } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
@@ -39,7 +39,9 @@ describe('Pokedex', () => {
 
   test('should have a cicle behavior', () => {
     const { getByText } = renderWithRouter((
-      <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={[pokemons[0], pokemons[1]]} />
+      <Pokedex
+        isPokemonFavoriteById={mockedPokemonFavoriteById}
+        pokemons={[pokemons[0], pokemons[1]]} />
     ));
     expect(getByText('Pikachu')).toBeInTheDocument();
     fireEvent.click(getByText('Próximo pokémon'));
