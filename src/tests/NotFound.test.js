@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import NotFound from '../components/NotFound';
-import renderWithRouter from '../renderWithRouter';
 
 afterEach(cleanup);
 
