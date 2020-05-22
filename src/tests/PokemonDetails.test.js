@@ -1,11 +1,8 @@
 import React from 'react';
-import { cleanup, fireEvent, 
-} from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
-
 import pokemons from '../mockPokemons';
-
 
 afterEach(cleanup);
 
@@ -13,7 +10,7 @@ describe('Test 13 - pokemon details should display pokemon summary', () => {
   it('13.1 - pokemon details must contain heading h2 and 13.2 - text summary', () => {
     const { getByText, queryByText } = renderWithRouter(<App />);
     pokemons.forEach(({
-      name, type, averageWeight: { value, measurementUnit }, image, summary, foundAt,
+      summary,
     }, index) => {
       for (let i = 0; i < index; i += 1) {
         const nextButton = getByText(/Próximo pokémon/i);
@@ -33,7 +30,7 @@ describe('Test 14 - pokemon details must display maps', () => {
   it('14.1 to 14.5 - must contain h2 with text <Game Locations of <pokemon>', () => {
     const { getByText, getAllByAltText, queryByText } = renderWithRouter(<App />);
     pokemons.forEach(({
-      name, type, averageWeight: { value, measurementUnit }, image, summary, foundAt,
+      name, foundAt,
     }, index) => {
       for (let i = 0; i < index; i += 1) {
         const nextButton = getByText(/Próximo pokémon/i);
@@ -62,9 +59,7 @@ describe('Test 15 - pokemon details must display fav button', () => {
     const {
       getByText, queryByText, getByRole,
     } = renderWithRouter(<App />);
-    pokemons.forEach(({
-      name, type, averageWeight: { value, measurementUnit }, image, summary, foundAt,
-    }, index) => {
+    pokemons.forEach((index) => {
       for (let i = 0; i < index; i += 1) {
         const nextButton = getByText(/Próximo pokémon/i);
         fireEvent.click(nextButton);

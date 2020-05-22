@@ -86,7 +86,7 @@ describe('Test 16 - favorited pokemons must display star icon', () => {
       getByText, getByAltText, queryByText, getByRole,
     } = renderWithRouter(<App />);
     pokemons.forEach(({
-      name, type, averageWeight: { value, measurementUnit }, image, summary, foundAt,
+      name,
     }, index) => {
       for (let i = 0; i < index; i += 1) {
         const nextButton = getByText(/Próximo pokémon/i);
