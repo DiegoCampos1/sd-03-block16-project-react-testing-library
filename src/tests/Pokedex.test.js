@@ -118,20 +118,28 @@ test('testing if Encountered pokémons exists', () => {
 });
 
 test('testing if pokedex has button all', () => {
-  const { getByText, getByTestId } = renderWithRouter(<App />);
+  // const { getByText, getByTestId } = renderWithRouter(<App />);
+  const { getByText, getByTestId, getAllByTestId } = renderWithRouter(
+    <Pokedex
+      pokemons={mockPokemons}
+      isPokemonFavoriteById={mockIsPokemonFavoriteById}
+    />,
+  );
 
-  const nextPokeButton = getByText('Próximo pokémon');
-  const typeButtonFire = getByText('Fire');
+  // const nextPokeButton = getByTestId('next-pokemon');
+  const typeButtonFire = getAllByTestId('pokemon-type-button');
+  console.log(typeButtonFire[0].textContent);
   const buttonAll = getByText('All');
   const pokemonName = getByTestId('pokemon-name');
   expect(buttonAll).toBeInTheDocument();
-  fireEvent.click(typeButtonFire);
+  fireEvent.click(typeButtonFire[1]);
   expect(pokemonName).toHaveTextContent('Charmander');
   fireEvent.click(buttonAll);
-  pokemons.forEach((e) => {
-    expect(pokemonName).toHaveTextContent(e.name);
-    fireEvent.click(nextPokeButton);
-  });
+  expect(pokemonName).toHaveTextContent('Pikachu');
+  // pokemons.forEach((e) => {
+  //   expect(pokemonName).toHaveTextContent(e.name);
+  //   fireEvent.click(nextPokeButton);
+  // });
 });
 
 test('testing dinamicaly generated buttons', () => {
@@ -141,4 +149,19 @@ test('testing dinamicaly generated buttons', () => {
   const typesInScreen = typesButton.map((e) => e.textContent);
   expect(typesButton).toHaveLength(labelButtons().length);
   expect(typesInScreen).toStrictEqual(labelButtons());
+});
+
+test('testing Próximo Pokémon', () => {
+  const { getByTestId, getAllByTestId } = renderWithRouter(
+    <Pokedex
+      pokemons={mockPokemons}
+      isPokemonFavoriteById={mockIsPokemonFavoriteById}
+    />,
+  );
+
+  const nextPokeButton = getByTestId('next-pokemon');
+  const typeButtonFire = getAllByTestId('pokemon-type-button');
+  fireEvent.click(typeButtonFire[1]);
+  expect(nextPokeButton).toBeDisabled();
+
 });
