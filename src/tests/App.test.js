@@ -1,6 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { MemoryRouter, Router } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -11,4 +12,95 @@ test('renders a reading with the text `Pokédex`', () => {
   );
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
+});
+
+function renderWithRouter(
+  ui,
+  {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {},
+) {
+  return {
+    ...render(<Router history={history}>{ui}</Router>),
+    history,
+  }
+}
+
+jest.mock('react-router-dom', () => {
+  const originalModule = jest.requireActual('react-router-dom')
+  return ({
+    ...originalModule,
+    BrowserRouter: ({ children }) => (<div>{children}</div>),
+  })
+})
+
+describe('Test link from pages', () => {
+  test('Test links navegating home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const homeLink = getByText('Home');
+    expect(homeLink).toBeInTheDocument();
+    fireEvent.click(homeLink);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/')
+  });
+
+  // test('Test links navegating About', () => {
+  //   const { history } = renderWithRouter(<App />, { About });
+  //   const { location: { pathname } } = history;
+  //   expect(pathname).toBe('/About');
+  // });
+
+  test('Test links navegating About', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const AboutLink = getByText('About');
+    expect(AboutLink).toBeInTheDocument();
+    fireEvent.click(AboutLink);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/about')
+  });
+
+  test('Test links navegating About', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const favoritesLink = getByText('Favorite Pokémons');
+    expect(favoritesLink).toBeInTheDocument();
+    fireEvent.click(favoritesLink);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites')
+  });
+
+  test('Click in Home', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const clickInHome = getByText('Home');
+    fireEvent.click(clickInHome);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
+  })
+
+  test('Click in About', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const clickInAbout = getByText('About');
+    fireEvent.click(clickInAbout);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/about');
+  })
+  
+  test('Click in Favorite Pokémons', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const clickInFavorite = getByText('Favorite Pokémons');
+    fireEvent.click(clickInFavorite);
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites');
+  })
+
+  test('Url not found', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    // const { location: { pathname }} = history;
+    history.push("/pagina-not-found/");
+    // fireEvent.click(pathname);
+    const noMatch = getByText(/Page requested not found/i);
+    expect(noMatch).toBeInTheDocument();
+  });
+
+
+
+
+
 });
