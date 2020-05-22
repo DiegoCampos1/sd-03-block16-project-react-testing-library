@@ -48,11 +48,7 @@ const renderWithRouter = (
   history,
 });
 
-const {
-  averageWeight,
-  name, image,
-  id,
-} = testPokemon;
+const { averageWeight, name, image } = testPokemon;
 const { value, measurementUnit } = averageWeight;
 
 describe('Pokemon.js component tests', () => {
