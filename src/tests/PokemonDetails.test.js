@@ -7,7 +7,7 @@ import pokemons from '../data';
 
 describe('PokemonDetails', () => {
   afterEach(cleanup);
-  const match = { params: { id: '25' }}
+  const match = { params: { id: '25' } };
 
   test('should have information only about the selected pokémon', () => {
     const { getByText } = render(
@@ -22,26 +22,26 @@ describe('PokemonDetails', () => {
   });
 
   test('should NOT have a link for details', () => {
-    const { queryByText } = render(
+    const { queryByText } = render((
       <PokemonDetails
         match={match}
         isPokemonFavoriteById={{ 25: true }}
         onUpdateFavoritePokemons={() => null}
         pokemons={[pokemons[0]]}
       />
-    );
+    ));
     expect(queryByText('More details')).not.toBeInTheDocument();
   });
 
   test('should have an Summary h2', () => {
-    const { queryByText } = render(
+    const { queryByText } = render((
       <PokemonDetails
         match={match}
         isPokemonFavoriteById={{ 25: true }}
         onUpdateFavoritePokemons={() => null}
         pokemons={[pokemons[0]]}
       />
-    );
+    ));
     expect(queryByText('Summary')).toBeInTheDocument();
     expect(queryByText('Summary')).toContainHTML('<h2>');
   });
@@ -49,14 +49,14 @@ describe('PokemonDetails', () => {
   test('should have a paragrph with the PikachuDetails', () => {
     const mockedPikachuDescription = 'This intelligent Pokémon roasts hard berries ' +
       'with electricity to make them tender enough to eat.';
-    const { getByText } = render(
+    const { getByText } = render((
       <PokemonDetails
         match={match}
         isPokemonFavoriteById={{ 25: true }}
         onUpdateFavoritePokemons={() => null}
         pokemons={[pokemons[0]]}
       />
-    );
+    ));
     expect(getByText(mockedPikachuDescription)).toBeInTheDocument();
   });
 });
