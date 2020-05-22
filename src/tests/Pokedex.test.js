@@ -38,7 +38,7 @@ test('no error', () => {
       <App />
     </MemoryRouter>,
   );
-  expect(getByText('ID')).not.toBeInTheDocument();
+  expect(getByText('TypeError: Cannot read property `id` of undefined')).not.toBeInTheDocument();
 });
 
 test('text `encountered`', () => {
