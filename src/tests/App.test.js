@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, getByRole } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import App from '../App';
 
 describe('App tests', () => {
