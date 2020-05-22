@@ -27,13 +27,13 @@ describe('Informações sobre a pokedex', () => {
   });
 
   test('Contem imagem', () => {
-    const { getByAltText } = render(
+    const { getByRole } = render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
       </MemoryRouter>,
     );
 
-    const image = getByAltText('Pokédex');
-    expect(image).toBeInTheDocument();
+    const image = getByRole('img');
+    expect(image).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
