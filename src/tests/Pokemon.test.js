@@ -1,8 +1,7 @@
 import React from 'react';
 import { MemoryRouter, useHistory } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import Pokemons from '../components/Pokemon';
-import data from '../data';
+import App from '../App';
 
 test('pokecard', () => {
   const { container } = render(
