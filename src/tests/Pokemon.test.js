@@ -77,7 +77,7 @@ describe('Pokemon.js component tests', () => {
     expect(pokemonImage.alt).toBe(`${name} sprite`);
     expect(favoriteIcon).toBeInTheDocument();
     expect(favoriteIcon.alt).toBe(`${name} is marked as favorite`);
-    expect(favoriteIcon.src).not.toBeNull();
+    expect(favoriteIcon.src).not.toBe('');
   });
 
   test('renders one card with not favorite pokemon info, , and details link', () => {
