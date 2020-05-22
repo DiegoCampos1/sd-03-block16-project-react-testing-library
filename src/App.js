@@ -25,7 +25,7 @@ class App extends Component {
       acc[pokemon.id] = favoritePokemonIds.includes(pokemon.id);
       return acc;
     }, {});
-
+    // console.log(isPokemonFavorite);
     return isPokemonFavorite;
   }
 
