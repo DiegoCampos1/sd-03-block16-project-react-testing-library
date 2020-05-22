@@ -163,5 +163,4 @@ test('testing Próximo Pokémon', () => {
   const typeButtonFire = getAllByTestId('pokemon-type-button');
   fireEvent.click(typeButtonFire[1]);
   expect(nextPokeButton).toBeDisabled();
-
 });
