@@ -1,5 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, getAllByText, queryByText } from '@testing-library/react';
 import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
