@@ -23,11 +23,4 @@ describe('', () => {
 
     expect(getByText('Pikachu')).toBeInTheDocument();
   });
-
-});
-describe('outra suit', () => {
-  test('botao2', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText('Pikachu')).toBeInTheDocument();
-  });
 });
