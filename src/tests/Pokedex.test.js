@@ -41,3 +41,15 @@ test('no error', () => {
   expect(getByText('ID')).not.toBeInTheDocument();
 });
 
+test('text `encountered`', () => {
+  const { getAllByTestId, getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const getClass = getAllByTestId('pokemon-type-button');
+
+  expect(getClass.length).toBe(7);
+  expect(getByText('All')).toBeInTheDocument();
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
