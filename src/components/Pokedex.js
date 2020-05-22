@@ -55,6 +55,7 @@ class Pokedex extends React.Component {
             key={type}
             onClick={() => this.filterPokemons(type)}
             className="filter-button"
+            value={type}
           >
             {`${type}`}
           </Button>
