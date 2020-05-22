@@ -8,6 +8,13 @@ const mockedFavoriteID = { 25: true };
 
 const mockedData = [{ ...pokemons[0] }, { ...pokemons[1] }];
 
+const pokemonsTypes = pokemons
+  .map(({ type }) => type)
+  .reduce(
+    (types, type) => (types.includes(type) ? types : [...types, type]),
+    [],
+  );
+
 describe('Pokedex.js component tests', () => {
   afterEach(cleanup);
 
@@ -43,9 +50,12 @@ describe('Pokedex.js component tests', () => {
     expect(queryByText(`${mockedData[0].name}`)).toBeInTheDocument();
   });
 
-  test('Próximo pokémon button is disabled with pokemon list have oly one pokémon', () => {
+  test('Próximo pokémon button is disabled with pokemon list have only one pokémon', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={[pokemons[0]]} isPokemonFavoriteById={mockedFavoriteID} />,
+      <Pokedex
+        pokemons={[pokemons[0]]}
+        isPokemonFavoriteById={mockedFavoriteID}
+      />,
     );
     const nextButton = getByText(/próximo pokémon/i);
 
@@ -53,20 +63,84 @@ describe('Pokedex.js component tests', () => {
     expect(nextButton).toBeDisabled();
   });
 
-  test('All button tests', () => {
+  test('All button renders and select all pokémons', () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const allTypeButton = getByText(/all/i);
+    const nextButton = getByText(/próximo pokémon/i);
 
+    expect(allTypeButton).toBeInTheDocument();
+    expect(nextButton).toBeInTheDocument();
+
+    fireEvent.click(allTypeButton);
+
+    const pokemonTitles = pokemons.map(({ name }) => name);
+    pokemonTitles.forEach((title) => {
+      expect(getByText(title)).toBeInTheDocument();
+      fireEvent.click(nextButton);
+    });
+  });
+
+  test('render filter buttons tests', () => {
+    const { getByText, getAllByText } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
+    );
+
+    pokemonsTypes.forEach((type) => {
+      const filterButton = getAllByText(type)[1] || getByText(type);
+      expect(filterButton).toBeInTheDocument();
+      expect(filterButton.textContent).toBe(type);
+      expect(filterButton).toHaveAttribute('type', 'button');
+    });
+    const allTypeButton = getByText(/all/i);
     expect(allTypeButton).toBeInTheDocument();
   });
 
-  test('Filter buttons tests', () => {
-    const { container } = renderWithRouter(
+  test('when click on a type button, only pokemons of that type is selected', () => {
+    const { getByText, getAllByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
-    const filterTypeButtons = container.querySelectorAll('.filter-button');
-    expect(filterTypeButtons.length).toBe(8);
+    const nextButton = getByText(/próximo pokémon/i);
+
+    pokemonsTypes.forEach((type) => {
+      const typeButton = getAllByText(type)[1] || getByText(type);
+      fireEvent.click(typeButton);
+      const filteredPokemons = pokemons.filter(
+        (element) => element.type === type,
+      );
+      filteredPokemons.forEach((filteredPokemon) => {
+        expect(getByText(filteredPokemon.name)).toBeInTheDocument();
+        if (filteredPokemons.length > 1) fireEvent.click(nextButton);
+      });
+    });
+  });
+
+  test('after click ALL button, the pokemon list backs to displays all pokémons', () => {
+    const { getByText, getAllByText } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
+    );
+    const allTypeButton = getByText(/all/i);
+    const nextButton = getByText(/próximo pokémon/i);
+
+    pokemonsTypes.forEach((type) => {
+      const typeButton = getAllByText(type)[1] || getByText(type);
+      fireEvent.click(typeButton);
+      const filteredPokemons = pokemons.filter(
+        (element) => element.type === type,
+      );
+      filteredPokemons.forEach((filteredPokemon) => {
+        expect(getByText(filteredPokemon.name)).toBeInTheDocument();
+        if (filteredPokemons.length > 1) fireEvent.click(nextButton);
+      });
+    });
+
+    fireEvent.click(allTypeButton);
+
+    const pokemonTitles = pokemons.map(({ name }) => name);
+    pokemonTitles.forEach((title) => {
+      expect(getByText(title)).toBeInTheDocument();
+      fireEvent.click(nextButton);
+    });
   });
 });
