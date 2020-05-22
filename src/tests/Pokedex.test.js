@@ -10,7 +10,7 @@ import pokemons from '../data';
 const renderWithRouter = (ui, history = createMemoryHistory()) =>
   render(<Router history={history}>{ui}</Router>);
 
-const mockedPokemonFavoriteById = { 0: false };
+const mockedPokemonFavoriteById = [25];
 
 describe('Pokedex', () => {
   afterEach(cleanup);
