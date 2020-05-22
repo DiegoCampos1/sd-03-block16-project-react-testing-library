@@ -1,18 +1,10 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return {
-    ...render(<Router history={history}>{component}</Router>), history,
-  };
-};
-
-test('renders a reading with the text `Pokédex`', () => {
+test('renders a heading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
@@ -22,23 +14,38 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={['/']}>
-      <App />
-    </MemoryRouter>,
-  );
-
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
-
 test('Verificando link About', () => {
   const { getByText, history } = renderWithRouter(<App />);
 
   const pageAbout = getByText('About');
   expect(pageAbout).toBeInTheDocument();
+
   fireEvent.click(pageAbout);
+
   const pathAbout = history.location.pathname;
   expect(pathAbout).toBe('/about');
 });
+
+test('Verificando link Favorites', () => {
+  const { getByText, history } =renderWithRouter(<App />);
+
+  const pageFavorites = getByText('Favorite Pokémons');
+  expect(pageFavorites).toBeInTheDocument();
+
+  fireEvent.click(pageFavorites);
+
+  const pathFavorites = history.location.pathname;
+  expect(pathFavorites).toBe('/favorites');
+})
+
+test('Verificando link Home', () => {
+  const { getByText, history } =renderWithRouter(<App />);
+
+  const pageHome = getByText('Home');
+  expect(pageHome).toBeInTheDocument();
+
+  fireEvent.click(pageHome);
+
+  const pathHome = history.location.pathname;
+  expect(pathHome).toBe('/');
+})
