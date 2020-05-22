@@ -20,7 +20,7 @@ describe('Test 1 - next button shows next pokemon', () => {
   });
   it('1.2 - multiple clicks must show next pokemon', () => {
     const { getByText } = renderWithRouter(<App />);
-    const nextButton = getByText(/próximo pokémon/i);
+    const nextButton = getByText(/Próximo pokémon/i);
     pokemonNames.forEach((pokemon) => {
       expect(getByText(pokemon)).toBeInTheDocument();
       fireEvent.click(nextButton);
