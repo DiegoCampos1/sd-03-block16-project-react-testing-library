@@ -32,16 +32,6 @@ test('the Pokédex must contain filter buttons', () => {
   });
 });
 
-test('no error', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const erro = 'TypeError: Cannot read property `id` of undefined';
-  expect(getByText(erro)).not.toBeInTheDocument();
-});
-
 test('text `encountered`', () => {
   const { getAllByTestId, getByText } = render(
     <MemoryRouter>
