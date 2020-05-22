@@ -25,8 +25,8 @@ test('Verificando link About', () => {
   const pathAbout = history.location.pathname;
   expect(pathAbout).toBe('/about');
 
-  // const aboutPokedex = getByText('About Pokédex')
-  // expect(aboutPokedex).toBeInTheDocument();
+  const aboutPokedex = getByText('About Pokédex')
+  expect(aboutPokedex).toBeInTheDocument();
 });
 
 test('Verificando link Favorites', () => {
@@ -56,8 +56,8 @@ test('Verificando link Home', () => {
 test('Verificar se uma URL desconhecida exibe a paǵina Not Found', () => {
   const { getByText, history } = renderWithRouter(<App />);
 
-  history.push("/pagina/quenaoexiste")
-  const notFound = getByText('Page requested not found')
+  history.push('/pagina/quenaoexiste');
+  const notFound = getByText('Page requested not found');
 
   expect(notFound).toBeInTheDocument();
 });
