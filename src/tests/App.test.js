@@ -25,7 +25,7 @@ test('Verificando link About', () => {
   const pathAbout = history.location.pathname;
   expect(pathAbout).toBe('/about');
 
-  const aboutPokedex = getByText('About Pokédex')
+  const aboutPokedex = getByText('About Pokédex');
   expect(aboutPokedex).toBeInTheDocument();
 });
 
