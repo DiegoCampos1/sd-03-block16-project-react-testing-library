@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  render, cleanup, fireEvent,
+  render, cleanup, fireEvent, getByTitle,
 } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
@@ -105,4 +105,7 @@ test('new Pokemon filter', () => {
   fireEvent.click(newButton[7]);
   const prox = getByText('Próximo pokémon');
   expect(prox).toBeDisabled();
+
+  const title = getByText('Encountered pokémons');
+  expect(title).toBeInTheDocument();
 });
