@@ -1,9 +1,9 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import App from '../App';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
+import App from '../App';
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
@@ -34,11 +34,11 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('Verificando link About', () => {
-  const { getByText, history} = renderWithRouter(<App />);
-  
+  const { getByText, history } = renderWithRouter(<App />);
+
   const pageAbout = getByText('About');
   expect(pageAbout).toBeInTheDocument();
   fireEvent.click(pageAbout);
   const pathAbout = history.location.pathname;
-  expect(pathAbout).toBe('/about')
-})
+  expect(pathAbout).toBe('/about');
+});
