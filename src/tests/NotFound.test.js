@@ -13,4 +13,4 @@ test('Img in page', () => {
   const img = getByAltText('Pikachu crying because the page requested was not found');
   expect(img).toBeInTheDocument();
   expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
-})
+});
