@@ -95,14 +95,14 @@ test('new Pokemon filter', () => {
     ],
     summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
   };
-  const { getByText } = render(
+  const { getByText, getAllByTestId } = render(
     <MemoryRouter>
       <Pokedex pokemons={[...pokemons, newPok]} isPokemonFavoriteById={{ 25: true }} />
     </MemoryRouter>,
   );
-  const newButton = getByText('Fighter');
-  expect(newButton).toBeInTheDocument();
-  fireEvent.click(newButton);
+  const newButton = getAllByTestId('pokemon-type-button');
+  expect(newButton).toHaveLength(8);
+  fireEvent.click(newButton[7]);
   const prox = getByText('Próximo pokémon');
   expect(prox).toBeDisabled();
 });
