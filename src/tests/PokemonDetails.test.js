@@ -37,10 +37,10 @@ describe('Test 2 - pokemon details must display maps', () => {
         fireEvent.click(nextButton);
       }
       const detailsButton = queryByText(/More details/i);
-      fireEvent.click(detailsButton);     
+      fireEvent.click(detailsButton);
       expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
       expect(getByText(`Game Locations of ${name}`).tagName).toBe('H2');
-      expect(getAllByAltText(`${name} location`).length).toBe(foundAt.length);   
+      expect(getAllByAltText(`${name} location`).length).toBe(foundAt.length);
       for (let i = 0; i < foundAt.length; i += 1) {
         const location = getAllByAltText(`${name} location`)[i];
         expect(getByText(foundAt[i].location)).toBeInTheDocument(); // 14.3
