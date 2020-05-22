@@ -1,19 +1,7 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import App from '../App';
-
-const renderWithRouter = (
-  component,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) => ({
-  ...render(<Router history={history}>{component}</Router>),
-  history,
-});
+import renderWithRouter from '../helper';
 
 describe('App.js tests', () => {
   afterEach(cleanup);
@@ -28,9 +16,9 @@ describe('App.js tests', () => {
     const { queryAllByRole } = renderWithRouter(<App />);
     const links = queryAllByRole('link');
     expect(links.length).toBe(4);
-    expect(links[0].innerHTML).toBe('Home');
-    expect(links[1].innerHTML).toBe('About');
-    expect(links[2].innerHTML).toBe('Favorite Pokémons');
+    expect(links[0].textContent).toBe('Home');
+    expect(links[1].textContent).toBe('About');
+    expect(links[2].textContent).toBe('Favorite Pokémons');
   });
 
   test('redirects to `/` URL after click Home link', () => {

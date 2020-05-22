@@ -1,19 +1,7 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
 import { render, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
 import FavoritePokemons from '../components/FavoritePokemons';
-
-const renderWithRouter = (
-  component,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) => ({
-  ...render(<Router history={history}>{component}</Router>),
-  history,
-});
+import renderWithRouter from '../helper';
 
 describe('FavoritePokemons.js component test', () => {
   afterEach(cleanup);

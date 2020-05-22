@@ -1,8 +1,7 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { fireEvent, cleanup } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
+import renderWithRouter from '../helper';
 
 const testPokemon = {
   id: 4,
@@ -36,18 +35,9 @@ const testPokemon = {
     'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
 };
 
-const renderWithRouter = (
-  component,
-  {
-    route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
-  } = {},
-) => ({
-  ...render(<Router history={history}>{component}</Router>),
-  history,
-});
-
-const { averageWeight, name, image, id } = testPokemon;
+const {
+  averageWeight, name, image, id,
+} = testPokemon;
 const { value, measurementUnit } = averageWeight;
 
 describe('Pokemon.js component tests', () => {
@@ -73,9 +63,9 @@ describe('Pokemon.js component tests', () => {
     expect(pokemonContainer.length).toBe(1);
     expect(pokemonOverview.length).toBe(1);
     expect(pokemonName).toBeInTheDocument();
-    expect(pokemonName.innerHTML).toBe(name);
+    expect(pokemonName.textContent).toBe(name);
     expect(pokemonAverageWeight).toBeInTheDocument();
-    expect(pokemonAverageWeight.innerHTML).toBe(
+    expect(pokemonAverageWeight.textContent).toBe(
       `Average weight:${value}${measurementUnit}`,
     );
     expect(detailsLink).toBeInTheDocument();
@@ -106,9 +96,9 @@ describe('Pokemon.js component tests', () => {
     expect(pokemonContainer.length).toBe(1);
     expect(pokemonOverview.length).toBe(1);
     expect(pokemonName).toBeInTheDocument();
-    expect(pokemonName.innerHTML).toBe(name);
+    expect(pokemonName.textContent).toBe(name);
     expect(pokemonAverageWeight).toBeInTheDocument();
-    expect(pokemonAverageWeight.innerHTML).toBe(
+    expect(pokemonAverageWeight.textContent).toBe(
       `Average weight:${value}${measurementUnit}`,
     );
     expect(detailsLink).toBeInTheDocument();
