@@ -72,7 +72,11 @@ describe('Pokedex.js component tests', () => {
       const filterButton = getAllByText(type)[1] || getByText(type);
       expect(filterButton).toBeInTheDocument();
       expect(filterButton.textContent).toBe(type);
-      expect(filterButton).toHaveAttribute('type', 'button');
+      expect(filterButton).toHaveAttribute(
+        'type',
+        'button',
+        'pokemon-type-button',
+      );
     });
     const allTypeButton = getByText(/all/i);
     expect(allTypeButton).toBeInTheDocument();
