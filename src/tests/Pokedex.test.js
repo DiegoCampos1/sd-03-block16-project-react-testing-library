@@ -26,7 +26,7 @@ const mockPokemons = [
         map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
       },
     ],
-    summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+    summary: 'This intelligent Pokémon roasts hard berries ',
   },
   {
     id: 4,
@@ -56,7 +56,7 @@ const mockPokemons = [
         map: 'https://cdn.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
       },
     ],
-    summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+    summary: 'The flame on its tail shows the strength of its life force.',
   },
 ];
 
@@ -83,9 +83,9 @@ const mockIsPokemonFavoriteById = {
 afterEach(cleanup);
 
 test('testing next pokémon button', () => {
-  const { getByText, getByTestId } = renderWithRouter(<App />);
+  const { getByTestId } = renderWithRouter(<App />);
 
-  const nextPokeButton = getByText('Próximo pokémon');
+  const nextPokeButton = getByTestId('next-pokemon');
   expect(nextPokeButton).toBeInTheDocument();
   expect(nextPokeButton).toHaveTextContent('Próximo pokémon');
   pokemons.forEach((e) => {
@@ -106,24 +106,16 @@ test('testing if pokedex has only one pokemon displayed', () => {
   expect(queryAllByTestId('pokemon-name')).toHaveLength(1);
 });
 
-test('testing if pokedex has filter buttons with type name', () => {
-  const { getByText, getAllByRole, getByTestId } = renderWithRouter(<App />);
+test('testing if Encountered pokémons exists', () => {
+  const { getByText } = renderWithRouter(
+    <Pokedex
+      pokemons={mockPokemons}
+      isPokemonFavoriteById={mockIsPokemonFavoriteById}
+    />,
+  );
 
-  const nextPokeButton = getByText('Próximo pokémon');
-  const pokemonName = getByTestId('pokemon-name');
-  // console.log(getByTestId('pokemon-name'));
-  labelButtons().forEach((e) => {
-    expect(getAllByRole('button').some((el) => e === el)).toBe(true);
-  });
-  // const typeButtonFire = getByText('Fire');
-  // expect(typeButtonFire).toBeInTheDocument();
-  // fireEvent.click(typeButtonFire);
-  // pokemons.forEach((e) => {
-  //   const typeButton = getAllByText(`${e.type}`);
-  //   fireEvent.click(typeButton);
-  //   expect(pokemonName).toHaveTextContent(e.name);
-  //   fireEvent.click(nextPokeButton);
-  // });
+  const nextPokeButton = getByText('Encountered pokémons');
+  expect(nextPokeButton).toBeInTheDocument();
 });
 
 test('testing if pokedex has button all', () => {
@@ -144,5 +136,10 @@ test('testing if pokedex has button all', () => {
 });
 
 test('testing dinamicaly generated buttons', () => {
+  const { queryAllByTestId } = renderWithRouter(<App />);
 
+  const typesButton = queryAllByTestId('pokemon-type-button');
+  const typesInScreen = typesButton.map((e) => e.textContent);
+  expect(typesButton).toHaveLength(labelButtons().length);
+  expect(typesInScreen).toStrictEqual(labelButtons());
 });
