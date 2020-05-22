@@ -15,13 +15,19 @@ const mockedPokemonFavoriteById = { 0: false };
 describe('Pokedex', () => {
   afterEach(cleanup);
 
+  test('should be rendered on the main page', () => {}
+    const { queryByText } = renderWithRouter((
+      <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
+    ));
+    expect(queryByText('Encountered pokémons')).toBeInTheDocument();
+  });
+
   describe('Button of next Pokémon', () => {
     test('should exits', () => {
       const { getByText } = renderWithRouter((
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
       ));
-      const button = getByText('Próximo pokémon');
-      expect(button).toBeInTheDocument();
+      expect(getByText('Próximo pokémon')).toBeInTheDocument();
     });
 
     test('should pass to the next pokemon of data', () => {
