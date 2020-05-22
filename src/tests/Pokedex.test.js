@@ -90,7 +90,7 @@ describe('Pokedex.js component tests', () => {
     const typeButtons = getAllByTestId('pokemon-type-button');
 
     expect(typeButtons.length).toBe(7);
-  })
+  });
 
   test('when click on a type button, only pokemons of that type is selected, after click ALL button, the pokemon list backs to displays all pokémons', () => {
     const { getByText, getAllByText } = renderWithRouter(
