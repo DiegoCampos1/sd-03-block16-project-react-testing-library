@@ -12,9 +12,9 @@ test('When pressing the next button, the page should display the next pokémon i
       <App />
     </MemoryRouter>,
   );
-  const nextPokemonButton = getByText(`Próximo pokémon`);
+  const nextPokemonButton = getByText('Próximo pokémon');
   expect(nextPokemonButton).toBeInTheDocument();
-  pokemons.forEach(elem => {
+  pokemons.forEach((elem) => {
     const namePokemon = getByTestId('pokemon-name');
     expect(namePokemon).toBeInTheDocument(elem.name);
     fireEvent.click(nextPokemonButton);
