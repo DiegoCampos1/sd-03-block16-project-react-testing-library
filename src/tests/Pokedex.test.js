@@ -24,7 +24,7 @@ describe('test 2 - only one pokemon each page', () => {
 describe('Test 3 - next button shows next pokemon', () => {
   it("3.1 - button must contain 'proximo pokemon'", () => {
     const { getByText } = renderWithRouter(<App />);
-    expect(getByText(/próximo pokémon/i)).toBeInTheDocument();
+    expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
   });
   it('3.2 - multiple clicks must show next pokemon', () => {
     const { getByText } = renderWithRouter(<App />);
