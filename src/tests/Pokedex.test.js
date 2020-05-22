@@ -8,12 +8,11 @@ describe('', () => {
     const { getByText } = renderWithRouter(<App />);
     const btn = getByText('Próximo pokémon');
     expect(btn).toBeInTheDocument();
-  
+
     fireEvent.click(btn);
-  
+
     const nextPokemon = getByText('Charmander');
     expect(nextPokemon).toBeInTheDocument();
-  
   });
 
   test('Pokedex deve conter botão para resetar filtro', () => {
@@ -26,9 +25,9 @@ describe('', () => {
   });
 
 });
-
 describe('outra suit', () => {
   test('botao2', () => {
-
-  })
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText('Pikachu')).toBeInTheDocument();
+  });
 });
