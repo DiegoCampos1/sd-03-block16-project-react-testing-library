@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import { FavoritePokemons } from '../components';
 import { MemoryRouter } from 'react-router-dom';
+import { FavoritePokemons } from '../components';
 import App from '../App';
 
 afterEach(cleanup);
