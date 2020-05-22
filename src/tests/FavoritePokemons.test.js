@@ -1,8 +1,8 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import Favorite from '../components/FavoritePokemons';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { fireEvent } from '@testing-library/react';
 
 test('No favorite pokemon found', () => {
   const { getByText } = renderWithRouter(<Favorite />);
@@ -12,7 +12,7 @@ test('No favorite pokemon found', () => {
 
 test('não exibir nenhum card de pokemon não favoritado', () => {
   const { getByText } = renderWithRouter(<App />);
-  
+
   const linkMoreDetails = getByText('More details');
   expect(linkMoreDetails).toBeInTheDocument();
 
@@ -28,5 +28,4 @@ test('não exibir nenhum card de pokemon não favoritado', () => {
 
   const pikachu = getByText('Pikachu');
   expect(pikachu).toBeInTheDocument();
-
 });
