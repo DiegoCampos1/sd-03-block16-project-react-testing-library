@@ -105,7 +105,7 @@ test('testing if pokedex has filter buttons with type name', () => {
   // });
 });
 
-test('testinf if pokedex has button all', () => {
+test('testing if pokedex has button all', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
 
   const nextPokeButton = getByText('Próximo pokémon');
