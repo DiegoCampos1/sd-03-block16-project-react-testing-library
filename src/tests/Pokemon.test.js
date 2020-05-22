@@ -1,15 +1,8 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import {
-  render,
-  fireEvent,
-  waitForDomChange,
-  cleanup,
-} from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import Pokemon from '../components/Pokemon';
-import App from '../App';
-import pokemons from '../data';
 
 const testPokemon = {
   id: 4,
@@ -133,11 +126,10 @@ describe('Pokemon.js component tests', () => {
     const detailsLink = getByText(/more details/i);
     expect(detailsLink).toBeInTheDocument();
 
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
+    expect(history.location.pathname).toBe('/');
 
     fireEvent.click(detailsLink);
 
-    expect(pathname).toBe(`/pokemons/${id}`);
+    expect(history.location.pathname).toBe(`/pokemons/${id}`);
   });
 });
