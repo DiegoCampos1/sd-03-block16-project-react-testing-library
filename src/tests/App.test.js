@@ -48,4 +48,4 @@ test('Verificando link Home', () => {
 
   const pathHome = history.location.pathname;
   expect(pathHome).toBe('/');
-})
+});
