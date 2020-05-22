@@ -1,7 +1,8 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { fireEvent } from '@testing-library/react';
+
 
 describe('Testes do arquivo App.js', () => {
   test('renders a reading with the text `Pokédex`', () => {
@@ -18,7 +19,7 @@ describe('Testes do arquivo App.js', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const homeLink = getByText('Home');
     expect(homeLink).toBeInTheDocument();
-    const aboutLink = getByText('About')
+    const aboutLink = getByText('About');
     expect(aboutLink).toBeInTheDocument();
     const favoriteLink = getByText('Favorite Pokémons');
     expect(favoriteLink).toBeInTheDocument();
