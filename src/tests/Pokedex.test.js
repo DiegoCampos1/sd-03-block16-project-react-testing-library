@@ -21,6 +21,7 @@ describe('test file Pokedex.js', () => {
     expect(getByTestId('pokemon-name').textContent).toBe('Pikachu');
   });
 
+
   test('Pokedex should show only one pokemon', () => {
     const { getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
