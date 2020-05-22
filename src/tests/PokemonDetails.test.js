@@ -1,6 +1,9 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
+import App from '../App';
 import PokemonDetails from '../components/PokemonDetails';
 
 import pokemons from '../data';
@@ -114,15 +117,29 @@ describe('PokemonDetails', () => {
     });
   });
 
-  test('should have a favorite radio button', () => {
-    const { queryByLabelText } = render((
-      <PokemonDetails
-        match={match}
-        isPokemonFavoriteById={{ 25: true }}
-        onUpdateFavoritePokemons={() => null}
-        pokemons={[pokemons[0]]}
-      />
-    ));
-    expect(queryByLabelText('Pokémon favoritado?')).toHaveAttribute('type', 'checkbox');
+  describe('Favorite checkbox', () => {
+    test('should exist', () => {
+      const { queryByLabelText } = render((
+        <PokemonDetails
+          match={match}
+          isPokemonFavoriteById={{ 25: true }}
+          onUpdateFavoritePokemons={() => null}
+          pokemons={[pokemons[0]]}
+        />
+      ));
+      expect(queryByLabelText('Pokémon favoritado?')).toHaveAttribute('type', 'checkbox');
+    });
+
+    test('should change the status of the pokemon', () => {
+      const { getByLabelText, getByText } = render((
+        <Router history={createMemoryHistory()}>
+          <App />
+        </Router>
+      ));
+      fireEvent.click(getByText('More details'));
+      const favoriteButton = getByLabelText('Pokémon favoritado?');
+      fireEvent.click(favoriteButton);
+      expect(favoriteButton).toBeChecked();
+    });
   });
 });
