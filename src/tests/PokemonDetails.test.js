@@ -73,7 +73,19 @@ describe('PokemonDetails', () => {
       expect(getByText('Game Locations of Pikachu')).toBeInTheDocument();
     });
 
-    test('image', () => {
+    test('should render all the locations of the pokemon', () => {
+      const { getAllByAltText } = render((
+        <PokemonDetails
+          match={match}
+          isPokemonFavoriteById={{ 25: true }}
+          onUpdateFavoritePokemons={() => null}
+          pokemons={[pokemons[0]]}
+        />
+      ));
+      expect(getAllByAltText('Pikachu location').length).toBe(2);
+    });
+
+    test('image by alt and confirm src', () => {
       const image1 = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
       const image2 = 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
       const { getAllByAltText } = render((
@@ -87,5 +99,30 @@ describe('PokemonDetails', () => {
       expect(getAllByAltText('Pikachu location')[0]).toHaveAttribute('src', image1);
       expect(getAllByAltText('Pikachu location')[1]).toHaveAttribute('src', image2);
     });
+
+    test('should have the correct name and title', () => {
+      const { queryByText } = render((
+        <PokemonDetails
+          match={match}
+          isPokemonFavoriteById={{ 25: true }}
+          onUpdateFavoritePokemons={() => null}
+          pokemons={[pokemons[0]]}
+        />
+      ));
+      expect(queryByText('Kanto Viridian Forest')).toBeInTheDocument();
+      expect(queryByText('Kanto Power Plant')).toBeInTheDocument();
+    });
+  });
+
+  test('should have a favorite radio button', () => {
+    const { queryByLabelText } = render((
+      <PokemonDetails
+        match={match}
+        isPokemonFavoriteById={{ 25: true }}
+        onUpdateFavoritePokemons={() => null}
+        pokemons={[pokemons[0]]}
+      />
+    ));
+    expect(queryByLabelText('Pokémon favoritado?')).toHaveAttribute('type', 'checkbox');
   });
 });
