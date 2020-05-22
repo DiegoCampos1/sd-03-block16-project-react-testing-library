@@ -70,7 +70,6 @@ describe('Tests Requisito 3', () => {
   });
 
   test('Show number cards', () => {
-
     const { container } = render(
       <MemoryRouter initialEntries={['/favorites']}>
         <FavoritePokemons pokemons={pokepoke} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent, getAllByText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Pokedexx from '../components/Pokedex';
 import data from '../data';
 
