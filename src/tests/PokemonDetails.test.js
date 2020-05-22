@@ -10,7 +10,7 @@ describe('Test 1 - pokemon details should display pokemon summary', () => {
   it('1.1 - pokemon details must contain heading h2 and 13.2 - text summary', () => {
     const { getByText, queryByText } = renderWithRouter(<App />);
     pokemons.forEach(({
-      summary,
+      summary, name,
     }, index) => {
       for (let i = 0; i < index; i += 1) {
         const nextButton = getByText(/Próximo pokémon/i);
@@ -20,6 +20,7 @@ describe('Test 1 - pokemon details should display pokemon summary', () => {
       fireEvent.click(detailsButton);
       expect(getByText('Summary')).toBeInTheDocument();
       expect(getByText('Summary').tagName).toBe('H2');
+      expect(getByText(`${name} Details`)).toBeInTheDocument();
       expect(getByText(summary)).toBeInTheDocument();
       expect(getByText(summary).tagName).toBe('P');
       fireEvent.click(getByText('Home'));
