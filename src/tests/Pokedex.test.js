@@ -22,5 +22,4 @@ test('CLick successives in button', () => {
   const clickBtn = getByRole('button');
   fireEvent.click(clickBtn);
   expect(clickBtn).toBe('');
-
 });
