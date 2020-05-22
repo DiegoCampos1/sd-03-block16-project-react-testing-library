@@ -1,0 +1,2 @@
+Ex. Rodar no About.js
+node_modules/@stryker-mutator/core/bin/stryker run stryker/About.conf.json
