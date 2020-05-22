@@ -36,7 +36,7 @@ const testPokemon = {
 };
 
 const {
-  averageWeight, name, image, id,
+  averageWeight, name, image, id, type,
 } = testPokemon;
 const { value, measurementUnit } = averageWeight;
 
@@ -55,6 +55,7 @@ describe('Pokemon.js component tests', () => {
     const pokemonContainer = container.querySelectorAll('.pokemon');
     const pokemonOverview = container.querySelectorAll('.pokemon-overview');
     const pokemonName = getByTestId('pokemon-name');
+    const pokemonType = getByTestId('pokemonType');
     const pokemonAverageWeight = getByTestId('pokemon-weight');
     const detailsLink = getByRole('link');
     const pokemonImage = getByAltText(`${name} sprite`);
@@ -64,6 +65,8 @@ describe('Pokemon.js component tests', () => {
     expect(pokemonOverview.length).toBe(1);
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonName.textContent).toBe(name);
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType.textContent).toBe(type);
     expect(pokemonAverageWeight).toBeInTheDocument();
     expect(pokemonAverageWeight.textContent).toBe(
       `Average weight:${value}${measurementUnit}`,
@@ -74,6 +77,7 @@ describe('Pokemon.js component tests', () => {
     expect(pokemonImage.alt).toBe(`${name} sprite`);
     expect(favoriteIcon).toBeInTheDocument();
     expect(favoriteIcon.alt).toBe(`${name} is marked as favorite`);
+    expect(favoriteIcon.src).not.toBeNull();
   });
 
   test('renders one card with not favorite pokemon info, , and details link', () => {
