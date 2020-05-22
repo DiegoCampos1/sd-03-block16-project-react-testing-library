@@ -40,3 +40,9 @@ test('tests non existing page', () => {
   const pageNotFound = getByText('Page requested not found');
   expect(pageNotFound).toBeInTheDocument();
 });
+
+test('testing number of links', () => {
+  const { getAllByRole } = renderWithRouter(<App />, { route: '/xablau' });
+  const link = getAllByRole('link');
+  expect(link.length).toBe(3);
+});
