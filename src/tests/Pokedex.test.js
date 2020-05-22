@@ -63,26 +63,7 @@ describe('Pokedex.js component tests', () => {
     expect(nextButton).toBeDisabled();
   });
 
-  test('All button renders and select all pokémons', () => {
-    const { getByText } = renderWithRouter(
-      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
-    );
-    const allTypeButton = getByText(/all/i);
-    const nextButton = getByText(/próximo pokémon/i);
-
-    expect(allTypeButton).toBeInTheDocument();
-    expect(nextButton).toBeInTheDocument();
-
-    fireEvent.click(allTypeButton);
-
-    const pokemonTitles = pokemons.map(({ name }) => name);
-    pokemonTitles.forEach((title) => {
-      expect(getByText(title)).toBeInTheDocument();
-      fireEvent.click(nextButton);
-    });
-  });
-
-  test('render filter buttons tests', () => {
+  test('render filter buttons and All button tests', () => {
     const { getByText, getAllByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
@@ -97,26 +78,7 @@ describe('Pokedex.js component tests', () => {
     expect(allTypeButton).toBeInTheDocument();
   });
 
-  test('when click on a type button, only pokemons of that type is selected', () => {
-    const { getByText, getAllByText } = renderWithRouter(
-      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
-    );
-    const nextButton = getByText(/próximo pokémon/i);
-
-    pokemonsTypes.forEach((type) => {
-      const typeButton = getAllByText(type)[1] || getByText(type);
-      fireEvent.click(typeButton);
-      const filteredPokemons = pokemons.filter(
-        (element) => element.type === type,
-      );
-      filteredPokemons.forEach((filteredPokemon) => {
-        expect(getByText(filteredPokemon.name)).toBeInTheDocument();
-        if (filteredPokemons.length > 1) fireEvent.click(nextButton);
-      });
-    });
-  });
-
-  test('after click ALL button, the pokemon list backs to displays all pokémons', () => {
+  test('when click on a type button, only pokemons of that type is selected, after click ALL button, the pokemon list backs to displays all pokémons', () => {
     const { getByText, getAllByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
