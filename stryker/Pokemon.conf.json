@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
   "mutate": [
-    "src/components/Pokedex.js"
+    "src/components/Pokemon.js"
   ],
   "mutator": {
     "name": "javascript",
@@ -21,7 +21,7 @@
   },
   "testRunner": "command",
   "commandRunner": {
-    "command": "CI=true npm test 'src/tests/Pokedex.test.js'"
+    "command": "CI=true npm test 'src/tests/Pokemon.test.js'"
   },
   "timeoutMS": 20000,
   "reporters": [
