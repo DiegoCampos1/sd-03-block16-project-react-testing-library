@@ -58,18 +58,20 @@ describe('requisito 6', () => {
     expect(imgPokemon.alt).toBe('Pikachu sprite');
   });
 
-  test('6.5', () => {
+  test('6.5-6', () => {
     const verdade = true;
     const favoriteFalse = false;
-    const { getByText } = render(
+    const { getByText, container } = render(
       <MemoryRouter initialEntries={['/']}>
         <PokemonS pokemon={data[0]} showDetailsLink={verdade} isFavorite={favoriteFalse} />
       </MemoryRouter>,
     );
 
+    const getLink = container.querySelector('Link');
     const MorDetails = getByText('More details');
     fireEvent.click(MorDetails);
     const saveLocation = useHistory();
     expect(saveLocation.location.pathname).toBe('/pokemons/25');
+    expect(getLink).toBe('/pokemons/25');
   });
 });
