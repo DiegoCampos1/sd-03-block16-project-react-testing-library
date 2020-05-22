@@ -1,7 +1,7 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -13,16 +13,6 @@ test('renders a reading with the text `Pokédex`', () => {
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
 
 // jest.mock('react-router-dom', () => {
 //   const originalModule = jest.requireActual('react-router-dom');
