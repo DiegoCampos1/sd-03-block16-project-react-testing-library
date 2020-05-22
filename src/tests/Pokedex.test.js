@@ -60,15 +60,14 @@ const mockPokemons = [
   },
 ];
 
-const labelButtons = () => {
-  return pokemons.reduce((acc, e) => {
-    if (acc.includes(e.type)) {
-      return acc;
-    }
-    acc.push(e.type);
+const labelButtons = () => pokemons.reduce((acc, e) => {
+  if (acc.includes(e.type)) {
     return acc;
-  }, []);
-};
+  }
+  acc.push(e.type);
+  return acc;
+}, []);
+
 
 const mockIsPokemonFavoriteById = {
   25: false,
