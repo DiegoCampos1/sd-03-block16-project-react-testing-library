@@ -60,18 +60,32 @@ describe('PokemonDetails', () => {
     expect(getByText(mockedPikachuDescription)).toBeInTheDocument();
   });
 
-  test('pokemon location', () => {
-    const image1 = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
-    const image2 = 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
-    const { getAllByAltText } = render((
-      <PokemonDetails
-        match={match}
-        isPokemonFavoriteById={{ 25: true }}
-        onUpdateFavoritePokemons={() => null}
-        pokemons={[pokemons[0]]}
-      />
-    ));
-    expect(getAllByAltText('Pikachu location')[0]).toHaveAttribute('src', image1);
-    expect(getAllByAltText('Pikachu location')[1]).toHaveAttribute('src', image2);
+  describe('pokemon location', () => {
+    test('should have a title of the location', () => {
+      const { getByText } = render((
+        <PokemonDetails
+          match={match}
+          isPokemonFavoriteById={{ 25: true }}
+          onUpdateFavoritePokemons={() => null}
+          pokemons={[pokemons[0]]}
+        />
+      ));
+      expect(getByText('Game Locations of Pikachu')).toBeInTheDocument();
+    });
+
+    test('image', () => {
+      const image1 = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+      const image2 = 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
+      const { getAllByAltText } = render((
+        <PokemonDetails
+          match={match}
+          isPokemonFavoriteById={{ 25: true }}
+          onUpdateFavoritePokemons={() => null}
+          pokemons={[pokemons[0]]}
+        />
+      ));
+      expect(getAllByAltText('Pikachu location')[0]).toHaveAttribute('src', image1);
+      expect(getAllByAltText('Pikachu location')[1]).toHaveAttribute('src', image2);
+    });
   });
 });
