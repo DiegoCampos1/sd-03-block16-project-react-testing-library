@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  cleanup, fireEvent,
+  cleanup, fireEvent, getByText,
 } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
@@ -36,9 +36,10 @@ describe('Test 1 - next button shows next pokemon', () => {
 
 describe('test 2 - only one pokemon each page', () => {
   it('2.0 - shows only one pokemon at once', () => {
-    const { getAllByText } = renderWithRouter(<App />);
+    const { getAllByText, getByText } = renderWithRouter(<App />);
     expect(getAllByText(/more details/i).length).toBe(1);
     expect(getAllByText(/more details/i)[1]).toBeUndefined();
+    expect(getByText(/encountered pokémons/i)).toBeInTheDocument();
   });
 });
 
