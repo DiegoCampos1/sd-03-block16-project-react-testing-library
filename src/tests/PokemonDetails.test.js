@@ -136,10 +136,15 @@ describe('PokemonDetails', () => {
           <App />
         </Router>
       ));
+
       fireEvent.click(getByText('More details'));
       const favoriteButton = getByLabelText('Pokémon favoritado?');
+
       fireEvent.click(favoriteButton);
       expect(favoriteButton).toBeChecked();
+
+      fireEvent.click(favoriteButton);
+      expect(favoriteButton).not.toBeChecked();
     });
   });
 });
