@@ -1,9 +1,9 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import { fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 
 // test('No pokemons favorite', () => {
 //   const { queryByRole } = renderWithRouter(<FavoritePokemons />);
@@ -22,9 +22,9 @@ test('No card favorite', () => {
   const { getByText, getAllByText } = renderWithRouter(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
-  const moreDetails = getByText(/More details/i)
+  const moreDetails = getByText(/More details/i);
   expect(moreDetails).toBeInTheDocument();
   fireEvent.click(moreDetails);
 
@@ -34,7 +34,6 @@ test('No card favorite', () => {
 
   const cardFavorite = getAllByText(/Favorite Pokémons/i);
   expect(cardFavorite.length).not.toBeNull();
-
 });
 
 test('Cards favorite in page', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import { Pokedex } from '../components';
-import { fireEvent } from '@testing-library/react';
 
 
 // test('Next Pokemon button', () => {
@@ -23,7 +23,4 @@ test('CLick successives in button', () => {
   fireEvent.click(clickBtn);
   expect(clickBtn).toBe('');
 
-})
-
-
-
+});

@@ -1,7 +1,7 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
-import { render } from '@testing-library/react';
 
 
 test('Page About container information', () => {
@@ -18,13 +18,15 @@ test('Page container h2', () => {
 
 // test('Page Container 1 paragraphe', () => {
 //   const { getByText } = renderWithRouter(<About />);
-//   const acessFirtText = getByText('This application simulates a Pokédex, a digital encliclopedia containing all Pokémons');
+//   const acessFirtText = getByText(
+//  'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons');
 //   expect(acessFirtText).toBeInTheDocument();
 // });
 
 // test('Page Container 2 paragraphe', () => {
 //   const { getByText } = renderWithRouter(<About />);
-//   const acessSecondText = getByText('One can filter Pokémons by type, and see more details for each one of them');
+//   const acessSecondText = getByText(
+//  'One can filter Pokémons by type, and see more details for each one of them');
 //   expect(acessSecondText).toBeInTheDocument();
 // });
 
@@ -32,7 +34,7 @@ test('Page container 2 paragraphs', () => {
   render(<About />);
   const paragraphs = document.querySelectorAll('p');
   expect(paragraphs.length).toBe(2);
-})
+});
 
 test('Container Img', () => {
   const { getByAltText } = renderWithRouter(<About />);
