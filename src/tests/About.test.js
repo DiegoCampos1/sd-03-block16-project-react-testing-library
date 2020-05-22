@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, getAllByText, queryByText } from '@testing-library/react';
+// import { render, fireEvent, getAllByText, queryByText } from '@testing-library/react';
 import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
 
@@ -11,10 +11,11 @@ test('Página about deve exibir infos sobre Pokedex', () => {
 });
 
 test('About deve conter 2 parágrafos', () => {
-  const { getByText } = renderWithRouter(<About />);
+  // const { getByText } = 
+  renderWithRouter(<About />);
 
   const parag = document.querySelectorAll('p');
-  
+
   expect(parag.length).toBe(2);
 });
 

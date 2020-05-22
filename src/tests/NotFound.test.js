@@ -1,5 +1,4 @@
 import React from 'react';
-import { render, fireEvent, getAllByText, queryByText } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 import renderWithRouter from './renderWithRouter';
 
@@ -10,7 +9,7 @@ test('Heading h2 com texto', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('A pagina deve exibir uma imagem espeficifica', () => {
+test('A pagina deve exibir uma imagem específica', () => {
   const { getByAltText } = renderWithRouter(<NotFound />);
 
   const image = getByAltText('Pikachu crying because the page requested was not found');
