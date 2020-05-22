@@ -3,7 +3,6 @@ import { Router } from 'react-router-dom';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import Pokemon from '../components/Pokemon';
-import pokemons from '../data';
 
 const testPokemon = {
   id: 4,
