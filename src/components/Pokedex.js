@@ -82,6 +82,7 @@ class Pokedex extends React.Component {
           className="pokedex-button"
           onClick={() => this.nextPokemon(filteredPokemons.length)}
           disabled={filteredPokemons.length <= 1}
+          value="Próximo pokémon"
         >
           {`Próximo pokémon`}
         </Button>
