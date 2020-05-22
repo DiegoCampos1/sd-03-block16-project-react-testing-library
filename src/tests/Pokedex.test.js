@@ -4,102 +4,58 @@ import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import renderWithRouter from '../helper';
 
-const favoritePokemons = [
-  {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map:
-          'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-    summary:
-      'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-  },
-  {
-    id: 4,
-    name: 'Charmander',
-    type: 'Fire',
-    averageWeight: {
-      value: '8.5',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
-    moreInfo:
-      'https://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Alola Route 3',
-        map: 'https://cdn.bulbagarden.net/upload/9/93/Alola_Route_3_Map.png',
-      },
-      {
-        location: 'Kanto Route 3',
-        map: 'https://cdn.bulbagarden.net/upload/4/4a/Kanto_Route_3_Map.png',
-      },
-      {
-        location: 'Kanto Route 4',
-        map: 'https://cdn.bulbagarden.net/upload/2/24/Kanto_Route_4_Map.png',
-      },
-      {
-        location: 'Kanto Rock Tunnel',
-        map:
-          'https://cdn.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
-      },
-    ],
-    summary:
-      'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
-  },
-];
+const mockedFavoriteID = { 25: true };
+
+const mockedData = [{ ...pokemons[0] }, { ...pokemons[1] }];
 
 describe('Pokedex.js component tests', () => {
   afterEach(cleanup);
 
-  test('Pokedex renders', () => {
-    const isFavorite = true;
-    const { getByText } = renderWithRouter(
+  test('Pokedex renders, and renders only one pokémon at time', () => {
+    const { getByText, getAllByTestId } = renderWithRouter(
       <Pokedex
-        pokemons={favoritePokemons}
-        isPokemonFavoriteById={isFavorite}
+        pokemons={pokemons}
+        isPokemonFavoriteById={mockedFavoriteID}
+        isFavorite
       />,
     );
     const heading = getByText(/encountered pokémons/i);
+    const displayedPokemon = getAllByTestId('pokemon-name');
 
     expect(heading).toBeInTheDocument();
+    expect(displayedPokemon.length).toBe(1);
   });
 
-  test('Próximo pokémon button tests', () => {
-    const isFavorite = true;
-    const { getByText } = renderWithRouter(
+  test('Próximo pokémon button tests. When clicking on button the next pokémon of list is displayed and when the last pokémon is on the screen the first pokémon of list is displayed, after a click', () => {
+    const { queryByText } = renderWithRouter(
       <Pokedex
-        pokemons={favoritePokemons}
-        isPokemonFavoriteById={isFavorite}
+        pokemons={mockedData}
+        isPokemonFavoriteById={mockedFavoriteID}
       />,
+    );
+    const nextButton = queryByText(/próximo pokémon/i);
+
+    expect(nextButton).toBeInTheDocument();
+    expect(queryByText(`${mockedData[0].name}`)).toBeInTheDocument();
+    fireEvent.click(nextButton);
+    expect(queryByText(`${mockedData[1].name}`)).toBeInTheDocument();
+    fireEvent.click(nextButton);
+    expect(queryByText(`${mockedData[0].name}`)).toBeInTheDocument();
+  });
+
+  test('Próximo pokémon button is disabled with pokemon list have oly one pokémon', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={[pokemons[0]]} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const nextButton = getByText(/próximo pokémon/i);
 
     expect(nextButton).toBeInTheDocument();
+    expect(nextButton).toBeDisabled();
   });
 
   test('All button tests', () => {
-    const isFavorite = true;
     const { getByText } = renderWithRouter(
-      <Pokedex
-        pokemons={favoritePokemons}
-        isPokemonFavoriteById={isFavorite}
-      />,
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const allTypeButton = getByText(/all/i);
 
@@ -107,12 +63,8 @@ describe('Pokedex.js component tests', () => {
   });
 
   test('Filter buttons tests', () => {
-    const isFavorite = true;
     const { container } = renderWithRouter(
-      <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={isFavorite}
-      />,
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const filterTypeButtons = container.querySelectorAll('.filter-button');
     expect(filterTypeButtons.length).toBe(8);
