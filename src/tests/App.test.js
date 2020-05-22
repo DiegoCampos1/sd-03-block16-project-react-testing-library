@@ -1,17 +1,11 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import {
-  render, cleanup, fireEvent, waitForDomChange,
+  cleanup, fireEvent,
 } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
-import { Pokedex, FavoritePokemons } from '../components';
-import pokemons from '../mockPokemons';
-import { firstLocations, nextLocations } from '../mockLocations';
-import { generations, generation1 } from '../mockGenerations';
 
 afterEach(cleanup);
-
 
 describe('test 1 - shows pokedex in main page', () => {
   it('1.1 - renders a heading with the text `Pokédex`', () => {

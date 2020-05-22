@@ -1,14 +1,8 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import {
-  render, cleanup, fireEvent, waitForDomChange,
-} from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
-import App from '../App';
-import { Pokedex, FavoritePokemons } from '../components';
+import { FavoritePokemons } from '../components';
 import pokemons from '../mockPokemons';
-import { firstLocations, nextLocations } from '../mockLocations';
-import { generations, generation1 } from '../mockGenerations';
 
 afterEach(cleanup);
 

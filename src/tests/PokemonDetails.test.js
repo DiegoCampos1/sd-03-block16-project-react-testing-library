@@ -1,14 +1,11 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import {
-  render, cleanup, fireEvent, waitForDomChange,
+import { cleanup, fireEvent, 
 } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
-import { Pokedex, FavoritePokemons } from '../components';
+
 import pokemons from '../mockPokemons';
-import { firstLocations, nextLocations } from '../mockLocations';
-import { generations, generation1 } from '../mockGenerations';
+
 
 afterEach(cleanup);
 
@@ -63,7 +60,7 @@ describe('Test 14 - pokemon details must display maps', () => {
 describe('Test 15 - pokemon details must display fav button', () => {
   it('15.1 - must contain checkbox and enable/disable working', () => {
     const {
-      getByText, queryByText, getByRole, getByLabelText,
+      getByText, queryByText, getByRole,
     } = renderWithRouter(<App />);
     pokemons.forEach(({
       name, type, averageWeight: { value, measurementUnit }, image, summary, foundAt,
