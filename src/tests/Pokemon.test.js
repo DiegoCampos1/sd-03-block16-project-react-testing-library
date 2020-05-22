@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import Pokemon from '../components/Pokemon';
+import pokemons from '../data';
 
 const testPokemon = {
   id: 4,
@@ -47,7 +48,11 @@ const renderWithRouter = (
   history,
 });
 
-const { averageWeight, name, image, id } = testPokemon;
+const {
+  averageWeight,
+  name, image,
+  id,
+} = testPokemon;
 const { value, measurementUnit } = averageWeight;
 
 describe('Pokemon.js component tests', () => {
@@ -120,7 +125,7 @@ describe('Pokemon.js component tests', () => {
 
   test('test pokemon details link functionality', () => {
     const { getByText, history } = renderWithRouter(
-      <Pokemon pokemon={testPokemon} isFavorite />,
+      <Pokemon pokemon={pokemons[0]} isFavorite />,
     );
 
     const detailsLink = getByText(/more details/i);
@@ -130,6 +135,6 @@ describe('Pokemon.js component tests', () => {
 
     fireEvent.click(detailsLink);
 
-    expect(history.location.pathname).toBe(`/pokemons/${id}`);
+    expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
 });
