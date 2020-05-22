@@ -11,7 +11,7 @@ test('Página about deve exibir infos sobre Pokedex', () => {
 });
 
 test('About deve conter 2 parágrafos', () => {
-  // const { getByText } = 
+  // const { getByText } =
   renderWithRouter(<About />);
 
   const parag = document.querySelectorAll('p');

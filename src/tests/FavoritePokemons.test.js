@@ -4,6 +4,6 @@
 // import renderWithRouter from './renderWithRouter';
 
 test('No favorite pokemon found', () => {
-  //const { getByText } = renderWithRouter(<Favorite />);
+  // const { getByText } = renderWithRouter(<Favorite />);
 
 });
