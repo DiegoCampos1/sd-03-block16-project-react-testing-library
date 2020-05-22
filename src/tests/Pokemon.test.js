@@ -61,6 +61,10 @@ describe('Testes do arquivo Pokemon.js', () => {
     expect(averageWeight).toBeInTheDocument();
     expect(averageWeight.innerHTML).toEqual('Average weight:6.0kg');
 
+    const type = getByTestId(/pokemonType/i);
+    expect(type).toBeInTheDocument();
+    expect(type.innerHTML).toEqual('Electric');
+
     const image = getByAltText(/Pikachu sprite/i);
     expect(image).toBeInTheDocument();
     expect(image.src).toEqual('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
@@ -75,13 +79,13 @@ describe('Testes do arquivo Pokemon.js', () => {
   });
 
   it('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
-    const { getByText, queryByText } = renderWithRouter(<App />);
+    const { getByText, queryByText, getByTestId } = renderWithRouter(<App />);
 
     const pokemonLink = queryByText(/More details/i);
     expect(pokemonLink).toBeInTheDocument();
     expect(pokemonLink).toHaveAttribute('href', '/pokemons/25');
     fireEvent.click(pokemonLink);
-    const cliak = getByText(/Pikachu Details/i);
-    expect(cliak).toHaveTextContent('Pikachu Details');
+    const clickDetails = getByText(/Pikachu Details/i);
+    expect(clickDetails).toHaveTextContent('Pikachu Details');
   });
 });
