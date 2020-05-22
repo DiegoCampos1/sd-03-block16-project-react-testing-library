@@ -19,7 +19,7 @@ test('Have Link Home in navBar', () => {
       <App />
     </MemoryRouter>,
   );
-  const homeLink = getByText(Home);
+  const homeLink = getByText('Home');
   fireEvent.click(homeLink);
   expect(getByText(/Encountered pokémons/i));
 });
