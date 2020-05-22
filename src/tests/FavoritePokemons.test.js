@@ -68,10 +68,10 @@ test('Test if Pokemons Cards are renderized', () => {
     },
   ];
 
-    pokedata.map((e) => {
-      afterEach(cleanup);
-      const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[e]} />);
-      const Cards = getByText(e.name);
-      expect(Cards).toBeInTheDocument();
-    });
+  pokedata.map((e) => {
+    afterEach(cleanup);
+    const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[e]} />);
+    const Cards = getByText(e.name);
+    return expect(Cards).toBeInTheDocument();
+  });
 });
