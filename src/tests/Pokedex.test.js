@@ -38,7 +38,8 @@ test('no error', () => {
       <App />
     </MemoryRouter>,
   );
-  expect(getByText('TypeError: Cannot read property `id` of undefined')).not.toBeInTheDocument();
+  const erro = 'TypeError: Cannot read property `id` of undefined';
+  expect(getByText(erro)).not.toBeInTheDocument();
 });
 
 test('text `encountered`', () => {
@@ -52,4 +53,16 @@ test('text `encountered`', () => {
   expect(getClass.length).toBe(7);
   expect(getByText('All')).toBeInTheDocument();
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
+test('disable', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const Poison = getByText('Poison');
+  fireEvent.click(Poison);
+  const nextPokemon = getByText('Próximo pokémon');
+  expect(nextPokemon).toHaveAttribute('disabled');
 });
