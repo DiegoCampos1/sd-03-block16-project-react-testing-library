@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  cleanup, fireEvent, getByText,
-} from '@testing-library/react';
+  cleanup, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import App from '../App';
 import pokemons from '../mockPokemons';
