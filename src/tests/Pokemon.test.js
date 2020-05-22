@@ -38,7 +38,7 @@ function renderWithRouter(
   return {
     ...render(<Router history={history}>{ui}</Router>),
     // adding `history` to the returned utilities to allow us
-    // to reference it
+    // to reference it code 3
     history,
   };
 }
