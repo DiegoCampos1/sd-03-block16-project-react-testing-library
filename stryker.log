@@ -1,0 +1,161 @@
+16:07:26 (23238) INFO ConfigReader No config file specified. Running with command line arguments.
+16:07:27 (23238) DEBUG BroadcastReporter Broadcasting to reporters ["clear-text","progress","html"]
+16:07:26 (23238) INFO ConfigReader Use `stryker init` command to generate your config file.
+16:07:26 (23238) DEBUG ConfigReader Loaded config: {
+  "allowConsoleColors": true,
+  "coverageAnalysis": "off",
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "mutate": [
+    "{src,lib}/**/*.js?(x)",
+    "!{src,lib}/**/__tests__/**/*.js?(x)",
+    "!{src,lib}/**/?(*.)+(spec|test).js?(x)",
+    "!{src,lib}/**/*+(Spec|Test).js?(x)"
+  ],
+  "mutator": "javascript",
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "reporters": [
+    "clear-text",
+    "progress",
+    "html"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "testRunner": "command",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true
+}
+16:07:26 (23238) DEBUG PluginLoader Loading @stryker-mutator/* from /home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator
+16:07:26 (23238) DEBUG PluginLoader Loading plugin "/home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+16:07:26 (23238) DEBUG PluginLoader Loading plugin "/home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+16:07:26 (23238) DEBUG PluginLoader Loading plugins /home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+16:07:27 (23238) DEBUG PluginLoader Loading plugins /home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+16:07:27 (23238) DEBUG PluginLoader Loading plugins /home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+16:07:27 (23238) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+16:07:27 (23238) INFO InputFileResolver Found 16 of 62 file(s) to be mutated.
+16:07:27 (23238) DEBUG InputFileResolver All input files: [
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/reports/mutation/html/bind-mutation-test-report.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/reports/mutation/html/index.html",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/reports/mutation/html/mutation-test-elements.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/reports/mutation/html/stryker-80x80.png",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker.log",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.codeclimate.yml",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.eslintrc",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.github/CODEOWNERS",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.github/workflows/main.yml",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.gitignore",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.stylelintrc.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.travis.yml",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/README.md",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/package-lock.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/package.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/favicon.ico",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/index.html",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/logo192.png",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/logo512.png",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/manifest.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/robots.txt",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/public/star-icon.svg",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/App.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/App.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/About.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/Button.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/NotFound.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/Pokedex.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/Pokemon.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/PokemonDetails.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/about.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/button.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/favorite-pokemons.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/index.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/not-found.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/pokedex.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/pokemon-details.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/pokemon.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/data.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/index.css",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/index.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/logo.svg",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/serviceWorker.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/services/pokedexService.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/setupTests.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/About.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/App.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/FavoritePokemons.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/NotFound.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/Pokedex.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/Pokemon.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/PokemonDetails.test.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/testService.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/types/index.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/About.conf.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/App.conf.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+16:07:27 (23238) DEBUG InputFileResolver Files to mutate: [
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/App.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/About.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/Button.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/NotFound.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/Pokedex.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/Pokemon.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/PokemonDetails.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/components/index.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/data.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/index.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/serviceWorker.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/services/pokedexService.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/setupTests.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/tests/testService.js",
+  "/home/jafet/projetos/sd-03-block16-project-react-testing-library/src/types/index.js"
+]
+16:07:27 (23238) DEBUG TemporaryDirectory Using temp directory "/home/jafet/projetos/sd-03-block16-project-react-testing-library/.stryker-tmp"
+16:07:27 (23238) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+16:07:27 (23238) INFO InitialTestExecutor Starting initial test run. This may take a while.
+16:07:27 (23238) DEBUG Sandbox Creating a sandbox for files in /home/jafet/projetos/sd-03-block16-project-react-testing-library/.stryker-tmp/sandbox495839
+16:07:27 (23238) DEBUG Sandbox Creating test runner 0
+16:07:27 (23238) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+16:11:04 (23238) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		
+> sd-01-week15-react-tests@0.1.0 test /home/jafet/projetos/sd-03-block16-project-react-testing-library/.stryker-tmp/sandbox495839
+> react-scripts test
+
+
+No tests found related to files changed since last commit.
+
+
+
+16:11:04 (23238) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:70:31)
+    at InitialTestExecutor.run (/home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:42:18)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async Stryker.runMutationTest (/home/jafet/projetos/sd-03-block16-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
