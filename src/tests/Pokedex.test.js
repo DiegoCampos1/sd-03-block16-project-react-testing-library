@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, cleanup } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
-import pokemons from '../data';
 import renderWithRouter from '../helper';
+import pokemons from '../data';
 
 const mockedFavoriteID = { 25: true };
 
