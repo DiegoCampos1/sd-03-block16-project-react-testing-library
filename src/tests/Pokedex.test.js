@@ -10,7 +10,7 @@ import pokemons from '../data';
 const renderWithRouter = (ui, history = createMemoryHistory()) =>
   render(<Router history={history}>{ui}</Router>);
 
-const mockedPokemonFavoriteById = [25];
+const mockedPokemonFavoriteById = { 25: false };
 
 describe('Pokedex', () => {
   afterEach(cleanup);
@@ -24,10 +24,10 @@ describe('Pokedex', () => {
 
   describe('Button of next Pokémon', () => {
     test('should exits', () => {
-      const { getByText } = renderWithRouter((
+      const { getByTestId } = renderWithRouter((
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
       ));
-      expect(getByText('Próximo pokémon')).toBeInTheDocument();
+      expect(getByTestId('next-pokemon')).toContainHTML('Próximo pokémon');
     });
 
     test('should pass to the next pokemon of data', () => {
@@ -67,26 +67,26 @@ describe('Pokedex', () => {
 
   describe('should have filters buttons', () => {
     test('shows only filtered type', () => {
-      const { getByText, getAllByRole, getByTestId } = renderWithRouter((
+      const { getByText, getAllByTestId, getByTestId } = renderWithRouter((
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
       ));
-      const buttons = getAllByRole('button');
+      const allFilteredButtons = getAllByTestId('pokemon-type-button');
       const nextPokemon = getByText('Próximo pokémon');
 
-      expect(buttons[2]).toContainHTML('Fire');
-      fireEvent.click(buttons[2]);
+      expect(allFilteredButtons[1]).toContainHTML('Fire');
+      fireEvent.click(allFilteredButtons[1]);
       expect(nextPokemon).toBeEnabled();
       fireEvent.click(nextPokemon);
       expect(getByTestId('pokemonType')).toContainHTML('Fire');
 
-      expect(buttons[5]).toContainHTML('Psychic');
-      fireEvent.click(buttons[5]);
+      expect(allFilteredButtons[4]).toContainHTML('Psychic');
+      fireEvent.click(allFilteredButtons[4]);
       expect(nextPokemon).toBeEnabled();
       fireEvent.click(nextPokemon);
       expect(getByTestId('pokemonType')).toContainHTML('Psychic');
 
-      expect(buttons[1]).toContainHTML('Electric');
-      fireEvent.click(buttons[1]);
+      expect(allFilteredButtons[0]).toContainHTML('Electric');
+      fireEvent.click(allFilteredButtons[0]);
       expect(nextPokemon).toBeDisabled();
       fireEvent.click(nextPokemon);
       expect(getByTestId('pokemonType')).toContainHTML('Electric');
