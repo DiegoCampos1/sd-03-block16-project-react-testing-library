@@ -4,15 +4,6 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import App from '../App';
 
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-
-  return ({
-    ...originalModule,
-    BrowserRouter: ({ children }) => (<div>{children}</div>),
-  });
-});
-
 function renderWithRouter(
   ui,
   { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
@@ -39,32 +30,37 @@ describe('Routes', () => {
     expect(heading).toBeInTheDocument();
   });
   test('navigating from home to home page', () => {
-    const { getByText, queryByText } = renderWithRouter(<App />, { route: '/home' });
+    const { getByText, queryByText, history } = renderWithRouter(<App />);
     const homeLink = getByText('Home');
     fireEvent.click(homeLink);
     const homeTitle = queryByText('Encountered pokémons');
     expect(homeTitle).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/');
   });
 
   test('navigating from home to about page', () => {
-    const { getByText, queryByText } = renderWithRouter(<App />, { route: '/about' });
+    const { getByText, queryByText, history } = renderWithRouter(<App />);
     const aboutLink = getByText('About');
     fireEvent.click(aboutLink);
     const aboutTitle = queryByText('About Pokédex');
     expect(aboutTitle).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/about');
   });
 
   test('navigating from home to favorites page', () => {
-    const { getByText, queryByText } = renderWithRouter(<App />, { route: '/favorites' });
+    const { getByText, queryByText, history } = renderWithRouter(<App />);
     const favoriteLink = getByText('Favorite Pokémons');
     fireEvent.click(favoriteLink);
     const favoriteTitle = queryByText('Favorite pokémons');
     expect(favoriteTitle).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/favorites');
   });
 
   test('navigating from home to not found page', () => {
-    const { getByText } = renderWithRouter(<App />, { route: '/test' });
-    const notFoundPage = getByText(/Page requested not found/);
+    const { getByText, history } = renderWithRouter(<App />, { route: '/test' });
+    const notFoundPage = getByText(/Page requested not found/i);
     expect(notFoundPage).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/test');
+
   });
 });
