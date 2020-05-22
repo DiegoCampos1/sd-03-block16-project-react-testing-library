@@ -10,14 +10,14 @@ describe('PokemonDetails', () => {
   const match = { params: { id: '25' } };
 
   test('should have information only about the selected pokémon', () => {
-    const { getByText } = render(
+    const { getByText } = render((
       <PokemonDetails
         match={match}
         isPokemonFavoriteById={{ 25: true }}
         onUpdateFavoritePokemons={() => null}
         pokemons={[pokemons[0]]}
       />
-    );
+    ));
     expect(getByText('Pikachu Details')).toBeInTheDocument();
   });
 
