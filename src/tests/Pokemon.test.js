@@ -39,7 +39,7 @@ describe('Pokemon', () => {
 
   test('should render the correct average weight message', () => {
     const { getByTestId } = renderWithRouter((
-    <Pokemon pokemon={pokemons[0]} isFavorite={false} />
+      <Pokemon pokemon={pokemons[0]} isFavorite={false} />
     ));
     expect(getByTestId('pokemon-weight')).toContainHTML('Average weight:6.0kg');
   });
@@ -69,9 +69,7 @@ describe('Pokemon', () => {
   });
 
   test('should have an icon on favorited pokemons', () => {
-    const { getByAltText } = renderWithRouter((
-      <Pokemon pokemon={pokemons[0]} isFavorite={true} />
-    ));
+    const { getByAltText } = renderWithRouter((<Pokemon pokemon={pokemons[0]} isFavorite />));
     expect(getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
   });
 });
