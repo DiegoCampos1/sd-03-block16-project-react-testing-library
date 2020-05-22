@@ -20,7 +20,8 @@ test('Test if button shows the next Pokemon', () => {
     expect(pokeName).toBe(pokemons[index].name);
     fireEvent.click(button);
     const nextPoke = getByTestId('pokemon-name');
-    return nextPokeName = getNodeText(nextPoke);
+    nextPokeName = getNodeText(nextPoke);
+    return ('ok');
   });
 
   expect(nextPokeName).toBe(firstPokeName);
