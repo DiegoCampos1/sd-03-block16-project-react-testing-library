@@ -21,10 +21,9 @@ describe('Pokedex', () => {
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
       ));
       const button = getByText('Próximo pokémon');
-  
       expect(button).toBeInTheDocument();
     });
-  
+
     test('should pass to the next pokemon of data', () => {
       const { getByText } = renderWithRouter((
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
@@ -37,7 +36,7 @@ describe('Pokedex', () => {
       fireEvent.click(getByText('Próximo pokémon'));
       expect(getByText('Ekans')).toBeInTheDocument();
     });
-  
+
     test('should have a cicle behavior', () => {
       const { getByText } = renderWithRouter((
         <Pokedex
@@ -51,13 +50,13 @@ describe('Pokedex', () => {
       fireEvent.click(getByText('Próximo pokémon'));
       expect(getByText('Pikachu')).toBeInTheDocument();
     });
-  
+
     test('only on pokemon at time', () => {
       const { getAllByTestId } = renderWithRouter((
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
       ));
       expect(getAllByTestId('pokemon-name').length).toBe(1);
-    });  
+    });
   });
 
   describe('should have filters buttons', () => {
@@ -126,7 +125,7 @@ describe('Pokedex', () => {
       expect(nextButton).toBeEnabled();
       fireEvent.click(nextButton);
       expect(getByTestId('pokemonType')).toContainHTML('Fire');
-      
+
       fireEvent.click(getByText('All'));
       expect(getByTestId('pokemonType')).toContainHTML('Electric');
     });
@@ -143,7 +142,7 @@ describe('Pokedex', () => {
       const { getByText } = renderWithRouter((
         <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={[pokemons[0]]} />
       ));
-      expect(getByText('Próximo pokémon')).toBeDisabled();;
+      expect(getByText('Próximo pokémon')).toBeDisabled();
     });
   });
 });
