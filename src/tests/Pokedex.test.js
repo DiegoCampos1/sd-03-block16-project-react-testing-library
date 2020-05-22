@@ -82,6 +82,16 @@ describe('Pokedex.js component tests', () => {
     expect(allTypeButton).toBeInTheDocument();
   });
 
+  test('type buttons have the correct test id', () => {
+    const { getAllByTestId } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
+    );
+
+    const typeButtons = getAllByTestId('pokemon-type-button');
+
+    expect(typeButtons.length).toBe(7);
+  })
+
   test('when click on a type button, only pokemons of that type is selected, after click ALL button, the pokemon list backs to displays all pokémons', () => {
     const { getByText, getAllByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
