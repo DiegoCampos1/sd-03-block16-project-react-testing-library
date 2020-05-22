@@ -79,7 +79,7 @@ describe('Testes do arquivo Pokemon.js', () => {
   });
 
   it('Pokémons favoritados devem exibir um ícone de uma estrela', () => {
-    const { getByText, queryByText, getByTestId } = renderWithRouter(<App />);
+    const { getByText, queryByText } = renderWithRouter(<App />);
 
     const pokemonLink = queryByText(/More details/i);
     expect(pokemonLink).toBeInTheDocument();
