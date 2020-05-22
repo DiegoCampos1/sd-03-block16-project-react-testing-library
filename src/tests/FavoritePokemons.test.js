@@ -31,10 +31,10 @@ describe('Test 22 - favorite page should display favorite pokemons', () => {
   it('22.2 - should not display favorited pokemons', () => {
     const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={notFavoritedPokemons} />);
     favoritedPokemons.forEach(({ name }) => {
-      expect(queryByText(name)).not.toBeInTheDocument();
+      expect(queryByText(name)).toBeNull();
     });
   });
-  it('22.2 - should not display favorited pokemons', () => {
+  it('22.4 - should not display favorited pokemons', () => {
     const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={pokemons} />);
     expect(queryByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
