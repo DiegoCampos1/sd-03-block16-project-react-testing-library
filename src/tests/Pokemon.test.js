@@ -48,7 +48,7 @@ const renderWithRouter = (
   history,
 });
 
-const { averageWeight, name, image } = testPokemon;
+const { averageWeight, name, image, id } = testPokemon;
 const { value, measurementUnit } = averageWeight;
 
 describe('Pokemon.js component tests', () => {
@@ -121,7 +121,7 @@ describe('Pokemon.js component tests', () => {
 
   test('test pokemon details link functionality', () => {
     const { getByText, history } = renderWithRouter(
-      <Pokemon pokemon={pokemons[0]} isFavorite />,
+      <Pokemon pokemon={testPokemon} isFavorite />,
     );
 
     const detailsLink = getByText(/more details/i);
@@ -131,6 +131,6 @@ describe('Pokemon.js component tests', () => {
 
     fireEvent.click(detailsLink);
 
-    expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
+    expect(history.location.pathname).toBe(`/pokemons/${id}`);
   });
 });
