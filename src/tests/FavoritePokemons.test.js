@@ -26,6 +26,8 @@ test('não exibir nenhum card de pokemon não favoritado', () => {
   const favoritePokemons = getByText('Favorite Pokémons');
   expect(favoritePokemons).toBeInTheDocument();
 
+  fireEvent.click(favoritePokemons);
+
   const pikachu = getByText('Pikachu');
   expect(pikachu).toBeInTheDocument();
 });
