@@ -49,15 +49,20 @@ test('Pokedex must have filter buttons', () => {
   const buttons = getAllByRole('button');
   expect(buttons.length).toBe(9);
 
-  buttons.map((e, index) =>
-    expect(getNodeText(e)).toBe(allButtons[index])
-  );
+  buttons.map((e, index) => {
+    expect(getNodeText(e)).toBe(allButtons[index]);
+    return ('ok');
+  });
 
   const filterButtons = allButtons.splice(1, 7);
 
   filterButtons.map((e, index) => {
     const actualButton = getAllByText(e);
-    (actualButton.length === 2) ? fireEvent.click(actualButton[1]) : fireEvent.click(actualButton[0]);
+    if (actualButton.length === 2) {
+      fireEvent.click(actualButton[1]);
+    } else {
+      fireEvent.click(actualButton[0]);
+    }
 
     const pokeType = getByTestId('pokemonType');
     return expect(getNodeText(pokeType)).toBe(filterButtons[index]);
