@@ -1,10 +1,9 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import App from '../App';
 import pokemons from '../mockPokemons';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render } from '@testing-library/react';
 
 function renderWithRouter(
   ui,
