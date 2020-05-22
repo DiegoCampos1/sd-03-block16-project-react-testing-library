@@ -8,8 +8,8 @@ import pokemons from '../mockPokemons';
 
 afterEach(cleanup);
 
-describe('Test 8 - pokedex must display name, type, weight and image', () => {
-  it("8.1 - Average weight must has the form 'Average weight: <value> <measurementUnit>'", () => {
+describe('Test 1 - pokedex must display name, type, weight and image', () => {
+  it("1.1 - Average weight must has the form 'Average weight: <value> <measurementUnit>'", () => {
     const { getByText, getAllByText } = renderWithRouter(<App />);
     const nextButton = getByText(/próximo pokémon/i);
     pokemons.forEach(({ name, type, averageWeight: { value, measurementUnit } }) => {
@@ -20,7 +20,7 @@ describe('Test 8 - pokedex must display name, type, weight and image', () => {
     });
   });
 
-  it('8.2 - Image must have src with URL and alt with pokemon name', () => {
+  it('1.2 - Image must have src with URL and alt with pokemon name', () => {
     const { getByAltText, getByText } = renderWithRouter(<App />);
     const nextButton = getByText(/próximo pokémon/i);
     pokemons.forEach(({ name, image }) => {
@@ -32,8 +32,8 @@ describe('Test 8 - pokedex must display name, type, weight and image', () => {
   });
 });
 
-describe('Test 9 - pokémon must contain link to show details', () => {
-  it("9.1 - link must be direct to '/pokemon/<id>'", () => {
+describe('Test 2 - pokémon must contain link to show details', () => {
+  it("2.1 - link must be direct to '/pokemon/<id>'", () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText(/próximo pokémon/i);
     pokemons.forEach(({ id }) => {

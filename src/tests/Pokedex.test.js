@@ -13,6 +13,27 @@ const allTypes = pokemons.map(({ type }) => type);
 const pokemonTypes = allTypes.filter((item, index, array) => array.indexOf(item) === index);
 const pokemonNames = pokemons.map(({ name }) => name);
 
+describe('Test 1 - next button shows next pokemon', () => {
+  it("1.1 - button must contain 'proximo pokemon'", () => {
+    const { getByText } = renderWithRouter(<App />);
+    expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
+  });
+  it('1.2 - multiple clicks must show next pokemon', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const nextButton = getByText(/próximo pokémon/i);
+    pokemonNames.forEach((pokemon) => {
+      expect(getByText(pokemon)).toBeInTheDocument();
+      fireEvent.click(nextButton);
+    });
+  });
+  it('1.3 - after last pokémon must return to the first one', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const nextButton = getByText(/próximo pokémon/i);
+    pokemonNames.forEach(() => fireEvent.click(nextButton));
+    expect(getByText(pokemonNames[0])).toBeInTheDocument();
+  });
+});
+
 describe('test 2 - only one pokemon each page', () => {
   it('2.0 - shows only one pokemon at once', () => {
     const { getAllByText } = renderWithRouter(<App />);
@@ -21,29 +42,8 @@ describe('test 2 - only one pokemon each page', () => {
   });
 });
 
-describe('Test 3 - next button shows next pokemon', () => {
-  it("3.1 - button must contain 'proximo pokemon'", () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText(/Próximo pokémon/i)).toBeInTheDocument();
-  });
-  it('3.2 - multiple clicks must show next pokemon', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const nextButton = getByText(/próximo pokémon/i);
-    pokemonNames.forEach((pokemon) => {
-      expect(getByText(pokemon)).toBeInTheDocument();
-      fireEvent.click(nextButton);
-    });
-  });
-  it('3.3 - after last pokémon must return to the first one', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const nextButton = getByText(/próximo pokémon/i);
-    pokemonNames.forEach(() => fireEvent.click(nextButton));
-    expect(getByText(pokemonNames[0])).toBeInTheDocument();
-  });
-});
-
-describe('Test 4 - pokédex must contain filter buttons', () => {
-  it('4.1 - button type must select only pokemons of that type', () => {
+describe('Test 3 - pokédex must contain filter buttons', () => {
+  it('3.1 - button type must select only pokemons of that type', () => {
     const { getByText, getAllByText } = renderWithRouter(<App />);
     const nextButton = getByText(/Próximo pokémon/i);
     pokemonTypes.forEach((type) => {
@@ -56,7 +56,7 @@ describe('Test 4 - pokédex must contain filter buttons', () => {
       });
     });
   });
-  it("4.2 - button label must be igual 'type'", () => {
+  it("3.2 - button label must be igual 'type'", () => {
     const { getAllByText, getByText } = renderWithRouter(<App />);
     pokemonTypes.forEach((type) => {
       const typeButton = getAllByText(type)[1] || getByText(type);
@@ -67,15 +67,15 @@ describe('Test 4 - pokédex must contain filter buttons', () => {
   });
 });
 
-describe('Test 5 - pokedex must contain button to reset filter', () => {
-  it("5.1 - button label must be 'all'", () => {
+describe('Test 4 - pokedex must contain button to reset filter', () => {
+  it("4.1 - button label must be 'all'", () => {
     const { getByText } = renderWithRouter(<App />);
     const allButton = getByText(/all/i);
     expect(allButton).toBeInTheDocument();
     expect(allButton).toHaveTextContent(/all/i);
     expect(allButton).toHaveAttribute('type', 'button');
   });
-  it('5.2 - click must select all pokemons', () => {
+  it('4.2 - click must select all pokemons', () => {
     const { getByText } = renderWithRouter(<App />);
     const allButton = getByText(/all/i);
     const nextButton = getByText(/próximo pokémon/i);
@@ -86,7 +86,7 @@ describe('Test 5 - pokedex must contain button to reset filter', () => {
     });
     expect(getByText(pokemonNames[0])).toBeInTheDocument();
   });
-  it('5.3 - first page must load filter all', () => {
+  it('4.3 - first page must load filter all', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText(/próximo pokémon/i);
     pokemonNames.forEach((pokemonName) => {
@@ -97,8 +97,8 @@ describe('Test 5 - pokedex must contain button to reset filter', () => {
   });
 });
 
-describe('test 6 - pokedex must render a button filter to each type of pokemon', () => {
-  it('6.1 - checking if all types were rendered', () => {
+describe('test 5 - pokedex must render a button filter to each type of pokemon', () => {
+  it('5.1 - checking if all types were rendered', () => {
     const { getByText, getAllByText } = renderWithRouter(<App />);
     pokemonTypes.forEach((type) => {
       const typeButton = getAllByText(type)[1] || getByText(type);
@@ -108,8 +108,8 @@ describe('test 6 - pokedex must render a button filter to each type of pokemon',
   });
 });
 
-describe('test 7 - next button must be disabled if theres only one pokemon', () => {
-  test('7.1 - disable next button', () => {
+describe('test 6 - next button must be disabled if theres only one pokemon', () => {
+  test('6.1 - disable next button', () => {
     const { getByText, getAllByText } = renderWithRouter(<App />);
     const nextButton = getByText(/próximo pokémon/i);
     const repeatedPokemons = allTypes.filter((item, index, array) => array.indexOf(item) !== index);
