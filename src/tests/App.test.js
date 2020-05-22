@@ -24,13 +24,13 @@ function renderWithRouter(
   };
 }
 
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-  return ({
-    ...originalModule,
-    BrowserRouter: (props) => (<div>{props.children}</div>),
-  });
-});
+// jest.mock('react-router-dom', () => {
+//   const originalModule = jest.requireActual('react-router-dom');
+//   return ({
+//     ...originalModule,
+//     BrowserRouter: (props) => (<div>{props.children}</div>),
+//   });
+// });
 
 describe('Test link from pages', () => {
   test('Test links navegating home', () => {
