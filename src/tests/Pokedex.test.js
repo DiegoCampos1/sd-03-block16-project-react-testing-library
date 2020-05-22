@@ -15,7 +15,7 @@ const mockedPokemonFavoriteById = { 0: false };
 describe('Pokedex', () => {
   afterEach(cleanup);
 
-  test('should be rendered on the main page', () => {}
+  test('should be rendered on the main page', () => {
     const { queryByText } = renderWithRouter((
       <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
     ));
