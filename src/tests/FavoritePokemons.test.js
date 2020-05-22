@@ -35,7 +35,7 @@ describe('Test 22 - favorite page should display favorite pokemons', () => {
     });
   });
   it('22.4 - should not display favorited pokemons', () => {
-    const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={pokemons} />);
+    const { queryByText } = renderWithRouter(<FavoritePokemons pokemons={[]} />);
     expect(queryByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
 });
