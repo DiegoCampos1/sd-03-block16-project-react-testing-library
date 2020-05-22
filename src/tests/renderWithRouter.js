@@ -8,8 +8,8 @@ jest.mock('react-router-dom', () => {
   return ({
     ...originalModule,
     BrowserRouter: ({ children }) => (<div>{children}</div>),
-  })
-})
+  });
+});
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();

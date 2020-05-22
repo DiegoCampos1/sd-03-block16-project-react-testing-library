@@ -27,7 +27,7 @@ test('Verificando link About', () => {
 });
 
 test('Verificando link Favorites', () => {
-  const { getByText, history } =renderWithRouter(<App />);
+  const { getByText, history } = renderWithRouter(<App />);
 
   const pageFavorites = getByText('Favorite Pokémons');
   expect(pageFavorites).toBeInTheDocument();
@@ -36,10 +36,10 @@ test('Verificando link Favorites', () => {
 
   const pathFavorites = history.location.pathname;
   expect(pathFavorites).toBe('/favorites');
-})
+});
 
 test('Verificando link Home', () => {
-  const { getByText, history } =renderWithRouter(<App />);
+  const { getByText, history } = renderWithRouter(<App />);
 
   const pageHome = getByText('Home');
   expect(pageHome).toBeInTheDocument();
