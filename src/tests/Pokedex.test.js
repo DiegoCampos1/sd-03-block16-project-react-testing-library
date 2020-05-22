@@ -44,10 +44,10 @@ describe('test 2 - only one pokemon each page', () => {
 
 describe('Test 3 - pokédex must contain filter buttons', () => {
   it('3.1 - button type must select only pokemons of that type', () => {
-    const { getByText, getAllByText } = renderWithRouter(<App />);
+    const { getByText, getAllByTestId } = renderWithRouter(<App />);
     const nextButton = getByText(/Próximo pokémon/i);
-    pokemonTypes.forEach((type) => {
-      const typeButton = getAllByText(type)[1] || getByText(type);
+    pokemonTypes.forEach((type, index) => {
+      const typeButton = getAllByTestId('pokemon-type-button')[index];
       fireEvent.click(typeButton);
       const clickedPokemon = pokemons.filter((e) => e.type === type);
       clickedPokemon.forEach((pokemonType) => {
