@@ -4,7 +4,17 @@ import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../helper';
 import pokemons from '../data';
 
-const mockedFavoriteID = { 25: true };
+const mockedFavoriteID = {
+  4: true,
+  10: false,
+  23: false,
+  25: false,
+  65: false,
+  78: false,
+  143: false,
+  148: false,
+  151: false,
+};
 
 const mockedData = [{ ...pokemons[0] }, { ...pokemons[1] }];
 
