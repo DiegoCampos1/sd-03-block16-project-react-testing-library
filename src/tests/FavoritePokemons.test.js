@@ -22,7 +22,7 @@ describe('tests FavoritePokemons.js', () => {
   test('shows Favorites Pokemons page', () => {
     const { getByText } = renderWithRouter(
       <FavoritePokemons pokemons={favoritePokemons} />,
-      { route: '/favorites', }
+      { route: '/favorites' },
     );
 
     const heading = getByText('Favorite pokémons');
@@ -33,7 +33,7 @@ describe('tests FavoritePokemons.js', () => {
   test('shows notFound text in FavoritePokemons page when dont have fav pokemons', () => {
     const { getByText } = renderWithRouter(
       <FavoritePokemons pokemons={[]} />,
-      { route: '/favorites', }
+      { route: '/favorites' },
     );
 
     const notFound = getByText('No favorite pokemon found');
@@ -44,7 +44,7 @@ describe('tests FavoritePokemons.js', () => {
   test('shows favorites pokemons cards in FavoritePokemons page', () => {
     const { getByText, container } = renderWithRouter(
       <FavoritePokemons pokemons={favoritePokemons} />,
-      { route: '/favorites', }
+      { route: '/favorites' },
     );
 
     const cards = container.querySelectorAll('.favorite-pokemon');
@@ -58,7 +58,7 @@ describe('tests FavoritePokemons.js', () => {
   test('dont shows not favorites pokemons cards in FavoritePokemons page', () => {
     const { queryByText } = renderWithRouter(
       <FavoritePokemons pokemons={favoritePokemons} />,
-      { route: '/favorites', }
+      { route: '/favorites' },
     );
 
     notFavoritePokemons.forEach(({ name }) => {

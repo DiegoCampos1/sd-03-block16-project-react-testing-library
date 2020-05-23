@@ -17,6 +17,6 @@ describe('tests NotFound.js', () => {
 
     const img = container.querySelector('IMG');
 
-    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif')
+    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
