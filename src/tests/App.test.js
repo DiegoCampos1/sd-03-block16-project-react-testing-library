@@ -46,3 +46,9 @@ test('testing number of links', () => {
   const link = getAllByRole('link');
   expect(link.length).toBe(3);
 });
+
+test('shows podex', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const text = getByText(/Encountered/);
+  expect(text).toBeInTheDocument();
+});
