@@ -2,10 +2,8 @@ import React from 'react';
 import {
   render, fireEvent,
 } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
 import pokemons from '../data';
-import { Pokemon, PokemonDetails } from '../components';
+import { PokemonDetails } from '../components';
 import {
   readFavoritePokemonIds,
   updateFavoritePokemons,
@@ -14,7 +12,7 @@ import {
 
 test('product details', () => {
   const {
-    name, averageWeight: { value, measurementUnit }, image, id, foundAt, summary,
+    name, id, foundAt, summary,
   } = pokemons[0];
   const {
     getByText, queryByText, getAllByRole, getByRole,
