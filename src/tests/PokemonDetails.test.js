@@ -1,7 +1,5 @@
 import React from 'react';
 import { cleanup, fireEvent } from '@testing-library/react';
-import PokemonDetails from '../components/PokemonDetails';
-import data from '../data';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
