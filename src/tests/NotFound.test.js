@@ -11,9 +11,9 @@ test('Header must be h2 tag', () => {
       <NotFound />
     </MemoryRouter>,
   );
-  
+
   const { getByText } = within(getByRole('heading', { level: 2 }));
-  expect(getByText('Page requested not found')).toBeInTheDocument()  
+  expect(getByText('Page requested not found')).toBeInTheDocument();
 });
 
 test('Check source of image', () => {
