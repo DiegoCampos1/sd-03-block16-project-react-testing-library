@@ -1,10 +1,10 @@
 import React from 'react';
-import { fireEvent, findByTestId } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import data from '../data';
 
-const types = [
+const pokemonTypes = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
 ];
 
@@ -23,7 +23,7 @@ const isPokemonFavoriteById = {
 describe('tests Pokedex.js', () => {
   test('shows next pokemon button in Pokedex page', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const nextPokemon = getByText('Próximo pokémon');
@@ -33,7 +33,7 @@ describe('tests Pokedex.js', () => {
 
   test('next pokemon button show next pokemon', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const nextPokemon = getByText('Próximo pokémon');
@@ -46,7 +46,7 @@ describe('tests Pokedex.js', () => {
 
   test('after last pokemon a new click should show the first pokemon', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const nextPokemon = getByText('Próximo pokémon');
@@ -57,7 +57,7 @@ describe('tests Pokedex.js', () => {
 
   test('should show just one pokemon at once', () => {
     const { getAllByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const moreDetails = getAllByText('More details');
@@ -67,10 +67,10 @@ describe('tests Pokedex.js', () => {
 
   test('Pokedex page should have filter buttons with the name equal the type', () => {
     const { getAllByTestId } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
-    types.forEach((type, index) => {
+    pokemonTypes.forEach((type, index) => {
       const button = getAllByTestId('pokemon-type-button')[index];
       expect(button).toBeInTheDocument();
       expect(button).toHaveTextContent(type);
@@ -79,12 +79,12 @@ describe('tests Pokedex.js', () => {
 
   test('clink in a filter button should shows just pokemons of that type', () => {
     const { getByText, getAllByTestId } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const nextPokemon = getByText('Próximo pokémon');
 
-    types.forEach((type, index) => {
+    pokemonTypes.forEach((type, index) => {
       const button = getAllByTestId('pokemon-type-button')[index];
 
       fireEvent.click(button);
@@ -100,7 +100,7 @@ describe('tests Pokedex.js', () => {
 
   test('Pokedex page should have a reset button', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const all = getByText('All');
@@ -110,7 +110,7 @@ describe('tests Pokedex.js', () => {
 
   test('click in All button should show all the pokemons', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const all = getByText('All');
@@ -125,7 +125,7 @@ describe('tests Pokedex.js', () => {
 
   test('verify if the all button is load first', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const nextPokemon = getByText('Próximo pokémon');
@@ -139,10 +139,10 @@ describe('tests Pokedex.js', () => {
 
   test('Pokedex page should a button filter for each type of pokemon', () => {
     const { getByText, getAllByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
-    types.forEach((type) => {
+    pokemonTypes.forEach((type) => {
       const button = getAllByText(type)[1] || getByText(type);
       expect(button).toBeInTheDocument();
     });
@@ -150,7 +150,7 @@ describe('tests Pokedex.js', () => {
 
   test('next pokemon button should disabled if theres only one pokemon', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />
+      <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const nextPokemon = getByText('Próximo pokémon');
