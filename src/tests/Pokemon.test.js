@@ -33,8 +33,21 @@ test('should ', () => {
   const link = getByRole('link');
   expect(link).toHaveAttribute('href', `/pokemons/${id}`);
   const button = getByText('More details');
-  console.log(button);
 
   fireEvent.click(button);
   expect(history.location.pathname).toBe(`/pokemons/${id}`);
+});
+
+test('fav Pokemon', () => {
+  const { name } = pokemons[0];
+  const history = createMemoryHistory();
+  const { getByAltText } = render(
+    <Router history={history}>
+      <Pokemon pokemon={pokemons[0]} isFavorite />
+    </Router>,
+  );
+
+  const favIcon = getByAltText(`${name} is marked as favorite`);
+  expect(favIcon).toBeInTheDOM();
+  expect(favIcon).toHaveAttribute('src', '/star-icon.svg');
 });
