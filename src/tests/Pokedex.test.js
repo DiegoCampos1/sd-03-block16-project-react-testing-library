@@ -4,6 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import data from '../data';
 import isPokemonFavoriteById from '../components/mocks';
+import { element } from 'prop-types';
 
 const pokemonTypes = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
@@ -106,7 +107,7 @@ describe('tests Pokedex.js', () => {
     const nextPokemon = getByText('Próximo pokémon');
 
     fireEvent.click(all);
-    data.forEach(pokemon => {
+    data.forEach((pokemon) => {
       expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
@@ -119,8 +120,8 @@ describe('tests Pokedex.js', () => {
 
     const nextPokemon = getByText('Próximo pokémon');
 
-    data.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
+    data.forEach((element) => {
+      expect(getByText(element.name)).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
     expect(getByText(data[0].name)).toBeInTheDocument();
