@@ -8,11 +8,13 @@ describe('Testes do arquivo About.js', () => {
     const heading = getByText('About Pokédex');
     expect(heading).toBeInTheDocument();
     const paragraph1 = getByText(
-      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons'
+      'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons',
     );
+    expect(paragraph1).toBeInTheDocument();
     const paragraph2 = getByText(
-      'One can filter Pokémons by type, and see more details for each one of them'
+      'One can filter Pokémons by type, and see more details for each one of them',
     );
+    expect(paragraph2).toBeInTheDocument();
   });
 
   test('Componente deve conter a imagem especifica', () => {
@@ -21,7 +23,7 @@ describe('Testes do arquivo About.js', () => {
     expect(altImg).toBeInTheDocument();
     const image = altImg.src;
     expect(image).toBe(
-      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
+      'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
     );
   });
 });
