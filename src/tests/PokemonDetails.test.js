@@ -36,10 +36,12 @@ describe('PokemonDetails.js component tests', () => {
       />,
     );
 
-    const pokemonName = getByText(`${mockedPokemons[0].name}`);
+    const pokemonName = getByText(`${mockedPokemons[0].name} Details`);
 
     expect(pokemonName).toBeInTheDocument();
-    expect(pokemonName.textContent).toBe(`${mockedPokemons[0].name}`);
+    expect(pokemonName.textContent).toBe(`${mockedPokemons[0].name} Details`);
+    expect(pokemonName.textContent).not.toBe(`'' Details`);
+    expect(pokemonName.tagName).toBe('H2');
   });
 
   test('do not render details link', () => {
