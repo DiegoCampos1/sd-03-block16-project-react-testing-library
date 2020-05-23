@@ -67,7 +67,7 @@ test('testing whether unfilter works', () => {
   expect(secondPokemon).toBeInTheDocument();
 });
 
-test('testing wether page shows filter buttons', () => {
+test('testing whether page shows filter buttons', () => {
   const { getAllByRole, getByText } = renderWithRouter(<Pokedex
     pokemons={data}
     isPokemonFavoriteById={{ 4: true }}
@@ -78,7 +78,7 @@ test('testing wether page shows filter buttons', () => {
   expect(poisonbtn).toBeInTheDocument();
 });
 
-test('testing wether page shows all filters', () => {
+test('testing whether page shows all filters', () => {
   const array = ['All', 'Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
   const { getAllByText } = renderWithRouter(<Pokedex
     pokemons={data}
@@ -91,7 +91,7 @@ test('testing wether page shows all filters', () => {
   });
 });
 
-test('testing wether page shows disabled button', () => {
+test('testing whether page shows disabled button', () => {
   const { getByText } = renderWithRouter(<Pokedex
     pokemons={data}
     isPokemonFavoriteById={{ 4: true }}
@@ -103,4 +103,22 @@ test('testing wether page shows disabled button', () => {
   const btn2 = getByText('Fire');
   fireEvent.click(btn2);
   expect(nextbtn.disabled).not.toBeTruthy();
+});
+
+test('testing whether page shows pokedex', () => {
+  const { getByText } = renderWithRouter(<Pokedex
+    pokemons={data}
+    isPokemonFavoriteById={{ 4: true }}
+  />);
+  const heading = getByText('Encountered pokémons');
+  expect(heading).toBeInTheDocument();
+});
+
+test('testing whether filter buttons in on screen', () => {
+  const { getAllByTestId } = renderWithRouter(<Pokedex
+    pokemons={data}
+    isPokemonFavoriteById={{ 4: true }}
+  />);
+  const btn = getAllByTestId('pokemon-type-button');
+  expect(btn.length).toBe(7);
 });
