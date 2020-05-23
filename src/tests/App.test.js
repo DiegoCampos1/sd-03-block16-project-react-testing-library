@@ -24,14 +24,14 @@ test('Fixed navigation links', () => {
   );
 
   const homeElement = getByText(/Home/i);
-  expect(homeElement.getAttribute("href")).toBe('/');
+  expect(homeElement.getAttribute('href')).toBe('/');
 
   const aboutElement = getByText(/About/i);
-  expect(aboutElement.getAttribute("href")).toBe('/about');
+  expect(aboutElement.getAttribute('href')).toBe('/about');
 
   const favElement = getByText(/Favorite Pokémons/i);
-  expect(favElement.getAttribute("href")).toBe('/favorites');
-})
+  expect(favElement.getAttribute('href')).toBe('/favorites');
+});
 
 test('Click in Home', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -39,8 +39,8 @@ test('Click in Home', () => {
   const homeElement = getByText(/Home/i);
   fireEvent.click(homeElement);
   const pathname = history.location.pathname;
-  expect(pathname).toBe(`/`);
-})
+  expect(pathname).toBe('/');
+});
 
 test('Click in About', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -48,8 +48,8 @@ test('Click in About', () => {
   const aboutElement = getByText(/About/i);
   fireEvent.click(aboutElement);
   const pathname = history.location.pathname;
-  expect(pathname).toBe(`/about`);
-})
+  expect(pathname).toBe('/about');
+});
 
 test('Click in Favorites', () => {
   const { getByText, history } = renderWithRouter(<App />);
@@ -57,15 +57,15 @@ test('Click in Favorites', () => {
   const favElement = getByText(/Favorite Pokémons/i);
   fireEvent.click(favElement);
   const pathname = history.location.pathname;
-  expect(pathname).toBe(`/favorites`);
-})
- 
+  expect(pathname).toBe('/favorites');
+});
+
 test('Unknown page', () => {
   const { getByText, history } = renderWithRouter(<App />);
-  history.push("/pagina/que-nao-existe/");
-    const noMatch = getByText(/Page requested not found/i);
-    expect(noMatch).toBeInTheDocument();
-})
+  history.push('/pagina/que-nao-existe/');
+  const noMatch = getByText(/Page requested not found/i);
+  expect(noMatch).toBeInTheDocument();
+});
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
