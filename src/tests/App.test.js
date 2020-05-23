@@ -38,7 +38,7 @@ function renderWithRouter(
 
 describe('Testes no arquivo App.js', () => {
   afterEach(cleanup);
-  
+
   test('1.1 - Ao carregar a aplicação no caminho de URL “/”, a página principal da Pokédex deve ser mostrada', () => {
     const { getByText } = renderWithRouter(<App />);
     const header = getByText(/Encountered pok/i);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from "@testing-library/react";
+import { render } from '@testing-library/react';
 import { NotFound } from '../components';
 
 describe('4. Testes do arquivo NotFound', () => {
@@ -15,6 +15,3 @@ describe('4. Testes do arquivo NotFound', () => {
     expect(ibagem.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
-
-
-
