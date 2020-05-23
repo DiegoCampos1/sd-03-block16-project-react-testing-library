@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from "history";
+import { createMemoryHistory } from 'history';
 import App from '../App';
 
 // test('renders a reading with the text `Pokédex`', () => {
@@ -20,12 +20,12 @@ jest.mock('react-router-dom', () => {
   return ({
     ...originalModule,
     BrowserRouter: ({ children }) => (<div>{children}</div>),
-  })
-})
+  });
+});
 
 function renderWithRouter(
   ui,
-  {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {},
+  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
@@ -33,15 +33,14 @@ function renderWithRouter(
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).
     history,
-  }
+  };
 }
 
-describe ('Testes no arquivo App.js', () => {
+describe('Testes no arquivo App.js', () => {
   afterEach(cleanup);
-
-  const { getByText } = renderWithRouter(<App />);
-
+  
   test('1.1 - Ao carregar a aplicação no caminho de URL “/”, a página principal da Pokédex deve ser mostrada', () => {
+    const { getByText } = renderWithRouter(<App />);
     const header = getByText(/Encountered pok/i);
     expect(header).toBeInTheDocument();
   });
@@ -65,7 +64,7 @@ describe ('Testes no arquivo App.js', () => {
   });
 
   test('1.4 - Entrar em uma URL desconhecida exibe a página Not Found', () => {
-      const { getByText } = renderWithRouter(<App />, { route: '/lmmm' });
-      expect(getByText(/😭/i)).toBeInTheDocument();
-    });
+    const { getByText } = renderWithRouter(<App />, { route: '/lmmm' });
+    expect(getByText(/😭/i)).toBeInTheDocument();
+  });
 });
