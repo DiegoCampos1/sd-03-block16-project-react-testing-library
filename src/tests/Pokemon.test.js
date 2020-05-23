@@ -10,7 +10,7 @@ import { Pokemon } from '../components';
 
 test('should ', () => {
   const {
-    name, averageWeight: { value, measurementUnit }, image, id,
+    name, averageWeight: { value, measurementUnit }, image, id, type,
   } = pokemons[0];
   const history = createMemoryHistory();
   const { getByText, getByTestId, getByRole } = render(
@@ -25,6 +25,9 @@ test('should ', () => {
 
   const peso = getByTestId('pokemon-weight');
   expect(peso).toHaveTextContent(`Average weight:${value + measurementUnit}`);
+
+  const pokType = getByTestId('pokemonType');
+  expect(pokType).toHaveTextContent(type);
 
   const img = getByRole('img');
   expect(img).toHaveAttribute('src', image);
