@@ -1,6 +1,6 @@
 import React from 'react';
-import { cleanup, render, getByText } from '@testing-library/react';
-import { pokemons, isPokemonFavoriteById } from './mock';
+import { cleanup } from '@testing-library/react';
+import { pokemons } from './mock';
 import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
@@ -46,8 +46,9 @@ describe('test file Pokemon.js', () => {
   });
 
   test('Should contain favorite icon with correct alt', () => {
+    const isFavorite = true;
     const { getByAltText } = renderWithRouter((
-      <Pokemon pokemon={pokemons[2]} isFavorite={true} />
+      <Pokemon pokemon={pokemons[2]} isFavorite={isFavorite} />
     ));
     const img = getByAltText('Rapidash is marked as favorite');
     expect(img).toBeInTheDocument();
