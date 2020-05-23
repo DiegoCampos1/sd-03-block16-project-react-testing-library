@@ -6,6 +6,7 @@ import './button.css';
 const Button = ({
   className,
   children,
+  dataTestId,
   disabled,
   onClick,
 }) => (
@@ -13,6 +14,7 @@ const Button = ({
     onClick={onClick}
     className={`button-text ${className}`}
     disabled={disabled}
+    data-testid={dataTestId}
     type="button"
   >
     {children}
@@ -22,6 +24,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  dataTestId: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
 };
@@ -29,6 +32,7 @@ Button.propTypes = {
 Button.defaultProps = {
   children: null,
   className: '',
+  dataTestId: undefined,
   disabled: false,
 };
 
