@@ -26,7 +26,7 @@ describe('tests Pokemon.js', () => {
 
     data.forEach(({ averageWeight: { value, measurementUnit } }) => {
       const averageWeight = getByText(
-        `Average weight:${value}${measurementUnit}`
+        `Average weight:${value}${measurementUnit}`,
       );
       expect(averageWeight).toBeInTheDocument();
       fireEvent.click(nextPokemon);
@@ -74,18 +74,18 @@ describe('tests Pokemon.js', () => {
       getByAltText,
     } = renderWithRouter(<App />);
 
-    data.forEach(({name}, index) => {
+    data.forEach(({ name }, index) => {
       for (let i = 0; i < index; i += 1) {
         const nextPokemon = getByText('Próximo pokémon');
         fireEvent.click(nextPokemon);
       }
 
       const moreDetails = getByText('More details');
-      
+
       fireEvent.click(moreDetails);
       fireEvent.click(getByText('Pokémon favoritado?'));
 
-      const favStar = getByAltText(`${name} is marked as favorite`);;
+      const favStar = getByAltText(`${name} is marked as favorite`);
 
       expect(favStar).toHaveAttribute('src', '/star-icon.svg');
       expect(favStar).toBeInTheDocument();
