@@ -16,7 +16,7 @@ describe('test file Pokedex.js', () => {
     fireEvent.click(nextPokemonButton);
     expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
     fireEvent.click(nextPokemonButton);
-    expect(getByTestId('pokemon-name').textContent).toBe('Caterpie');
+    expect(getByTestId('pokemon-name').textContent).toBe('Rapidash');
     fireEvent.click(nextPokemonButton);
     expect(getByTestId('pokemon-name').textContent).toBe('Pikachu');
   });
@@ -34,22 +34,21 @@ describe('test file Pokedex.js', () => {
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
     const pokemonTypeButtons = getAllByTestId('pokemon-type-button');
-    expect(pokemonTypeButtons.length).toBe(3);
+    expect(pokemonTypeButtons.length).toBe(2);
     expect(pokemonTypeButtons[0].textContent).toBe('Electric');
     expect(pokemonTypeButtons[1].textContent).toBe('Fire');
-    expect(pokemonTypeButtons[2].textContent).toBe('Bug');
     fireEvent.click(pokemonTypeButtons[1]);
     expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
     const nextPokemonButton = getByText('Próximo pokémon');
     fireEvent.click(nextPokemonButton);
-    expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
+    expect(getByTestId('pokemon-name').textContent).toBe('Rapidash');
     fireEvent.click(getByText('All'));
     fireEvent.click(nextPokemonButton);
     expect(getByTestId('pokemon-name').textContent).toBe('Charmander');
     expect(getByTestId('pokemonType').textContent).toBe('Fire');
     fireEvent.click(nextPokemonButton);
-    expect(getByTestId('pokemon-name').textContent).toBe('Caterpie');
-    expect(getByTestId('pokemonType').textContent).toBe('Bug');
+    expect(getByTestId('pokemon-name').textContent).toBe('Rapidash');
+    expect(getByTestId('pokemonType').textContent).toBe('Fire');
     fireEvent.click(nextPokemonButton);
     expect(getByTestId('pokemon-name').textContent).toBe('Pikachu');
     expect(getByTestId('pokemonType').textContent).toBe('Electric');
@@ -59,7 +58,7 @@ describe('test file Pokedex.js', () => {
     const { getByText, getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
-    fireEvent.click(getAllByTestId('pokemon-type-button')[1]);
+    fireEvent.click(getAllByTestId('pokemon-type-button')[0]);
     const nextPokemonButton = getByText('Próximo pokémon');
     expect(nextPokemonButton).toBeDisabled();
   });
