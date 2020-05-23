@@ -22,7 +22,7 @@ test('Header must be h2 tag', () => {
     </MemoryRouter>,
   );
 
-  expect(getByRole('heading', {level: 2})).toBeInTheDocument();
+  expect(getByRole('heading', { level: 2 })).toBeInTheDocument();
 });
 
 test('Check if page has 2 p tags', () => {
@@ -42,6 +42,6 @@ test('Check source of image', () => {
     </MemoryRouter>,
   );
 
-  const source = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png'
-  expect(getByRole('img', {src: source})).toBeInTheDocument();
+  const source = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+  expect(getByRole('img', { src: source })).toBeInTheDocument();
 });
