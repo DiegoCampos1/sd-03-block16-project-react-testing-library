@@ -1,6 +1,6 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
 import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('tests App.js', () => {
