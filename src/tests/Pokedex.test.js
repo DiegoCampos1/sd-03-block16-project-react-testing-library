@@ -8,9 +8,7 @@ import { Pokedex } from '../components';
 const mockedPokemonFavoriteById = { 25: false };
 
 describe('Testing Pokedex file', () => {
-
   afterEach(cleanup);
-
   test('When pressing the next button, the page should display the next pokémon in the list', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
 
@@ -20,7 +18,7 @@ describe('Testing Pokedex file', () => {
 
     expect(buttonAll).toBeInTheDocument();
     fireEvent.click(buttonAll);
-    pokemons.forEach(elem => {
+    pokemons.forEach((elem) => {
       const namePokemon = getByTestId('pokemon-name');
       expect(namePokemon).toBeInTheDocument(elem.name);
       fireEvent.click(nextPokemonButton);
@@ -41,7 +39,7 @@ describe('Testing Pokedex file', () => {
 
   test('filter type Pokémon', () => {
     const { getByText, getAllByTestId, getByTestId } = renderWithRouter(
-      <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />
+      <Pokedex isPokemonFavoriteById={mockedPokemonFavoriteById} pokemons={pokemons} />,
     );
 
     const filterButton = getAllByTestId('pokemon-type-button');

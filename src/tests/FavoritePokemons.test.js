@@ -5,9 +5,7 @@ import App from '../App';
 
 
 describe('Testing FavoritePokemos file', () => {
-
   afterEach(cleanup);
-
   test('testing No favorite pokemon foud text', () => {
     const { getByText } = renderWithRouter(<App />);
 

@@ -15,38 +15,38 @@ describe('Testing App file', () => {
   });
 
   test('render links header', () => {
-    const { getByText } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
 
     const links = screen.getByText('Home', 'About', 'Favorite Pokémons');
     expect(links).toBeInTheDocument();
   });
- 
+
   test('equal url home', () => {
-    const { getByText } = renderWithRouter(<App />, { route: "/" });
-    const home = getByText(`Home`);
+    const { getByText } = renderWithRouter(<App />, { route: '/' });
+    const home = getByText('Home');
 
     fireEvent.click(home);
     getByText('Encountered pokémons');
   });
 
   test('equal url about', () => {
-    const { getByText } = renderWithRouter(<App />, { route: "/about" });
-    const about = getByText(`About`);
+    const { getByText } = renderWithRouter(<App />, { route: '/about' });
+    const about = getByText('About');
 
     fireEvent.click(about);
     getByText('About Pokédex');
   });
 
   test('equal url favorites', () => {
-    const { getByText } = renderWithRouter(<App />, { route: "/favorites" });
-    const about = getByText(`Favorite Pokémons`);
+    const { getByText } = renderWithRouter(<App />, { route: '/favorites' });
+    const about = getByText('Favorite Pokémons');
 
     fireEvent.click(about);
     getByText('Favorite pokémons');
   });
 
   test('pag not found', () => {
-    const { getByText } = renderWithRouter(<App />, { route: "/nonexistent" });
+    const { getByText } = renderWithRouter(<App />, { route: '/nonexistent' });
 
     getByText('Page requested not found');
   });

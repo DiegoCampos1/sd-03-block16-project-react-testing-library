@@ -4,9 +4,7 @@ import renderWithRouter from './testRenderService';
 import NotFound from '../components/NotFound';
 
 describe('Testing NotFound file', () => {
-
   afterEach(cleanup);
-
   test('Page request not found', () => {
     const { getByRole, getByText, getByAltText } = renderWithRouter(<NotFound />);
 

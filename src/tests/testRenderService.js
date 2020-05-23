@@ -10,5 +10,5 @@ export default function renderWithRouter(
   return {
     ...render(<Router history={history}>{ui}</Router>),
     history,
-  }
+  };
 }
