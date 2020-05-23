@@ -3,22 +3,11 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import data from '../data';
+import isPokemonFavoriteById from '../components/mocks';
 
 const pokemonTypes = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
 ];
-
-const isPokemonFavoriteById = {
-  25: true,
-  4: false,
-  10: true,
-  23: false,
-  65: true,
-  151: false,
-  78: true,
-  143: false,
-  148: true,
-};
 
 describe('tests Pokedex.js', () => {
   test('shows next pokemon button in Pokedex page', () => {
@@ -117,8 +106,8 @@ describe('tests Pokedex.js', () => {
     const nextPokemon = getByText('Próximo pokémon');
 
     fireEvent.click(all);
-    data.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
+    data.forEach(pokemon => {
+      expect(getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
   });
