@@ -2,16 +2,10 @@ import React from 'react';
 import { Router, MemoryRouter } from 'react-router-dom';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
+import renderRouter from '../RenderRouter';
 import App from '../App';
 
 afterEach(cleanup);
-
-const renderRouter = (component) => {
-  const history = createMemoryHistory();
-  return {
-    ...render(<Router history={history}>{component}</Router>), history,
-  };
-};
 
 describe('file App.js', () => {
   test('renders a reading with the text `Pokédex`', () => {
