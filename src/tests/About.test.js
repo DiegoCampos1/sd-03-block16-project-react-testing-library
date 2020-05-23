@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react'; // render in a container
+import { render } from '@testing-library/react'; // render in a container x
 import About from '../components/About';
 
 describe('file About.js', () => {
