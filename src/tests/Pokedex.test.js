@@ -45,13 +45,14 @@ describe('tests Pokedex.js', () => {
   });
 
   test('should show just one pokemon at once', () => {
-    const { getAllByText } = renderWithRouter(
+    const { getByText, getAllByText } = renderWithRouter(
       <Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
 
     const moreDetails = getAllByText('More details');
 
     expect(moreDetails.length).toBe(1);
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   test('Pokedex page should have filter buttons with the name equal the type', () => {
