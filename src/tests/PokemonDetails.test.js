@@ -40,7 +40,7 @@ describe('PokemonDetails.js component tests', () => {
 
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonName.textContent).toBe(`${mockedPokemons[0].name} Details`);
-    expect(pokemonName.textContent).not.toBe(`'' Details`);
+    expect(pokemonName.textContent).not.toBe('\'\' Details');
     expect(pokemonName.tagName).toBe('H2');
   });
 
