@@ -4,7 +4,6 @@ import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import data from '../data';
 import isPokemonFavoriteById from '../components/mocks';
-import { element } from 'prop-types';
 
 const pokemonTypes = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
