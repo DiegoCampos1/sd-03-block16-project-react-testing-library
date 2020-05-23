@@ -13,7 +13,7 @@ describe('Testing FavoritePokemos file', () => {
     fireEvent.click(pokemonFavorite);
     const favoritePokemonNoFoud = getByText('No favorite pokemon found');
     expect(favoritePokemonNoFoud).toBeInTheDocument();
-    
+
     const home = getByText(/Home/i);
     fireEvent.click(home);
 
