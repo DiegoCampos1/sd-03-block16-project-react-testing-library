@@ -7,6 +7,7 @@ describe('file About.js', () => {
     const { getByText } = render(<About />);
     const h2Heading = getByText('About Pokédex');
     expect(h2Heading).toBeInTheDocument();
+    expect(h2Heading.tagName).toBe('H2');
   });
 
   test('Holding 2 paragraphs with Pokédex text', () => {
