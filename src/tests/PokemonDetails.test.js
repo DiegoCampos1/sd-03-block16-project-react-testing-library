@@ -144,6 +144,5 @@ describe('PokemonDetails.js component tests', () => {
 
     fireEvent.click(favoriteCheckBox);
     expect(favoriteCheckBox).not.toBeChecked();
-
   });
 });
