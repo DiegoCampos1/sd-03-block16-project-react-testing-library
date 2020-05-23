@@ -86,8 +86,8 @@ describe('test file PokemonDetails.js', () => {
     fireEvent.click(pokemonDetailLink);
     const favoriteCheckButton = getByLabelText('Pokémon favoritado?');
     fireEvent.click(favoriteCheckButton);
-    expect(queryByAltText(/is marked as favorite/i)).toBeInTheDocument;
+    expect(queryByAltText(/is marked as favorite/i)).toBeInTheDocument();
     fireEvent.click(favoriteCheckButton);
-    expect(queryByAltText(/is marked as favorite/i)).not.toBeInTheDocument;
+    expect(queryByAltText(/is marked as favorite/i)).not.toBeInTheDocument();
   });
 });
