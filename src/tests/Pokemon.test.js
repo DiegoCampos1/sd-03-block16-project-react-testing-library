@@ -1,8 +1,10 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from './testService';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
+
+afterEach(cleanup);
 
 describe('Testing Pokemon Component', () => {
   test('testing pokemons name', () => {
@@ -69,12 +71,11 @@ describe('Testing Pokemon Component', () => {
     const { queryAllByRole } = renderWithRouter(
       <Pokemon
         pokemon={pokemons[0]}
-        isFavorite={true}
+        isFavorite
       />,
     );
     const pokemonStarFavorite = queryAllByRole('img')[1];
     expect(pokemonStarFavorite).toHaveAttribute('src', '/star-icon.svg');
     expect(pokemonStarFavorite).toHaveAttribute('alt', `${pokemons[0].name} is marked as favorite`);
   });
-
 });
