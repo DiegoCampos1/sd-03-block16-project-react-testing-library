@@ -64,11 +64,10 @@ describe('Testes do arquivo FavoritePokemons.js', () => {
           },
         ],
         summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
-      }
+      },
     ];
     const { getAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={pokemons} />);
     const namesTestId = getAllByTestId('pokemon-name');
-    const typeTestId = getAllByTestId('pokemonType');
     expect(namesTestId[0]).toBeInTheDocument();
     expect(namesTestId[0].textContent).toBe('Pikachu');
     expect(namesTestId[1]).toBeInTheDocument();
