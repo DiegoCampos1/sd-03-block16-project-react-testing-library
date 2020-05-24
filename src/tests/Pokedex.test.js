@@ -1,8 +1,7 @@
 import React from 'react';
-import { fireEvent, getByText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import Pokedex from '../components/Pokedex';
 import pokemon from '../data';
 
 // test('Next Pokemon button', () => {
@@ -18,7 +17,7 @@ test('Value Button Pokemon', () => {
   expect(btn).toBeInTheDocument();
   fireEvent.click(btn);
   // expect(btn.value).toBe('Próximo pokémon');
-  pokemon.forEach(elem => {
+  pokemon.forEach((elem) => {
     const pokemonName = getByTestId('pokemon-name');
     expect(pokemonName).toBeInTheDocument(elem.name);
     fireEvent.click(btn);
@@ -26,10 +25,11 @@ test('Value Button Pokemon', () => {
 });
 
 test('Test buttons for each title', () => {
-  // const everyButtons = ['All', 'Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon' ];
+  // const everyButtons = 
+  // ['All', 'Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon' ];
   const { getAllByText } = renderWithRouter(<App />);
   const buttonType = getAllByText('All', 'Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon');
-  buttonType.forEach(elem => {
+  buttonType.forEach((elem) => {
     expect(elem).toBeInTheDocument();
   });
 });
@@ -58,6 +58,6 @@ test('Pokedex one pokemon in page', () => {
 
 test('Pokédex container button filter', () => {
   const { getAllByRole } = renderWithRouter(<App />);
-  const typeBtn = getAllByRole('button')
+  const typeBtn = getAllByRole('button');
   expect(typeBtn.value).not.toBeNull();
 });
