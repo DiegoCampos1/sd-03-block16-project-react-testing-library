@@ -25,7 +25,7 @@ function renderWithRouter(
     // this to test implementation details).
     history,
   };
-  }
+}
 
 describe('3. Testes no arquivo FavoritePokenons.js', () => {
   afterEach(cleanup);
