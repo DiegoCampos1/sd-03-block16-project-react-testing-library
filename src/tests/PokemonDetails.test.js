@@ -88,7 +88,7 @@ describe('tests PokemonDetails.js', () => {
         expect(getByText(location)).toBeInTheDocument();
         expect(img[indice].src).toBe(map);
         expect(img[indice].alt).toBe(`${name} location`);
-      })
+      });
 
       fireEvent.click(getByText('Home'));
     });
