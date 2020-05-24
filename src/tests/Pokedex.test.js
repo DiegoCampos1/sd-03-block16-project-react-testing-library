@@ -106,8 +106,8 @@ describe('tests Pokedex.js', () => {
     const nextPokemon = getByText('Próximo pokémon');
 
     fireEvent.click(all);
-    data.forEach((pokemon) => {
-      expect(getByText(pokemon.name)).toBeInTheDocument();
+    data.forEach(({ name }) => {
+      expect(getByText(name)).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
   });
@@ -119,8 +119,8 @@ describe('tests Pokedex.js', () => {
 
     const nextPokemon = getByText('Próximo pokémon');
 
-    data.forEach((element) => {
-      expect(getByText(element.name)).toBeInTheDocument();
+    data.forEach(({ name }) => {
+      expect(getByText(name)).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
     expect(getByText(data[0].name)).toBeInTheDocument();

@@ -4,15 +4,19 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
 
+function forFunction(index, getByText) {
+  for (let i = 0; i < index; i += 1) {
+    const nextPokemon = getByText('Próximo pokémon');
+    fireEvent.click(nextPokemon);
+  }
+};
+
 describe('tests PokemonDetails.js', () => {
   test('should have details from just the select pokemon', () => {
     const { getByText  } = renderWithRouter(<App />);
 
     data.forEach(({ name }, index) => {
-      for (let i = 0; i < index; i += 1) {
-        const nextPokemon = getByText('Próximo pokémon');
-        fireEvent.click(nextPokemon);
-      }
+      forFunction(index, getByText);
 
       const moreDetails = getByText('More details');
 
@@ -31,10 +35,7 @@ describe('tests PokemonDetails.js', () => {
     const { getByText  } = renderWithRouter(<App />);
 
     data.forEach((_, index) => {
-      for (let i = 0; i < index; i += 1) {
-        const nextPokemon = getByText('Próximo pokémon');
-        fireEvent.click(nextPokemon);
-      }
+      forFunction(index, getByText);
 
       const moreDetails = getByText('More details');
 
@@ -50,10 +51,7 @@ describe('tests PokemonDetails.js', () => {
     const { getByText  } = renderWithRouter(<App />);
 
     data.forEach(({ summary }, index) => {
-      for (let i = 0; i < index; i += 1) {
-        const nextPokemon = getByText('Próximo pokémon');
-        fireEvent.click(nextPokemon);
-      }
+      forFunction(index, getByText);
 
       const moreDetails = getByText('More details');
 
@@ -74,10 +72,7 @@ describe('tests PokemonDetails.js', () => {
     const { getByText, getAllByAltText } = renderWithRouter(<App />);
 
     data.forEach(({ name, foundAt }, index) => {
-      for (let i = 0; i < index; i += 1) {
-        const nextPokemon = getByText('Próximo pokémon');
-        fireEvent.click(nextPokemon);
-      }
+      forFunction(index, getByText);
 
       const moreDetails = getByText('More details');
 
@@ -88,11 +83,11 @@ describe('tests PokemonDetails.js', () => {
       expect(heading).toBeInTheDocument();
       expect(heading.tagName).toBe('H2');
 
-      foundAt.forEach(({ location, map }, index) => {
+      foundAt.forEach(({ location, map }, indice) => {
         const img = getAllByAltText(`${name} location`);
         expect(getByText(location)).toBeInTheDocument();
-        expect(img[index].src).toBe(map);
-        expect(img[index].alt).toBe(`${name} location`);
+        expect(img[indice].src).toBe(map);
+        expect(img[indice].alt).toBe(`${name} location`);
       })
 
       fireEvent.click(getByText('Home'));
@@ -103,10 +98,7 @@ describe('tests PokemonDetails.js', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
 
     data.forEach((_, index) => {
-      for (let i = 0; i < index; i += 1) {
-        const nextPokemon = getByText('Próximo pokémon');
-        fireEvent.click(nextPokemon);
-      }
+      forFunction(index, getByText);
 
       const moreDetails = getByText('More details');
 
