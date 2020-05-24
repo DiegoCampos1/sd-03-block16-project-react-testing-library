@@ -1,11 +1,20 @@
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
-import { cleanup, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { cleanup, render, fireEvent, within } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import data from '../data';
 
 afterEach(cleanup);
+
+test('Header must be h2 tag', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
 
 test('Next Pokemon Button', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
@@ -24,7 +33,7 @@ test('Next Pokemon Button', () => {
   });
 });
 
-test('One Pokemon per Time', () => {
+test('Type Buttons', () => {
   const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
 
   const allTypes = data.reduce((current, value) => {
@@ -44,5 +53,16 @@ test('One Pokemon per Time', () => {
   getAllByTestId('pokemon-type-button').forEach((button) => {
     fireEvent.click(button);
     expect(getByTestId('pokemonType').innerHTML).toBe(button.innerHTML);
+  });
+});
+
+test('All Button', () => {
+  const { getAllByTestId } = renderWithRouter(<App />);
+  
+  getAllByTestId('pokemon-type-button').forEach((button) => {
+    if (button.innerHTML === 'All') {
+      fireEvent.click(button);
+      expect(OnClick).toHaveBeenCalled();
+    }
   });
 });
