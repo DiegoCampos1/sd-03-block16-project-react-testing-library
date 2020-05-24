@@ -1,9 +1,10 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Informações sobre a pokedex', () => {
+  afterEach(cleanup);
+
   test('Contem um Header', () => {
     const { getByText } = render(<About />);
 

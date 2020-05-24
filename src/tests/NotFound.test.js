@@ -1,8 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
 describe('Not Found Page', () => {
+  afterEach(cleanup);
+
   test('Contem heading', () => {
     const { getByText } = render(<NotFound />);
 

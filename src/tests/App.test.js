@@ -1,9 +1,11 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import App from '../App';
 
 describe('App tests', () => {
+  afterEach(cleanup);
+
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
