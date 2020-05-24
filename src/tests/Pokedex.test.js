@@ -57,13 +57,18 @@ test('Type Buttons', () => {
 });
 
 test('All Button', () => {
-  const { getAllByTestId } = renderWithRouter(<App />);
+  const { getByText } = renderWithRouter(<App />);
 
-  getAllByTestId('pokemon-type-button').forEach((button) => {
-    if (button.innerHTML === 'All') {
-      const onClick = jest.fn();
-      fireEvent.click(button);
-      expect(onClick).toHaveBeenCalled();
-    }
-  });
+  const allButton = getByText(/All/i)
+  expect(allButton).toBeInTheDocument();
+});
+
+test('Click All Button', () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
+
+  const fireButton = getByText(/Fire/i);
+  fireEvent.click(fireButton);
+  const allButton = getByText(/All/i);
+  fireEvent.click(allButton);
+  expect(getByTestId('pokemonType').innerHTML).toBe(data[0].type);
 });
