@@ -5,19 +5,16 @@ import App from '../App';
 import pokemon from '../data';
 // import Pokedex from '../components/Pokedex';
 
-// test('Next Pokemon button', () => {
-//   const { getByText } = renderWithRouter(<Pokedex />);
-//   const textButton = getByText(/Próximo pokémon/i);
-//   expect(textButton).toBeInTheDocument();
-// });
-
 test('Value Button Pokemon', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
+
   const btn = getByText(/Próximo pokémon/i);
-  // const btn = dataTestId('next-pokemon');
   expect(btn).toBeInTheDocument();
-  fireEvent.click(btn);
-  // expect(btn.value).toBe('Próximo pokémon');
+
+  const buttonAll = getByText('All');
+  expect(buttonAll).toBeInTheDocument();
+
+  fireEvent.click(buttonAll);
   pokemon.forEach((elem) => {
     const pokemonName = getByTestId('pokemon-name');
     expect(pokemonName).toBeInTheDocument(elem.name);
@@ -37,6 +34,12 @@ test('Pokédex container button filter', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const typeBtn = getAllByRole('button');
   expect(typeBtn.value).not.toBeNull();
+});
+
+test('Text h2 container', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const titleH2 = getByText('Encountered pokémons');
+  expect(titleH2).toBeInTheDocument();
 });
 
 const mockedPokemonFavoriteById = { 25: false };
