@@ -59,7 +59,7 @@ test('Type Buttons', () => {
 test('All Button', () => {
   const { getByText } = renderWithRouter(<App />);
 
-  const allButton = getByText(/All/i)
+  const allButton = getByText(/All/i);
   expect(allButton).toBeInTheDocument();
 });
 
