@@ -3,6 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
+import forFunction from '../components/forFunction';
 
 describe('tests Pokemon.js', () => {
   test('should have one pokemon card in the page', () => {
@@ -86,10 +87,7 @@ describe('tests Pokemon.js', () => {
     } = renderWithRouter(<App />);
 
     data.forEach(({ name }, index) => {
-      for (let i = 0; i < index; i += 1) {
-        const nextPokemon = getByText('Próximo pokémon');
-        fireEvent.click(nextPokemon);
-      }
+      forFunction(index, getByText);
 
       const moreDetails = getByText('More details');
 

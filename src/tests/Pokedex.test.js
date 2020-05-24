@@ -8,15 +8,23 @@ const pokemonTypes = [
   ...new Set(data.reduce((types, { type }) => [...types, type], [])),
 ];
 
+function forEachFunction(getByText) {
+  data.forEach(({ name }) => {
+    const nextPokemon = getByText('Próximo pokémon');
+    expect(getByText(name)).toBeInTheDocument();
+    fireEvent.click(nextPokemon);
+  });
+}
+
 describe('tests Pokedex.js', () => {
   test('shows next pokemon button in Pokedex page', () => {
     const { getByText } = renderWithRouter(
       <App />,
     );
 
-    const nextPokemon = getByText('Próximo pokémon');
+    const nextPokemonButton = getByText('Próximo pokémon');
 
-    expect(nextPokemon).toBeInTheDocument();
+    expect(nextPokemonButton).toBeInTheDocument();
   });
 
   test('next pokemon button show next pokemon', () => {
@@ -24,12 +32,8 @@ describe('tests Pokedex.js', () => {
       <App />,
     );
 
-    const nextPokemon = getByText('Próximo pokémon');
 
-    data.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
-      fireEvent.click(nextPokemon);
-    });
+    forEachFunction(getByText);
   });
 
   test('after last pokemon a new click should show the first pokemon', () => {
@@ -37,9 +41,9 @@ describe('tests Pokedex.js', () => {
       <App />,
     );
 
-    const nextPokemon = getByText('Próximo pokémon');
+    const nextPokemonButton = getByText('Próximo pokémon');
 
-    data.forEach(() => fireEvent.click(nextPokemon));
+    data.forEach(() => fireEvent.click(nextPokemonButton));
     expect(getByText(data[0].name)).toBeInTheDocument();
   });
 
@@ -71,7 +75,7 @@ describe('tests Pokedex.js', () => {
       <App />,
     );
 
-    const nextPokemon = getByText('Próximo pokémon');
+    const nextPokemonButton = getByText('Próximo pokémon');
 
     pokemonTypes.forEach((type, index) => {
       const button = getAllByTestId('pokemon-type-button')[index];
@@ -82,7 +86,7 @@ describe('tests Pokedex.js', () => {
 
       filtredPokemons.forEach((pokemon, _, array) => {
         expect(getByText(pokemon.name)).toBeInTheDocument();
-        if (array.length > 1) fireEvent.click(nextPokemon);
+        if (array.length > 1) fireEvent.click(nextPokemonButton);
       });
     });
   });
@@ -103,13 +107,9 @@ describe('tests Pokedex.js', () => {
     );
 
     const all = getByText('All');
-    const nextPokemon = getByText('Próximo pokémon');
 
     fireEvent.click(all);
-    data.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
-      fireEvent.click(nextPokemon);
-    });
+    forEachFunction(getByText);
   });
 
   test('verify if the all button is load first', () => {
@@ -117,12 +117,8 @@ describe('tests Pokedex.js', () => {
       <App />,
     );
 
-    const nextPokemon = getByText('Próximo pokémon');
+    forEachFunction( getByText);
 
-    data.forEach(({ name }) => {
-      expect(getByText(name)).toBeInTheDocument();
-      fireEvent.click(nextPokemon);
-    });
     expect(getByText(data[0].name)).toBeInTheDocument();
   });
 
@@ -142,11 +138,11 @@ describe('tests Pokedex.js', () => {
       <App />,
     );
 
-    const nextPokemon = getByText('Próximo pokémon');
+    const nextPokemonButton = getByText('Próximo pokémon');
     const bug = getByText('Bug');
 
     fireEvent.click(bug);
 
-    expect(nextPokemon).toBeDisabled();
+    expect(nextPokemonButton).toBeDisabled();
   });
 });

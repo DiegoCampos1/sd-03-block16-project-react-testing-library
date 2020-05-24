@@ -3,13 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
-
-function forFunction(index, getByText) {
-  for (let i = 0; i < index; i += 1) {
-    const nextPokemon = getByText('Próximo pokémon');
-    fireEvent.click(nextPokemon);
-  }
-};
+import forFunction from '../components/forFunction';
 
 describe('tests PokemonDetails.js', () => {
   test('should have details from just the select pokemon', () => {
