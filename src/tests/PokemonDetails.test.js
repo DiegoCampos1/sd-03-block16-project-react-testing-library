@@ -13,7 +13,7 @@ function forFunction(index, getByText) {
 
 describe('tests PokemonDetails.js', () => {
   test('should have details from just the select pokemon', () => {
-    const { getByText  } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
 
     data.forEach(({ name }, index) => {
       forFunction(index, getByText);
@@ -32,7 +32,7 @@ describe('tests PokemonDetails.js', () => {
   });
 
   test('link more details dont have to exist in details page', () => {
-    const { getByText  } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
 
     data.forEach((_, index) => {
       forFunction(index, getByText);
@@ -48,7 +48,7 @@ describe('tests PokemonDetails.js', () => {
   });
 
   test('details page should contain summary', () => {
-    const { getByText  } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
 
     data.forEach(({ summary }, index) => {
       forFunction(index, getByText);
