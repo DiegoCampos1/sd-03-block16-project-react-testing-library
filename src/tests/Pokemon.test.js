@@ -8,7 +8,7 @@ test('Card Pokemons', () => {
   expect(cardPokemon).toBeInTheDocument();
 });
 
-test('Name pokemon in home page', () => {
+test('Name pokemon in homepage', () => {
   const { getByTestId } = renderWithRouter(<App />);
   const pokemonName = getByTestId('pokemon-name');
   expect(pokemonName).toBeInTheDocument();
