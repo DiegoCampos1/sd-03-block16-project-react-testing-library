@@ -117,7 +117,7 @@ describe('tests Pokedex.js', () => {
       <App />,
     );
 
-    forEachFunction( getByText);
+    forEachFunction(getByText);
 
     expect(getByText(data[0].name)).toBeInTheDocument();
   });
