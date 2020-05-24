@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import pokemon from '../data';
-import Pokedex from '../components/Pokedex';
+// import Pokedex from '../components/Pokedex';
 
 // test('Next Pokemon button', () => {
 //   const { getByText } = renderWithRouter(<Pokedex />);
@@ -43,7 +43,7 @@ const mockedPokemonFavoriteById = { 25: false };
 
 test('filter type Pokémon', () => {
   const { getByText, getAllByTestId, getByTestId } = renderWithRouter(
-    <App isPokemonFavoriteById={mockedPokemonFavoriteById} pokemon={pokemon} />
+    <App isPokemonFavoriteById={mockedPokemonFavoriteById} pokemon={pokemon} />,
   );
 
   const filterButton = getAllByTestId('pokemon-type-button');
