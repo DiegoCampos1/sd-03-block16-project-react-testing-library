@@ -44,12 +44,12 @@ test('Details Link', () => {
 test('Favorite Image', () => {
   const { getByAltText } = render(
     <MemoryRouter>
-      <Pokemon 
+      <Pokemon
         pokemon={data[0]}
         isFavorite
       />
     </MemoryRouter>,
   );
 
-  expect(getByAltText(`${data[0].name} is marked as favorite`)).toHaveAttribute('src', `/star-icon.svg`);
+  expect(getByAltText(`${data[0].name} is marked as favorite`)).toHaveAttribute('src', '/star-icon.svg');
 });
