@@ -1,9 +1,8 @@
-export const pokemons = [
+const pokemons = [
   {
     id: 10,
     name: 'Caterpie',
     type: 'Bug',
-    averageWeight: 'value 2,9 kg',
     averageWeight: {
       value: '2.9',
       measurementUnit: 'kg',
@@ -71,3 +70,5 @@ export const pokemons = [
     summary: 'At full gallop, its four hooves barely touch the ground because it moves so incredibly fast.',
   },
 ];
+
+export default pokemons;

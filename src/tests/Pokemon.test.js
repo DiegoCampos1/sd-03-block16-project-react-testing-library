@@ -1,9 +1,8 @@
 import React from 'react';
-import { cleanup, getByAltText } from '@testing-library/react';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import App from '../App';
 import Pokemon from '../components/Pokemon';
-import { pokemons } from './mock';
+import pokemons from './mock';
 
 afterEach(cleanup);
 
@@ -47,8 +46,9 @@ describe('Return de information of one pokemon', () => {
   });
 
   test('Should favorite icon with id', () => {
+    const isFavorite = true;
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={pokemons[0]} isFavorite={true} />);
+      <Pokemon pokemon={pokemons[0]} isFavorite={isFavorite} />);
     const img = getByAltText('Caterpie is marked as favorite');
     expect(img).toBeInTheDocument();
     expect(img.src).toMatch('/star-icon.svg');
