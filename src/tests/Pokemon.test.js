@@ -20,12 +20,12 @@ describe('tests Pokemon.js', () => {
   });
 
   test('card should contain the pokemon type', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText, getAllByText } = renderWithRouter(<App />);
 
     const nextPokemon = getByText('Próximo pokémon');
 
     data.forEach(({ type }) => {
-      expect(getByText(type)).toBeInTheDocument();
+      expect(getAllByText(type)[1]).toBeInTheDocument();
       fireEvent.click(nextPokemon);
     });
   });
