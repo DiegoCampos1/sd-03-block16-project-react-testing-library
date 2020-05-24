@@ -28,3 +28,4 @@ yarn-error.log*
 # stryker temp files
 .stryker-tmp
 /report
+/reports
