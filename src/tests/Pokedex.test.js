@@ -25,7 +25,7 @@ test('Value Button Pokemon', () => {
 });
 
 test('Test buttons for each title', () => {
-  // const everyButtons = 
+  // const everyButtons =
   // ['All', 'Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon' ];
   const { getAllByText } = renderWithRouter(<App />);
   const buttonType = getAllByText('All', 'Eletric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon');

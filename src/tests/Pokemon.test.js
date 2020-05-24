@@ -15,10 +15,9 @@ test('Name pokemon in homepage', () => {
 });
 
 // test('Test img in card', () => {
-//   const { getByTestId } = renderWithRouter(<App />);
-//   const img = getByTestId(`pokemons/${id}`);
-//   expect(img).toBeInTheDocument();
-//   const 
+// const { getByTestId } = renderWithRouter(<App />);
+// const img = getByTestId(`pokemons/${id}`);
+// expect(img).toBeInTheDocument();
 // });
 
 test('Avarege weigth of the pokemon', () => {
