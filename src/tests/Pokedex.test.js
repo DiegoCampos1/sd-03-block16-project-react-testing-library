@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { cleanup, render, fireEvent, within } from '@testing-library/react';
+import { cleanup, render, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import data from '../data';
@@ -58,11 +58,12 @@ test('Type Buttons', () => {
 
 test('All Button', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
-  
+
   getAllByTestId('pokemon-type-button').forEach((button) => {
     if (button.innerHTML === 'All') {
+      const onClick = jest.fn();
       fireEvent.click(button);
-      expect(OnClick).toHaveBeenCalled();
+      expect(onClick).toHaveBeenCalled();
     }
   });
 });
