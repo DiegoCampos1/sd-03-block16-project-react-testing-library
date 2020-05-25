@@ -102,6 +102,15 @@ describe('Testes do arquivo Pokedex.js', () => {
     },
   ];
 
+  test('Teste de titulos da página', () => {
+    const { getByText } = renderWithRouter(<Pokedex
+      pokemons={pokemons}
+      isPokemonFavoriteById={isPokemonFavoriteById}
+    />);
+      const pageTitle = getByText('Encountered pokémons');
+      expect(pageTitle).toBeInTheDocument();
+  });
+
   test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista', () => {
     const { getAllByRole, getByTestId } = renderWithRouter(<Pokedex
       pokemons={pokemons}
@@ -138,6 +147,7 @@ describe('Testes do arquivo Pokedex.js', () => {
       pokemons={data}
       isPokemonFavoriteById={isPokemonFavoriteById}
     />);
+    /* const buttonsTestId = getAllByTestId('pokemon-type-button'); */
     const buttons = getAllByRole('button');
     const allButton = buttons[0];
     expect(allButton.textContent).toBe('All');
