@@ -48,7 +48,7 @@ test('Pokédex must show one pokemon per time', () => {
 test('Pokedex must have filter buttons', () => {
   const { getAllByRole } = renderWithRouter(
     <Pokedex
-    pokemons={pokemons} isPokemonFavoriteById={favorites}
+      pokemons={pokemons} isPokemonFavoriteById={favorites}
     />);
 
   const allButtons = [
@@ -74,7 +74,7 @@ test('Pokedex must have filter buttons', () => {
 test('Testing if filtered have displayed only filtered pokemon type', () => {
   const { getByTestId, getAllByText } = renderWithRouter(
     <Pokedex
-    pokemons={pokemons} isPokemonFavoriteById={favorites}
+      pokemons={pokemons} isPokemonFavoriteById={favorites}
     />);
 
   const allButtons = [
@@ -104,55 +104,54 @@ test('Testing if filtered have displayed only filtered pokemon type', () => {
     const nextButton = getByTestId('next-pokemon');
     const ativate = nextButton.disabled;
     const pokeType = getByTestId('pokemonType');
-    if(ativate) {
+    if (ativate) {
       for (let i = 0; i < filterButtons.length; i += 1) {
         fireEvent.click(presentButton);
         const selectedType = getByTestId('pokemonType');
         expect(pokeType).toBe(selectedType);
       }
     }
-  return ('ok');
+    return ('ok');
   });
 });
 
 test('Testing reset filter button', () => {
   const { getByTestId, getByText } = renderWithRouter(
     <Pokedex
-    pokemons={pokemons} isPokemonFavoriteById={favorites}
+      pokemons={pokemons} isPokemonFavoriteById={favorites}
     />);
   const resetButton = getByText('All');
   expect(resetButton).toBeInTheDocument();
   fireEvent.click(resetButton);
 
   const button = getByText('Próximo pokémon');
-  let nextPokeName = '';
+  // let nextPokeName = '';
   pokemons.map((e, index) => {
     const poke = getByTestId('pokemon-name');
     const pokeName = getNodeText(poke);
     expect(pokeName).toBe(pokemons[index].name);
     fireEvent.click(button);
-    const nextPoke = getByTestId('pokemon-name');
-    nextPokeName = getNodeText(nextPoke);
+    // const nextPoke = getByTestId('pokemon-name');
+    // nextPokeName = getNodeText(nextPoke);
     return ('ok');
   });
 });
 
-test("Test if filter buttons are generate automatically", () => {
+test('Test if filter buttons are generate automatically', () => {
   const { getAllByTestId } = renderWithRouter(
     <Pokedex
       pokemons={pokemons} isPokemonFavoriteById={favorites}
     />);
-  let typesOfPokemons = [];
+  const typesOfPokemons = [];
   let uniqueTypesOfPokemons = [];
-  pokemons.map(e => {
-    typesOfPokemons.push(e.type);
-  });
+  pokemons.map(e => typesOfPokemons.push(e.type) );
   uniqueTypesOfPokemons = [...new Set(typesOfPokemons)];
   const button = getAllByTestId('pokemon-type-button');
   expect(uniqueTypesOfPokemons.length).toBe(button.length);
   button.map((e) => {
     const buttonText = getNodeText(e);
     expect(uniqueTypesOfPokemons.includes(buttonText)).toBe(true);
+    return ('ok');
   });
 });
 
