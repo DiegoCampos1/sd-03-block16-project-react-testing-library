@@ -1,13 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { fireEvent } from '@testing-library/react';
 import { Pokemon } from '../components';
-
-const renderWithRouter = (ui, history = createMemoryHistory()) => ({
-  ...render(<Router history={history}>{ui}</Router>),
-  history,
-});
+import renderWithRouter from './Services';
 
 describe('6. Testes do arquivo Pokemon.js', () => {
   const testPokemon = { name: 'Raichu', type: 'Electric', averageWeight: { value: '30.0', measurementUnit:'kg' }, id: 26, image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_2c_026.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Raichu_(Pok%C3%A9mon)' };

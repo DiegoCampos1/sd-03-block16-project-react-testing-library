@@ -1,23 +1,14 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import renderWithRouter from './Services';
 import { render, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
 import { FavoritePokemons } from '../components';
 import pokemons from '../data';
-
-const renderWithRouter = (
-  ui,
-  { history = createMemoryHistory({ initialEntries: ['/'] }) } = {},
-) => ({
-  ...render(<Router history={history}>{ui}</Router>),
-  history,
-});
 
 describe('3. Testes no arquivo FavoritePokenons.js', () => {
   afterEach(cleanup);
 
   test('3.1 - Caso a pessoa não tenha pokémons favoritos, a mensagem No favorite pokemon found deve aparecer na tela', () => {
-    const { getByText } = render(<FavoritePokemons pokemons={[]}/>);
+    const { getByText } = render(<FavoritePokemons pokemons={[]} />);
     expect(getByText(/No favorite p/i)).toBeInTheDocument();
   });
 
@@ -29,7 +20,9 @@ describe('3. Testes no arquivo FavoritePokenons.js', () => {
   });
 
   test('3.3 - A página deve exibir todos os cards de pokémons favoritados', () => {
-    const { getByText, getByRole } = renderWithRouter(<FavoritePokemons pokemons={pokemons.slice(5, 8)} />);
+    const { getByText } = renderWithRouter(
+      <FavoritePokemons pokemons={pokemons.slice(5, 8)} />
+      );
     // fireEvent.click(getByText(/More det/i));
     // fireEvent.click(getByRole('form'));
     // fireEvent.click(getByText(/Favorite Pok/i));
