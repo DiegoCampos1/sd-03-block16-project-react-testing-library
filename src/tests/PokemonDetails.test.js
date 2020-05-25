@@ -1,5 +1,4 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 import updateFavoritePokemons from '../services/pokedexService';
@@ -24,9 +23,9 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     params: {
       id: '25',
     },
-    path: "/pokemons/:id",
-    url: "pokemons/25"
-  }
+    path: '/pokemons/:id',
+    url: 'pokemons/25',
+  };
 
   /* const pokemonId = 25;
   const isFavorite = false; */
@@ -71,7 +70,7 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     />);
     const labelFavorite = getByLabelText('Pokémon favoritado?');
     expect(labelFavorite).toBeInTheDocument();
-    let checkboxFavorite = getByRole('checkbox');
+    const checkboxFavorite = getByRole('checkbox');
     expect(checkboxFavorite.checked).toBe(true);
   });
 });
