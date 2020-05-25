@@ -125,14 +125,11 @@ test('Testing reset filter button', () => {
   fireEvent.click(resetButton);
 
   const button = getByText('Próximo pokémon');
-  // let nextPokeName = '';
   pokemons.map((e, index) => {
     const poke = getByTestId('pokemon-name');
     const pokeName = getNodeText(poke);
     expect(pokeName).toBe(pokemons[index].name);
     fireEvent.click(button);
-    // const nextPoke = getByTestId('pokemon-name');
-    // nextPokeName = getNodeText(nextPoke);
     return ('ok');
   });
 });
@@ -144,7 +141,7 @@ test('Test if filter buttons are generate automatically', () => {
     />);
   const typesOfPokemons = [];
   let uniqueTypesOfPokemons = [];
-  pokemons.map(e => typesOfPokemons.push(e.type) );
+  pokemons.map((e) => typesOfPokemons.push(e.type));
   uniqueTypesOfPokemons = [...new Set(typesOfPokemons)];
   const button = getAllByTestId('pokemon-type-button');
   expect(uniqueTypesOfPokemons.length).toBe(button.length);
