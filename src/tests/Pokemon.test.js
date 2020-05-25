@@ -34,6 +34,8 @@ describe('Testes do arquivo Pokemon.js', () => {
     />);
 
     const pokemonName = getByTestId('pokemon-name');
+    const pokemonType = getByTestId('pokemonType');
+    expect(pokemonType.textContent).toBe('Electric');
     expect(pokemonName.textContent).toBe('Pikachu');
     const pokemonWeight = getByTestId('pokemon-weight');
     expect(pokemonWeight.textContent).toBe('Average weight:6.0kg');
