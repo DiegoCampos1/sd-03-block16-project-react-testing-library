@@ -147,8 +147,8 @@ describe('Testes do arquivo Pokedex.js', () => {
       pokemons={data}
       isPokemonFavoriteById={isPokemonFavoriteById}
     />);
-    
     const buttonsFilter = getAllByTestId('pokemon-type-button');
+    expect(buttonsFilter.length).toBe(7);
     const buttons = getAllByRole('button');
     const allButton = buttons[0];
     expect(allButton.textContent).toBe('All');

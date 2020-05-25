@@ -41,7 +41,6 @@ describe('Testes do arquivo PokemonDetails.js', () => {
 
     const pokemonName = getByText('Pikachu Details');
     expect(pokemonName).toBeInTheDocument();
-    
     const moreDetails = queryByText('More details');
     expect(moreDetails).not.toBeInTheDocument();
   });
