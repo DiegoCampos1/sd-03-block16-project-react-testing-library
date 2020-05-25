@@ -17,7 +17,7 @@ const isPokemonFavoriteById = {
   143: false,
   148: false,
   151: false,
-}
+};
 
 const match = { params: { id: '25' } };
 
@@ -82,7 +82,7 @@ test('Contain a section  pokémon', () => {
     />
   ));
   const locationTitle = getByText(`Game Locations of ${data[0].name}`);
-  expect(locationTitle ).toBeInTheDocument();
+  expect(locationTitle).toBeInTheDocument();
   expect(getByText(data[0].foundAt[0].location)).toBeInTheDocument();
   expect(getByText(data[0].foundAt[1].location)).toBeInTheDocument();
   const locationImages = getAllByAltText(`${data[0].name} location`);
