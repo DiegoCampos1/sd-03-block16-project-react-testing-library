@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, getByText, fireEvent, queryByText } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
@@ -15,7 +15,7 @@ describe('FavoritePokemons.js tests', () => {
     expect(queryByText(/More details/i)).not.toBeInTheDocument();
   });
 
-  test('Renders all favorited pokemons', () => { 
+  test('Renders all favorited pokemons', () => {
     const { getByText, queryByText } = renderWithRouter(<App />);
     let details = getByText(/More details/i);
     const home = getByText(/Home/i);
