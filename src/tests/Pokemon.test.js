@@ -25,7 +25,7 @@ describe('Testes do arquivo Pokemon.js', () => {
       },
     ],
     summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-  }
+  };
 
   test('Testando as informações do card com o Pokémon passado como props', () => {
     const { getByText, getByTestId, getByAltText, history } = renderWithRouter(<Pokemon
@@ -51,7 +51,7 @@ describe('Testes do arquivo Pokemon.js', () => {
   test('Testando a vizualização da imagem estrela caso o Pokémon seja favorito', () => {
     const { getByAltText } = renderWithRouter(<Pokemon
       pokemon={pokemon}
-      isFavorite={true}
+      isFavorite={pokemon.id}
     />);
 
     const pokemonAltImg = getByAltText(`${pokemon.name} is marked as favorite`);

@@ -107,8 +107,8 @@ describe('Testes do arquivo Pokedex.js', () => {
       pokemons={pokemons}
       isPokemonFavoriteById={isPokemonFavoriteById}
     />);
-      const pageTitle = getByText('Encountered pokémons');
-      expect(pageTitle).toBeInTheDocument();
+    const pageTitle = getByText('Encountered pokémons');
+    expect(pageTitle).toBeInTheDocument();
   });
 
   test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista', () => {
