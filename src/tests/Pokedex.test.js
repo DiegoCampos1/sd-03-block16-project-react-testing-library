@@ -123,6 +123,8 @@ describe('Podex tests', () => {
     const nextBtn = getByTestId('next-pokemon');
     const pokeCard = getByTestId('pokemon-name');
     expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
     expect(pokeCard.innerHTML).toBe('Pikachu');
     fireEvent.click(nextBtn);
     expect(pokeCard.innerHTML).toBe('Charmander');
