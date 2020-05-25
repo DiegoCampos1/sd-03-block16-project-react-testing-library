@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import About from '../components/About';
 
-describe('About.js tests', () =>{
+describe('About.js tests', () => {
   test('Renders h2 heading with correct text', () => {
     const { getByText } = render(<About />);
     const h2element = getByText(/About Pokédex/i);
