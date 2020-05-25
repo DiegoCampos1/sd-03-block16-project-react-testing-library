@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import renderRouter from '../historyRouter';
+import renderWithRouter from '../historyRouter';
 import App from '../App';
 
 afterEach(cleanup);
@@ -18,7 +18,7 @@ describe('file App.js', () => {
   });
 
   test('home exists > to path /', () => {
-    const { getByText, history } = renderRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
     const homeText = getByText(/home/i); // Unterminated regular expression
     expect(homeText).toBeInTheDocument();
     fireEvent.click(homeText);
@@ -27,7 +27,7 @@ describe('file App.js', () => {
   });
 
   test('about exists > to path /about', () => {
-    const { getByText, history } = renderRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
     const aboutText = getByText(/About/i);
     expect(aboutText).toBeInTheDocument();
     fireEvent.click(aboutText);
@@ -36,7 +36,7 @@ describe('file App.js', () => {
   });
 
   test('Favorite Pokémons exists > to path /favorites', () => {
-    const { getByText, history } = renderRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
     const favoriteLinkText = getByText(/Favorite Pokémons/i);
     expect(favoriteLinkText).toBeInTheDocument();
     fireEvent.click(favoriteLinkText);
