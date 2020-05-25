@@ -4,20 +4,17 @@ import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
 import data from '../data';
 
-
-
-
 describe('Testes do arquivo Pokedex.js', () => {
   const isPokemonFavoriteById = {
-    "4": false,
-    "10": false,
-    "23": false,
-    "25": false,
-    "65": false,
-    "78": false,
-    "143": false,
-    "148": false,
-    "151": false,
+    4: false,
+    10: false,
+    23: false,
+    25: false,
+    65: false,
+    78: false,
+    143: false,
+    148: false,
+    151: false,
   };
 
   const pokemons = [
@@ -106,7 +103,10 @@ describe('Testes do arquivo Pokedex.js', () => {
   ];
 
   test('Cliques sucessivos no botão devem mostrar o próximo pokémon da lista', () => {
-    const { getAllByRole, getByTestId } = renderWithRouter(<Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getAllByRole, getByTestId } = renderWithRouter(<Pokedex
+      pokemons={pokemons}
+      isPokemonFavoriteById={isPokemonFavoriteById}
+    />);
     const buttons = getAllByRole('button');
     const nextButton = buttons[buttons.length - 1];
     expect(nextButton).toBeInTheDocument();
@@ -125,13 +125,19 @@ describe('Testes do arquivo Pokedex.js', () => {
   });
 
   test('A Pokédex deve exibir apenas um pokémon por vez', () => {
-    const { getAllByTestId } = renderWithRouter(<Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getAllByTestId } = renderWithRouter(<Pokedex
+      pokemons={pokemons}
+      isPokemonFavoriteById={isPokemonFavoriteById}
+    />);
     const countPokemons = getAllByTestId('pokemon-name');
     expect(countPokemons.length).toBe(1);
   });
 
   test('Testando os botões de filtros de acordo com seus nomes e testar se o botão de Próximo desabilita se tiver 1 pokémon filtrado', () => {
-    const { getByTestId, getAllByRole } = renderWithRouter(<Pokedex pokemons={data} isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getByTestId, getAllByRole } = renderWithRouter(<Pokedex
+      pokemons={data}
+      isPokemonFavoriteById={isPokemonFavoriteById}
+    />);
     const buttons = getAllByRole('button');
     const allButton = buttons[0];
     expect(allButton.textContent).toBe('All');
@@ -152,7 +158,7 @@ describe('Testes do arquivo Pokedex.js', () => {
     expect(dragonButton.textContent).toBe('Dragon');
     const nextButton = buttons[8];
     expect(nextButton.textContent).toBe('Próximo pokémon');
-    let pokemonType = getByTestId('pokemonType');
+    const pokemonType = getByTestId('pokemonType');
     fireEvent.click(electricButton);
     expect(pokemonType.textContent).toBe('Electric');
     expect(nextButton.disabled).toBe(true);
@@ -186,7 +192,10 @@ describe('Testes do arquivo Pokedex.js', () => {
   });
 
   test('Testando que a Pokédex vai gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
-    const { getAllByRole, queryByText } = renderWithRouter(<Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />);
+    const { getAllByRole, queryByText } = renderWithRouter(<Pokedex
+      pokemons={pokemons}
+      isPokemonFavoriteById={isPokemonFavoriteById}
+    />);
     const buttons = getAllByRole('button');
     expect(buttons.length).toBe(5);
     expect(buttons[0].textContent).toBe('All');
@@ -197,5 +206,4 @@ describe('Testes do arquivo Pokedex.js', () => {
     const buttonPoison = queryByText('Poison');
     expect(buttonPoison).toBe(null);
   });
-
 });
