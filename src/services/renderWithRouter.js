@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 
 function renderWithRouter(
   ui,
-  {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {},
+  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
@@ -13,7 +13,7 @@ function renderWithRouter(
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).
     history,
-  }
+  };
 }
 
 export default renderWithRouter;
