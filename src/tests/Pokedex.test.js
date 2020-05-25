@@ -143,11 +143,12 @@ describe('Testes do arquivo Pokedex.js', () => {
   });
 
   test('Testando os botões de filtros de acordo com seus nomes e testar se o botão de Próximo desabilita se tiver 1 pokémon filtrado', () => {
-    const { getByTestId, getAllByRole } = renderWithRouter(<Pokedex
+    const { getByTestId, getAllByRole, getAllByTestId } = renderWithRouter(<Pokedex
       pokemons={data}
       isPokemonFavoriteById={isPokemonFavoriteById}
     />);
     
+    const buttonsFilter = getAllByTestId('pokemon-type-button');
     const buttons = getAllByRole('button');
     const allButton = buttons[0];
     expect(allButton.textContent).toBe('All');

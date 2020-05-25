@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 import updateFavoritePokemons from '../services/pokedexService';
@@ -45,4 +45,4 @@ describe('Testes do arquivo PokemonDetails.js', () => {
     const moreDetails = queryByText('More details');
     expect(moreDetails).not.toBeInTheDocument();
   });
-})
+}) */
