@@ -37,6 +37,7 @@ function renderWithRouter(
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
+    // 3
     history,
   };
 }

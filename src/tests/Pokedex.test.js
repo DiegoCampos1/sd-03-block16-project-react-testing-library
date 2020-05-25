@@ -11,6 +11,7 @@ function renderWithRouter(
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
+    // 2
     history,
   };
 }
