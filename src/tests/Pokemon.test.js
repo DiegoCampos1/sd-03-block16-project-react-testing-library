@@ -6,10 +6,12 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Tesing all pokemons info to be on the card', () => {
-  pokemons.forEach(({ name, averageWeight: { value, measurementUnit }, image }, index) => {
+  pokemons.forEach(({
+    name, averageWeight: { value, measurementUnit }, image, type,
+  }, index) => {
     test(`pokemon ${name} Card test`, async () => {
       const {
-        getByText, getByAltText,
+        getByText, getByAltText, getByTestId,
       } = render(
         <MemoryRouter>
           <App />
@@ -20,6 +22,7 @@ describe('Tesing all pokemons info to be on the card', () => {
 
       const testCard = () => {
         expect(getByText(name)).toBeInTheDocument();
+        expect(getByTestId('pokemonType').innerHTML).toBe(type);
         expect(getByText(`Average weight:${value}${measurementUnit}`)).toBeInTheDocument();
         const imageNode = getByAltText(`${name} sprite`);
         expect(imageNode.alt).toMatch(`${name} sprite`);
