@@ -33,19 +33,7 @@ test('h2 header with Name Details', () => {
   expect(getByText(`${data[0].name} Details`)).toBeInTheDocument();
 });
 
-/* test('shouldnt contain navigation link ', () => {
-  const { queryByText } = render((
-    <PokemonDetails
-      match={match}
-      isPokemonFavoriteById={isPokemonFavoriteById}
-      onUpdateFavoritePokemons={() => null}
-      pokemons={[data[0]]}
-    />
-  ));
-  expect(queryByText('More details')).not.toBeInTheDocument();
-}); */
-
-/* test('Contain a h2 heading with "Summary" text', () => {
+test('Summary', () => {
   const { getByText } = render((
     <PokemonDetails
       match={match}
@@ -56,8 +44,7 @@ test('h2 header with Name Details', () => {
   ));
   const heading = getByText('Summary');
   expect(heading).toBeInTheDocument();
-  expect(heading.tagName).toBe('H2');
-});*/
+});
 
 test('Summary must be present', () => {
   const { getByText } = render((
