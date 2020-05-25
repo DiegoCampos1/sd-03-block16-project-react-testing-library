@@ -1,8 +1,6 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { cleanup } from '@testing-library/react';
 import renderWithRouter from './RenderWithRouter';
-import { render, cleanup } from '@testing-library/react';
 import About from '../components/About';
 
 afterEach(cleanup);
