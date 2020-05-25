@@ -49,7 +49,7 @@ describe('Testes do arquivo Pokemon.js', () => {
   });
 
   test('Testando a vizualização da imagem estrela caso o Pokémon seja favorito', () => {
-    const { getByText, getByTestId, getByAltText, history } = renderWithRouter(<Pokemon
+    const { getByAltText } = renderWithRouter(<Pokemon
       pokemon={pokemon}
       isFavorite={true}
     />);
