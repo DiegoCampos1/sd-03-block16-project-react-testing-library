@@ -25,37 +25,43 @@ describe('Pokemon.js tests', () => {
       },
     ],
     summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-  }
+  };
 
   test('Renders correct pokemon name', () => {
-    const { getByTestId } = renderWithRouter(<Pokemon pokemon={mockedPikachu} isFavorite={false} />);
+    const { getByTestId } = renderWithRouter(
+      <Pokemon pokemon={mockedPikachu} isFavorite={false} />);
     expect(getByTestId(/pokemon-name/i)).toHaveProperty('innerHTML', 'Pikachu');
   });
 
   test('Renders correct average weight', () => {
-    const { getByTestId } = renderWithRouter(<Pokemon pokemon={mockedPikachu} isFavorite={false} />);
+    const { getByTestId } = renderWithRouter(
+      <Pokemon pokemon={mockedPikachu} isFavorite={false} />);
     expect(getByTestId(/pokemon-weight/i)).toHaveProperty('innerHTML', 'Average weight:6.0kg');
   });
 
   test('Renders correct image', () => {
-    const { getByAltText } = renderWithRouter(<Pokemon pokemon={mockedPikachu} isFavorite={false} />);
+    const { getByAltText } = renderWithRouter(
+      <Pokemon pokemon={mockedPikachu} isFavorite={false} />);
     const image = getByAltText(/Pikachu sprite/i);
     expect(image.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   test('Renders correct details link', () => {
-    const { getByText } = renderWithRouter(<Pokemon pokemon={mockedPikachu} isFavorite={false} />);
+    const { getByText } = renderWithRouter(
+      <Pokemon pokemon={mockedPikachu} isFavorite={false} />);
     expect(getByText(/More details/i).href).toBe('http://localhost/pokemons/25');
   });
 
   test('Details link redirects properly', () => {
-    const { getByText, history } = renderWithRouter(<Pokemon pokemon={mockedPikachu} isFavorite={false} />);
+    const { getByText, history } = renderWithRouter(
+      <Pokemon pokemon={mockedPikachu} isFavorite={false} />);
     fireEvent.click(getByText(/More details/i));
     expect(history.location.pathname).toBe('/pokemons/25');
   });
 
   test('Favorited pokemon displays star image', () => {
-    const { getByAltText } = renderWithRouter(<Pokemon pokemon={mockedPikachu} isFavorite={true} />);
+    const { getByAltText } = renderWithRouter(
+      <Pokemon pokemon={mockedPikachu} isFavorite />);
     expect(getByAltText(/Pikachu is marked as favorite/i).src).toBe('http://localhost/star-icon.svg');
   });
 });
