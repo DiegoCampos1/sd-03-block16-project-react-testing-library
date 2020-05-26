@@ -161,4 +161,10 @@ describe('Pokedex.js tests', () => {
     fireEvent.click(typeBtnsArray[0]);
     expect(getByTestId(/next-pokemon/i)).toHaveProperty('disabled', true);
   });
+
+  test('H2 test(?)', () => {
+    const { getByText} = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePkmsMock} />);
+    expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
+  });
 });
