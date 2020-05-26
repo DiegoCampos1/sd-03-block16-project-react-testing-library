@@ -45,4 +45,5 @@ test('Displays a card with correct information about a pokemon', () => {
 
   const pokedexFavoriteStar = getByAltText('Caterpie is marked as favorite');
   expect(pokedexFavoriteStar).toBeInTheDocument();
+  expect(pokedexFavoriteStar.src).toMatch('/star-icon.svg');
 });
