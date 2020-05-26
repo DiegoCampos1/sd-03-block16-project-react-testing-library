@@ -79,7 +79,7 @@ describe('FavoritePokemons.js component test', () => {
 
   test('If user have favorite pokemons renders the correct pokémons', () => {
     const { container, history } = renderWithRouter(
-      <FavoritePokemons pokemons={favoritePokemons} />
+      <FavoritePokemons pokemons={favoritePokemons} />,
     );
     history.push('/favorites');
     const favoriteCardContainer = container.querySelectorAll('.favorite-pokemons');
