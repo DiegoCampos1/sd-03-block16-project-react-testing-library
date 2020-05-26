@@ -6,8 +6,7 @@ import pokemons from '../data';
 import App from '../App';
 
 describe('7. Testes do arquivo PokemonDetails.js', () => {
-  const favoritesById = { 4: false, 10: false, 23: false, 25: false,
-    65: false,78: false, 143: false, 148: false, 151: true };
+  const favoritesById = { 4: false, 10: false, 78: false, 143: false, 148: false, 151: true };
   const match = { params: { id: 151 } };
 
   test('7.1 - Deve conter mais informações sobre apenas o pokémon selecionado;', () => {
