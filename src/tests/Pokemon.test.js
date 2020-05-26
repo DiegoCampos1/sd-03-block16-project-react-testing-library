@@ -52,9 +52,9 @@ describe('Testando informações dos Cards Pokemon', () => {
       );
 
       Array(index).fill(index).forEach(() => fireEvent.click(getByText(/Próximo pokémon/i)));
-      const testDetails = () => {
-        const detailsLink = getByText('More details');
-        fireEvent.click(detailsLink);
+      const testeDetails = () => {
+        const detalesLink = getByText('More details');
+        fireEvent.click(detalesLink);
         expect(localMock.pathname.split('/pokemons/')[1]).toBe(id.toString());
 
         const favoriteCheckbox = getByRole('checkbox');
@@ -63,10 +63,9 @@ describe('Testando informações dos Cards Pokemon', () => {
         const starIcon = getByAltText(`${name} is marked as favorite`);
         expect(starIcon).toBeInTheDocument();
         expect(starIcon.src).toMatch('/star-icon.svg');
-        // const homeLink = getByText('Home');
       };
 
-      return testDetails();
+      return testeDetails();
     });
   });
 });
