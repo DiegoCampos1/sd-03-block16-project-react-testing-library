@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup, getAllByTestId } from '@testing-library/react';
+import { fireEvent, cleanup } from '@testing-library/react';
 import renderWithRouter from './Services';
 import App from '../App';
 import pokemons from '../data';
@@ -37,11 +37,12 @@ describe('5. Testes do arquivo Pokedex.js', () => {
     const { getByText, getByTestId, getAllByTestId } = renderWithRouter(<App />);
     // A partir da seleção de um botão de tipo, a Pokédex deve circular
     // somente pelos pokémons daquele tipo;
-    pokemons.forEach((poke) => {
-      const butType = getAllByTestId('pokemon-type-button')[0];
-      fireEvent.click(butType);
-      expect(getByTestId('pokemonType')).toHaveTextContent('Electric');
-    });
+    const buttonTypes = getAllByTestId('pokemon-type-button');
+    fireEvent.click(buttonTypes[4]);
+    expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
+    fireEvent.click(getByTestId('next-pokemon'));
+    expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
+    
     // 5.4 - A Pokédex deve conter um botão para resetar o filtro
     fireEvent.click(getByText('All'));
     expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
@@ -49,10 +50,10 @@ describe('5. Testes do arquivo Pokedex.js', () => {
 
   test('5.5 - A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
-    pokemons.forEach((poke) => {
-      const butType = getAllByTestId('pokemon-type-button')[0];
-      expect(butType).toBeInTheDocument();
-    });
+    const buttonTypes = getAllByTestId('pokemon-type-button');
+    expect (buttonTypes.length).toBe(7);
+    expect(buttonTypes[0]).toHaveTextContent('Electric');
+    expect(buttonTypes[3]).toHaveTextContent('Poison');
   });
 
   test('5.6 - O botão de Próximo pokémon deve ser desabilitado se a lista filtrada de pokémons tiver um só pokémon', () => {
