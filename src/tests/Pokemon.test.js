@@ -4,6 +4,8 @@ import renderWithRouter from './testRenderService';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
+const favorite = true;
+
 describe('Testing Pokemon File', () => {
   afterEach(cleanup);
 
@@ -31,7 +33,7 @@ describe('Testing Pokemon File', () => {
 
   test('testing icon favorite Pokemon', () => {
     const { getAllByRole } = renderWithRouter(
-      <Pokemon pokemon={pokemons[0]} isFavorite={true} />,
+      <Pokemon pokemon={pokemons[0]} isFavorite={favorite} />,
     );
 
     const pokemonFavorite = getAllByRole('img')[1];
