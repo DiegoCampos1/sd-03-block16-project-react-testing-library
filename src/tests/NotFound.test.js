@@ -10,8 +10,8 @@ describe('página deve conter um heading h2 com o texto Page', () => {
         <App />
       </MemoryRouter>,
     );
-    const notFoundMessage = getByText('Page requested not found');
-    expect(notFoundMessage).toBeInTheDocument();
+    const notMensagem = getByText('Page requested not found');
+    expect(notMensagem).toBeInTheDocument();
   });
   test('Imagem', () => {
     const { getByAltText } = render(
@@ -19,7 +19,7 @@ describe('página deve conter um heading h2 com o texto Page', () => {
         <App />
       </MemoryRouter>,
     );
-    const image = getByAltText(/Pikachu crying because the page requested was not found/i);
-    expect(image.src).toMatch('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    const Imagem = getByAltText(/Pikachu crying because the page requested was not found/i);
+    expect(Imagem.src).toMatch('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
