@@ -153,4 +153,12 @@ describe('Pokedex.js tests', () => {
     expect(typeBtnsArray[0]).toHaveProperty('innerHTML', 'Electric');
     expect(typeBtnsArray[1]).toHaveProperty('innerHTML', 'Fire');
   });
+
+  test('If only one Pokémon, next pokemon button should be disabled', () => {
+    const { getByTestId, getAllByTestId } = renderWithRouter(
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePkmsMock} />);
+    const typeBtnsArray = getAllByTestId(/pokemon-type-button/i);
+    fireEvent.click(typeBtnsArray[0]);
+    expect(getByTestId(/next-pokemon/i)).toHaveProperty('disabled', true);
+  });
 });
