@@ -163,7 +163,7 @@ describe('Pokedex.js tests', () => {
   });
 
   test('H2 test(?)', () => {
-    const { getByText} = renderWithRouter(
+    const { getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePkmsMock} />);
     expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
   });
