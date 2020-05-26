@@ -12,7 +12,7 @@ test('Testing if return a card with correct name of Pokémon', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={false}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const pokeCardTitle = getByTestId('pokemon-name');
   const pokeName = getNodeText(pokeCardTitle);
@@ -24,7 +24,7 @@ test('Testing if correct Pokemon Type is showing', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={false}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const pokeTypeTitle = getByTestId('pokemonType');
   const pokeType = getNodeText(pokeTypeTitle);
@@ -36,7 +36,7 @@ test('Testing if pokemon weigth is showing correctly with unit', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={false}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const pokeWeigthTitle = getByTestId('pokemon-weight');
   const pokeWeigth = getNodeText(pokeWeigthTitle);
@@ -50,7 +50,7 @@ test('Testing Pookemon Image', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={false}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const image = getByRole('img');
   const pokeCardTitle = getByTestId('pokemon-name');
@@ -66,7 +66,7 @@ test('Test if Details Page is correct', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={false}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const detailsLink = getByText('More details');
   const currectDetailsPage = `/pokemons/${pokemons[0].id}`;
@@ -78,7 +78,7 @@ test('Testing if Details link is working', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={false}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const detailsLink = getByText('More details');
   fireEvent.click(detailsLink);
@@ -92,7 +92,7 @@ test('Testing if Favorites Pokemons shows a star icon', () => {
     <Pokemon
       pokemon={pokemons[0]}
       isFavorite={true}
-      showDetailsLink = {true}
+      showDetailsLink
     />);
   const pokeCardTitle = getByTestId('pokemon-name');
   const pokeName = getNodeText(pokeCardTitle);
