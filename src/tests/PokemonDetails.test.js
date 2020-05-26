@@ -19,7 +19,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={mockedPokemons}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
 
     const pokemonContainer = container.querySelectorAll('.pokemon-details');
@@ -33,7 +33,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={[mockedPokemons[0]]}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
 
     const pokemonName = getByText(`${mockedPokemons[0].name} Details`);
@@ -51,7 +51,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={mockedPokemons}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
 
     const detailsLink = queryByRole('link');
@@ -66,7 +66,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={mockedPokemons}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
 
     const summaryHeading = getByText('Summary');
@@ -82,7 +82,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={[mockedPokemons[0]]}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
     const summaryText = getByText(`${mockedPokemons[0].summary}`);
     expect(summaryText).toBeInTheDocument();
@@ -96,7 +96,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={[mockedPokemons[0]]}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
 
     const locationHeading = getByText(`Game Locations of ${mockedPokemons[0].name}`);
@@ -116,7 +116,7 @@ describe('PokemonDetails.js component tests', () => {
         isPokemonFavoriteById={mockedFavoriteID}
         pokemons={[mockedPokemons[0]]}
         onUpdateFavoritePokemons={() => undefined}
-      />
+      />,
     );
     const favoriteCheckBox = getByLabelText(/pokémon favoritado/i);
 
