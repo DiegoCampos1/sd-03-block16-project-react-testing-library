@@ -9,8 +9,8 @@ describe('Testing Pokemon File', () => {
 
   test('card with Pokemon information', () => {
     const { getByTestId, getByRole } = renderWithRouter(
-        <Pokemon pokemon={pokemons[0]} isFavorite={false}
-    />);
+      <Pokemon pokemon={pokemons[0]} isFavorite={false} />,
+    );
 
     const pokemonName = getByTestId('pokemon-name');
     expect(pokemonName).toBeInTheDocument();
@@ -26,16 +26,16 @@ describe('Testing Pokemon File', () => {
 
     const pokemonLink = getByRole('link');
     expect(pokemonLink).toBeInTheDocument();
-    expect(pokemonLink).toHaveAttribute('href', `/pokemons/${pokemons[0].id}`)
+    expect(pokemonLink).toHaveAttribute('href', `/pokemons/${pokemons[0].id}`);
   });
 
   test('testing icon favorite Pokemon', () => {
     const { getAllByRole } = renderWithRouter(
-      <Pokemon pokemon={pokemons[0]} isFavorite={true} />
+      <Pokemon pokemon={pokemons[0]} isFavorite={true} />,
     );
 
     const pokemonFavorite = getAllByRole('img')[1];
     expect(pokemonFavorite).toHaveAttribute('src', '/star-icon.svg');
     expect(pokemonFavorite).toHaveAttribute('alt', `${pokemons[0].name} is marked as favorite`);
   });
-})
+});
