@@ -15,16 +15,16 @@ describe('PokemonDetails.js tests', () => {
     78: false,
     143: false,
     148: false,
-    151: false,
+    151: true,
   };
-  
+
   const match = { params: { id: '25' } };
 
   test('Renders correct pokemon name', () => {
     const { getByText } = renderWithRouter(
-      <PokemonDetails 
-        pokemons={pokemons} 
-        match={match} 
+      <PokemonDetails
+        pokemons={pokemons}
+        match={match}
         isPokemonFavoriteById={favoritePkmsMock}
         onUpdateFavoritePokemons={() => null}
       />);
@@ -33,20 +33,20 @@ describe('PokemonDetails.js tests', () => {
 
   test('Page should not have details link', () => {
     const { queryByText } = renderWithRouter(
-      <PokemonDetails 
-        pokemons={pokemons} 
-        match={match} 
+      <PokemonDetails
+        pokemons={pokemons}
+        match={match}
         isPokemonFavoriteById={favoritePkmsMock}
         onUpdateFavoritePokemons={() => null}
       />);
     expect(queryByText(/More details/i)).not.toBeInTheDocument();
   });
 
-  test('Renders H2 with correct text', () =>{
+  test('Renders H2 with correct text', () => {
     const { getByText } = renderWithRouter(
-      <PokemonDetails 
-        pokemons={pokemons} 
-        match={match} 
+      <PokemonDetails
+        pokemons={pokemons}
+        match={match}
         isPokemonFavoriteById={favoritePkmsMock}
         onUpdateFavoritePokemons={() => null}
       />);
@@ -55,23 +55,23 @@ describe('PokemonDetails.js tests', () => {
 
   test('Renders one <p> with short description', () => {
     const { getByText } = renderWithRouter(
-      <PokemonDetails 
-        pokemons={pokemons} 
-        match={match} 
+      <PokemonDetails
+        pokemons={pokemons}
+        match={match}
         isPokemonFavoriteById={favoritePkmsMock}
         onUpdateFavoritePokemons={() => null}
       />);
     const pElement = getByText(/Summary/i).nextSibling;
     expect(pElement).toBeInTheDocument();
-    expect(pElement.tagName).toBe('P')
+    expect(pElement.tagName).toBe('P');
     expect(pElement.innerHTML).toBe(pokemons[0].summary);
   });
 
   test('Renders location maps with correct content', () => {
     const { getByText, getAllByAltText } = renderWithRouter(
-      <PokemonDetails 
-        pokemons={pokemons} 
-        match={match} 
+      <PokemonDetails
+        pokemons={pokemons}
+        match={match}
         isPokemonFavoriteById={favoritePkmsMock}
         onUpdateFavoritePokemons={() => null}
       />);
