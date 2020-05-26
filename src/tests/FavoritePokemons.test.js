@@ -4,19 +4,19 @@ import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
 describe('Testando pagina de favoritos', () => {
-  test(() => {
+  test('teste', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={[{ pathname: '/favorites' }]}>
         <App />
       </MemoryRouter>,
     );
-    const favoritos = getByText('Favorite pokémons');
-    expect(favoritos).toBeInTheDocument();
+    const pokFavoritos = getByText('Favorite pokémons');
+    expect(pokFavoritos).toBeInTheDocument();
     const semFavoritos = getByText('No favorite pokemon found');
     expect(semFavoritos).toBeInTheDocument();
   });
 
-  test(() => {
+  test('teste', () => {
     const { getByRole, getByText } = render(
       <MemoryRouter initialEntries={[{ pathname: '/pokemons/25' }]}>
         <App />
