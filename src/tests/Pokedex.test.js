@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { fireEvent, cleanup, getAllByTestId } from '@testing-library/react';
 import renderWithRouter from './Services';
 import App from '../App';
 import pokemons from '../data';
@@ -25,18 +25,22 @@ describe('5. Testes do arquivo Pokedex.js', () => {
   });
 
   test('5.2 - A Pokédex deve exibir apenas um pokémon por vez', () => {
-    const { getAllByText } = renderWithRouter(<App />);
+    const { getByText, getAllByText } = renderWithRouter(<App />);
+    const heading = getByText('Encountered pokémons');
+
     expect(getAllByText('More details').length).toBe(1);
+    expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe('H2');
   });
 
   test('5.3 - A Pokédex deve conter botões de filtro', () => {
-    const { getByText, getByTestId, getAllByText } = renderWithRouter(<App />);
+    const { getByText, getByTestId, getAllByTestId } = renderWithRouter(<App />);
     // A partir da seleção de um botão de tipo, a Pokédex deve circular
     // somente pelos pokémons daquele tipo;
     pokemons.forEach((poke) => {
-      const butType = getAllByText(poke.type)[1] || getByText(poke.type);
+      const butType = getAllByTestId('pokemon-type-button')[0];
       fireEvent.click(butType);
-      expect(getByTestId('pokemonType')).toHaveTextContent(poke.type);
+      expect(getByTestId('pokemonType')).toHaveTextContent('Electric');
     });
     // 5.4 - A Pokédex deve conter um botão para resetar o filtro
     fireEvent.click(getByText('All'));
@@ -44,9 +48,9 @@ describe('5. Testes do arquivo Pokedex.js', () => {
   });
 
   test('5.5 - A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
-    const { getAllByText, getByText } = renderWithRouter(<App />);
+    const { getAllByTestId } = renderWithRouter(<App />);
     pokemons.forEach((poke) => {
-      const butType = getAllByText(poke.type)[1] || getByText(poke.type);
+      const butType = getAllByTestId('pokemon-type-button')[0];
       expect(butType).toBeInTheDocument();
     });
   });
