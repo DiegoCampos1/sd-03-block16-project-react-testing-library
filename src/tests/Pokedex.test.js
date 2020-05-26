@@ -42,7 +42,7 @@ describe('5. Testes do arquivo Pokedex.js', () => {
     expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
     fireEvent.click(getByTestId('next-pokemon'));
     expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
-    
+
     // 5.4 - A Pokédex deve conter um botão para resetar o filtro
     fireEvent.click(getByText('All'));
     expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
@@ -51,7 +51,7 @@ describe('5. Testes do arquivo Pokedex.js', () => {
   test('5.5 - A Pokédex deve gerar, dinamicamente, um botão de filtro para cada tipo de pokémon', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
     const buttonTypes = getAllByTestId('pokemon-type-button');
-    expect (buttonTypes.length).toBe(7);
+    expect(buttonTypes.length).toBe(7);
     expect(buttonTypes[0]).toHaveTextContent('Electric');
     expect(buttonTypes[3]).toHaveTextContent('Poison');
   });
