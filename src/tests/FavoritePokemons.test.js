@@ -1,6 +1,6 @@
 import React from 'react';
-import renderWithRouter from './Services';
 import { render, cleanup } from '@testing-library/react';
+import renderWithRouter from './Services';
 import { FavoritePokemons } from '../components';
 import pokemons from '../data';
 
@@ -20,9 +20,9 @@ describe('3. Testes no arquivo FavoritePokenons.js', () => {
   });
 
   test('3.3 - A página deve exibir todos os cards de pokémons favoritados', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText } = renderWithRouter((
       <FavoritePokemons pokemons={pokemons.slice(5, 8)} />
-      );
+      ));
     // fireEvent.click(getByText(/More det/i));
     // fireEvent.click(getByRole('form'));
     // fireEvent.click(getByText(/Favorite Pok/i));

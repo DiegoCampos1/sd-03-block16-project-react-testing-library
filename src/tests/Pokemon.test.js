@@ -4,7 +4,7 @@ import { Pokemon } from '../components';
 import renderWithRouter from './Services';
 
 describe('6. Testes do arquivo Pokemon.js', () => {
-  const testPokemon = { name: 'Raichu', type: 'Electric', averageWeight: { value: '30.0', measurementUnit:'kg' }, id: 26, image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_2c_026.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Raichu_(Pok%C3%A9mon)' };
+  const testPokemon = { name: 'Raichu', type: 'Electric', averageWeight: { value: '30.0', measurementUnit: 'kg' }, id: 26, image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_2c_026.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Raichu_(Pok%C3%A9mon)' };
 
   test('6.1 - Deve ser retornado um card com as informações de determinado pokémon;', () => {
     const { getByTestId } = renderWithRouter(<Pokemon pokemon={testPokemon} />);

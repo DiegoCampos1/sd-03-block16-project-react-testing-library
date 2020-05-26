@@ -1,31 +1,8 @@
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { fireEvent, cleanup } from '@testing-library/react';
+import renderWithRouter from './Services';
 import App from '../App';
 import pokemons from '../data';
-
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-
-  return ({
-    ...originalModule,
-    BrowserRouter: ({ children }) => (<div>{children}</div>),
-  });
-});
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
-    history,
-  };
-}
 
 describe('5. Testes do arquivo Pokedex.js', () => {
   afterEach(cleanup);
