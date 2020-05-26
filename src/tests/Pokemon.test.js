@@ -43,7 +43,7 @@ describe('Pokemon.js component tests', () => {
 
   test('renders one card with favorite pokemon info, and details link', () => {
     const { container, getByAltText, getByTestId, getByRole } = renderWithRouter(
-      <Pokemon pokemon={testPokemon} showDetailsLink isFavorite />
+      <Pokemon pokemon={testPokemon} showDetailsLink isFavorite />,
     );
     const pokemonContainer = container.querySelectorAll('.pokemon');
     const pokemonOverview = container.querySelectorAll('.pokemon-overview');
@@ -73,7 +73,7 @@ describe('Pokemon.js component tests', () => {
 
   test('renders one card with not favorite pokemon info, , and details link', () => {
     const { container, queryByAltText, getByTestId, getByRole } = renderWithRouter(
-      <Pokemon pokemon={testPokemon} showDetailsLink isFavorite={false} />
+      <Pokemon pokemon={testPokemon} showDetailsLink isFavorite={false} />,
     );
     const pokemonContainer = container.querySelectorAll('.pokemon');
     const pokemonOverview = container.querySelectorAll('.pokemon-overview');

@@ -27,7 +27,7 @@ describe('Pokedex.js component tests', () => {
 
   test('Pokedex renders, and renders only one pokémon at time', () => {
     const { getByText, getAllByTestId } = renderWithRouter(
-      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} isFavorite />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} isFavorite />,
     );
     const heading = getByText(/encountered pokémons/i);
     const displayedPokemon = getAllByTestId('pokemon-name');
@@ -38,7 +38,7 @@ describe('Pokedex.js component tests', () => {
 
   test('Próximo pokémon button tests. When clicking on button the next pokémon of list is displayed and when the last pokémon is on the screen the first pokémon of list is displayed, after a click', () => {
     const { queryByText } = renderWithRouter(
-      <Pokedex pokemons={mockedData} isPokemonFavoriteById={mockedFavoriteID} />
+      <Pokedex pokemons={mockedData} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const nextButton = queryByText(/próximo pokémon/i);
 
@@ -52,7 +52,7 @@ describe('Pokedex.js component tests', () => {
 
   test('Próximo pokémon button is disabled with pokemon list have only one pokémon', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex pokemons={[pokemons[0]]} isPokemonFavoriteById={mockedFavoriteID} />
+      <Pokedex pokemons={[pokemons[0]]} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const nextButton = getByText(/próximo pokémon/i);
 
@@ -62,7 +62,7 @@ describe('Pokedex.js component tests', () => {
 
   test('render filter buttons and All button tests', () => {
     const { getByText, getAllByText } = renderWithRouter(
-      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
 
     pokemonsTypes.forEach((type) => {
@@ -77,7 +77,7 @@ describe('Pokedex.js component tests', () => {
 
   test('type buttons have the correct test id', () => {
     const { getAllByTestId } = renderWithRouter(
-      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
 
     const typeButtons = getAllByTestId('pokemon-type-button');
@@ -87,7 +87,7 @@ describe('Pokedex.js component tests', () => {
 
   test('when click on a type button, only pokemons of that type is selected, after click ALL button, the pokemon list backs to displays all pokémons', () => {
     const { getByText, getAllByText } = renderWithRouter(
-      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={mockedFavoriteID} />,
     );
     const allTypeButton = getByText(/all/i);
     const nextButton = getByText(/próximo pokémon/i);
