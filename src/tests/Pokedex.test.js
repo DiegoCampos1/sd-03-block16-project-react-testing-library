@@ -1,20 +1,20 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 import Pokedex from '../components/Pokedex';
 
-describe ('Pokedex.js tests', () => {
+describe('Pokedex.js tests', () => {
   const favoritePkmsMock = {
-    4:false,
-    10:false,
-    23:false,
-    25:false,
-    65:false,
-    78:false,
-    143:false,
-    148:false,
-    151:false
+    4: false,
+    10: false,
+    23: false,
+    25: false,
+    65: false,
+    78: false,
+    143: false,
+    148: false,
+    151: false,
   };
 
   const pkmsMock = [
@@ -69,19 +69,19 @@ describe ('Pokedex.js tests', () => {
         },
       ],
       summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
-    }
+    },
   ];
 
   const favoriteMockedPkms = {
     4: false,
-    25: false
+    25: false,
   };
 
   test('Next-pokemon button functions properly', () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={pokemons} isPokemonFavoriteById={favoritePkmsMock} />);
     const nextBtn = getByText(/Próximo pokémon/i);
-    let currentPkm = getByText(/Pikachu/i)
+    let currentPkm = getByText(/Pikachu/i);
     expect(nextBtn).toBeInTheDocument();
     expect(currentPkm).toBeInTheDocument();
 
@@ -148,9 +148,9 @@ describe ('Pokedex.js tests', () => {
   test('Filter buttons are generated dynamically', () => {
     const { getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={pkmsMock} isPokemonFavoriteById={favoriteMockedPkms} />);
-      const typeBtnsArray = getAllByTestId(/pokemon-type-button/i);
-      expect(typeBtnsArray.length).toBe(2);
-      expect(typeBtnsArray[0]).toHaveProperty('innerHTML', 'Electric');
-      expect(typeBtnsArray[1]).toHaveProperty('innerHTML', 'Fire');
+    const typeBtnsArray = getAllByTestId(/pokemon-type-button/i);
+    expect(typeBtnsArray.length).toBe(2);
+    expect(typeBtnsArray[0]).toHaveProperty('innerHTML', 'Electric');
+    expect(typeBtnsArray[1]).toHaveProperty('innerHTML', 'Fire');
   });
 });
