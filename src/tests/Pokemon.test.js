@@ -65,9 +65,9 @@ describe('Pokemon.js tests', () => {
     expect(getByAltText(/Pikachu is marked as favorite/i).src).toBe('http://localhost/star-icon.svg');
   });
 
-  test('Renders correct pokemon type', () =>{
+  test('Renders correct pokemon type', () => {
     const { getByTestId } = renderWithRouter(
       <Pokemon pokemon={mockedPikachu} isFavorite={false} />);
-      expect(getByTestId(/pokemonType/i)).toHaveProperty('innerHTML', 'Electric');
+    expect(getByTestId(/pokemonType/i)).toHaveProperty('innerHTML', 'Electric');
   });
 });
