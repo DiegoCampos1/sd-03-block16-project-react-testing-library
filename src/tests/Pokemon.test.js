@@ -91,7 +91,7 @@ test('Testing if Favorites Pokemons shows a star icon', () => {
   const { getByTestId, getAllByRole } = renderWithRouter(
     <Pokemon
       pokemon={pokemons[0]}
-      isFavorite={true}
+      isFavorite
       showDetailsLink
     />);
   const pokeCardTitle = getByTestId('pokemon-name');
