@@ -26,6 +26,10 @@ describe('Testing Pokemon File', () => {
     expect(pokemonImage.src).toBe(`${pokemons[0].image}`);
     expect(pokemonImage.alt).toBe(`${pokemons[0].name} sprite`);
 
+    const pokemonType = getByTestId('pokemonType');
+    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType).toHaveTextContent(`${pokemons[0].type}`);
+
     const pokemonLink = getByRole('link');
     expect(pokemonLink).toBeInTheDocument();
     expect(pokemonLink).toHaveAttribute('href', `/pokemons/${pokemons[0].id}`);
