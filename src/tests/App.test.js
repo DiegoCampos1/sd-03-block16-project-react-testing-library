@@ -23,16 +23,12 @@ function renderWithRouter(
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
-    // adding `history` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
     history,
   };
 }
 
 test('full app rendering/navigating', () => {
   const { getByText } = renderWithRouter(<App />);
-  // normally I'd use a data-testid, but just wanted to show this is also possible
   const home = getByText(/home/i);
   expect(home).toBeInTheDocument();
   const about = getByText(/about/i);
