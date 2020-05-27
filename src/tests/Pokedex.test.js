@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 function renderWithRouter(
   ui,
-  { route = '/asdfasdf', history = createMemoryHistory({ initialEntries: [route] }) } = {},
+  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
