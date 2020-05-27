@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, getByDisplayValue } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from '../components/About';
 
 test('A página deve conter dois parágrafos com texto sobre a Pokédex.', () => {
