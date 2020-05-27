@@ -6,7 +6,7 @@ import App from '../App';
 describe('Tests "App.js" file...', () => {
   test('shows the Pokédex when the route is `/`', () => {
     const { getByText } = renderWithRouter(<App />);
-    const pokédex = getByText('Pokédex')
+    const pokédex = getByText('Pokédex');
 
     expect(pokédex).toBeInTheDocument();
   });
