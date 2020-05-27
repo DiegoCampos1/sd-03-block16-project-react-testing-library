@@ -19,15 +19,15 @@ class Pokemon extends React.Component {
         <div className="pokemon-overview">
           <p data-testid="pokemon-name">{`${name}`}</p>
           <p data-testid="pokemonType">{`${type}`}</p>
-          <p data-testid="pokemon-weight">{`Average weight:` + `${value}` + `${measurementUnit}`}</p>
+          <p data-testid="pokemon-weight">{`Average weight: ${value}${measurementUnit}`}</p>
           {showDetailsLink && <Link to={`pokemons/${id}`}>More details</Link>}
         </div>
         <img src={`${image}`} alt={`${name} sprite`} />
         {isFavorite && (
           <img
             className="favorite-icon"
-            src={`/star-icon.svg`}
-            alt={`${name} ` + `is marked as favorite`}
+            src="/star-icon.svg"
+            alt={`${name} is marked as favorite`}
           />
         )}
       </div>
