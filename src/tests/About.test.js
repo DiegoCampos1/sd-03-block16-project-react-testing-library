@@ -2,24 +2,24 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import About from '../components/About';
 
-describe('test About.js file...', () => {
+describe('Tests "About.js" file...', () => {
   test('Renders the "About Pokédex" page and tests its contents.', () => {
-    const { getByText } = renderWithRouter(<About />, { route: '/about' });
-    const heading = getByText('About Pokédex');
+    const { getByText } = renderWithRouter(<About />)
+    const aboutPage = getByText('About Pokédex');
 
-    expect(heading).toBeInTheDocument();
-    expect(heading.tagName).toBe('H2');
+    expect(aboutPage).toBeInTheDocument();
+    expect(aboutPage.tagName).toBe('H2')
   });
 
   test('Tests if "About Pokédex" page has 2 `p` tags in it.', () => {
-    const { container } = renderWithRouter(<About />, { route: '/about' });
-    const pTags = container.querySelectorAll('P');
+    const { container } = renderWithRouter(<About />);
+    const pTag = container.querySelectorAll('p')
 
-    expect(pTags.length).toBe(2);
+    expect(pTag.length).toBe(2)
   });
 
   test('Tests if "About Pokédex" page has a rendered img tag', () => {
-    const { container } = renderWithRouter(<About />, { route: '/about' });
+    const { container } = renderWithRouter(<About />);
     const img = container.querySelector('IMG');
 
     expect(img).toBeInTheDocument();

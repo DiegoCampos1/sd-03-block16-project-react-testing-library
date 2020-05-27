@@ -3,11 +3,12 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('tests App.js', () => {
+describe('Tests "App.js" file...', () => {
   test('shows the Pokédex when the route is `/`', () => {
     const { getByText } = renderWithRouter(<App />);
+    const pokédex = getByText('Pokédex')
 
-    expect(getByText('Pokédex')).toBeInTheDocument();
+    expect(pokédex).toBeInTheDocument();
   });
 
   test('verify if nav bar links', () => {
@@ -20,27 +21,23 @@ describe('tests App.js', () => {
     expect(home.href).toBe('http://localhost/');
     expect(about.href).toBe('http://localhost/about');
     expect(favorites.href).toBe('http://localhost/favorites');
-
-    fireEvent.click(getByText('More details'));
-
-    expect(home.href).toBe('http://localhost/');
-    expect(about.href).toBe('http://localhost/about');
-    expect(favorites.href).toBe('http://localhost/favorites');
   });
 
   test('redirect to `/` when click in the link Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
+    const { location: { pathname } } = history
+    console.log(history.location.pathname)
 
     const home = getByText('Home');
 
     fireEvent.click(home);
 
-    expect(history.location.pathname).toBe('/');
+    expect(pathname).toBe('/');
 
     fireEvent.click(getByText('More details'));
     fireEvent.click(home);
 
-    expect(history.location.pathname).toBe('/');
+    expect(pathname).toBe('/');
     expect(getByText('Pokédex')).toBeInTheDocument();
   });
 
@@ -67,8 +64,7 @@ describe('tests App.js', () => {
   });
 
   test('redirect to Not Found page', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('/unreachablePageSrc');
+    const { getByText } = renderWithRouter(<App />, { route: '/not-found' });
 
     expect(getByText('Page requested not found')).toBeInTheDocument();
   });
