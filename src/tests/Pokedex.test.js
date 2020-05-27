@@ -78,3 +78,4 @@ describe('requisito 5', () => {
     expect(nextPokemon).toHaveAttribute('disabled');
   });
 });
+
