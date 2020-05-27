@@ -11,12 +11,12 @@ describe('Testing PokemonDetails file', () => {
 
   test('testing information Pokemons selected', () => {
     const { getByText, queryByRole } = renderWithRouter(
-      <PokemonDetails 
+      <PokemonDetails
         isPokemonFavoriteById={{ 25: false }}
         match={match}
         pokemons={[pokemons[0]]}
         onUpdateFavoritePokemons={() => null}
-      />
+      />,
     );
 
     const pokemonDetails = getByText('Pikachu Details');
@@ -35,12 +35,12 @@ describe('Testing PokemonDetails file', () => {
 
   test('testing pokemon location', () => {
     const { queryAllByRole, getByText, queryAllByAltText } = renderWithRouter(
-      <PokemonDetails 
+      <PokemonDetails
         isPokemonFavoriteById={{ 25: false }}
         match={match}
         pokemons={[pokemons[0]]}
         onUpdateFavoritePokemons={() => null}
-      />
+      />,
     );
 
     const location = getByText(/Game Locations of Pikachu/i);
@@ -62,13 +62,13 @@ describe('Testing PokemonDetails file', () => {
   });
 
   test('testing checkbox', () => {
-    const { getByText, queryByRole } = renderWithRouter(
-      <PokemonDetails 
+    const { queryByRole, getByText } = renderWithRouter(
+      <PokemonDetails
         isPokemonFavoriteById={{ 25: false }}
         match={match}
         pokemons={[pokemons[0]]}
         onUpdateFavoritePokemons={() => null}
-      />
+      />,
     );
 
     const checkBox = queryByRole('checkbox');
