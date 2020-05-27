@@ -24,15 +24,16 @@ test('Testing Favorite Pokemon Page to be emptly', () => {
 });
 
 test('Testing rendering favorite pokemon', () => {
-  const { getByTestId } = renderWithRouter(<FavoritePokemons pokemons={[{
-    id: 10,
-    name: 'Caterpie',
-    type: 'Bug',
-    averageWeight: {
-      value: '2.9',
-      measurementUnit: 'kg',
-    },
-  }]}
+  const { getByTestId } = renderWithRouter(<FavoritePokemons 
+    pokemons={[{
+      id: 10,
+      name: 'Caterpie',
+      type: 'Bug',
+      averageWeight: {
+        value: '2.9',
+        measurementUnit: 'kg',
+      },
+    }]}
   />);
   const withElements = getByTestId(/pokemon-name/i);
   expect(withElements).toBeInTheDocument();
