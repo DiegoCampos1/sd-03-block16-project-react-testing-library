@@ -24,7 +24,7 @@ test('Testing Favorite Pokemon Page to be emptly', () => {
 });
 
 test('Testing rendering favorite pokemon', () => {
-  const { getByTestId } = renderWithRouter(<FavoritePokemons 
+  const { getByTestId } = renderWithRouter(<FavoritePokemons
     pokemons={[{
       id: 10,
       name: 'Caterpie',
