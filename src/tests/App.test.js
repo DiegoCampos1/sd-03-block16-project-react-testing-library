@@ -25,8 +25,7 @@ describe('Tests "App.js" file...', () => {
 
   test('redirect to `/` when click in the link Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const { location: { pathname } } = history
-    console.log(history.location.pathname)
+    const { location: { pathname } } = history;
 
     const home = getByText('Home');
 
