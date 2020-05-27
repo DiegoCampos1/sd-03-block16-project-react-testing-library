@@ -18,7 +18,7 @@ function renderWithRouter(
 }
 
 
-test('renders a notfound Page`', () => {
+test('Renders Pokedex Page', () => {
   const { getByText } = renderWithRouter(<App />);
   const nextButton = getByText('Próximo pokémon');
   expect(nextButton).toBeInTheDocument();
