@@ -37,4 +37,6 @@ test('full app rendering/navigating', () => {
   expect(home).toBeInTheDocument();
   const about = getByText(/about/i);
   expect(about).toBeInTheDocument();
+  const favorite = getByText(/Favorite Pokémons/i);
+  expect(favorite).toBeInTheDocument();
 });
