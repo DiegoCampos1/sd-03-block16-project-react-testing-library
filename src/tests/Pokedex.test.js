@@ -10,10 +10,10 @@ describe('Requisito 5', () => {
     expect(btn).toBeInTheDocument();
 
     fireEvent.click(btn);
-    
+
     const nextPokemon = getByText('Charmander');
     expect(nextPokemon).toBeInTheDocument();
-    
+
     fireEvent.click(btn);
     expect(getByText('Caterpie')).toBeInTheDocument();
   });
