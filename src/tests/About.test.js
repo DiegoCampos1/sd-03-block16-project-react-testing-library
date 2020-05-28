@@ -18,8 +18,8 @@ describe('Tests of the About file', () => {
   });
 
   test('The About page should have a specific image', () => {
-    const SRC = "https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png";
-    const { getByAltText  } = render(<About />);
+    const SRC = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const { getByAltText } = render(<About />);
     const pokedexImage = getByAltText('Pokédex');
     expect(pokedexImage.src).toBe(SRC);
   });
