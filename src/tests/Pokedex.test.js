@@ -28,3 +28,9 @@ test('Renders only one Pokemon at time', () => {
   const { queryAllByTestId } = renderWithRouter(<App />);
   expect(queryAllByTestId('pokemon-name')).toHaveLength(1);
 });
+
+test('Renders only one Pokemon at time', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const buttonAll = getByText('All');
+  expect(buttonAll).toBeInTheDocument();
+});
