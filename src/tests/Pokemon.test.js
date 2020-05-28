@@ -19,7 +19,7 @@ function renderWithRouter(
 }
 
 test('Renders Pokemon Cards', () => {
-  const { queryByTestId, getByText, getByAltText} = renderWithRouter(
+  const { queryByTestId, getByText, getByAltText } = renderWithRouter(
     <Pokemon
       pokemon={pokemons[2]}
       showDetailsLink
