@@ -5,7 +5,7 @@ import NotFound from '../components/NotFound';
 describe('Test of the NotFound page', () => {
   afterEach(cleanup);
   test('Testing if there is a h2 title in the page', () => {
-    const { getByText, getByAltText } = render(<NotFound />);
+    const { getByText } = render(<NotFound />);
     const notFoundTitle = getByText(/Page requested not found/i);
     expect(notFoundTitle).toBeInTheDocument();
   });
