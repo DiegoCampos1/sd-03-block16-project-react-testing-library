@@ -30,11 +30,11 @@ test('Renders Pokemon Cards', () => {
   expect(pokemonName).toBeInTheDocument();
   console.log(pokemonName.innerHTML);
 
-  expect(pokemonName.innerHTML).toBeInTheDocument();
+  expect(pokemonName.innerHTML).toEqual('Caterpie');
 
   const pokemonType = queryByTestId('pokemonType');
-  expect(pokemonType.innerHTML).toBeInTheDocument();
+  expect(pokemonType.innerHTML).toEqual('Bug');
 
   const pokemonAveWeight = queryByTestId('pokemon-weight');
-  expect(pokemonAveWeight.innerHTML).toBeInTheDocument();
+  expect(pokemonAveWeight.innerHTML).toEqual('Average weight:2.9kg');
 });
