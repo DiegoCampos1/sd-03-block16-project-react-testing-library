@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, render, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 // import { getByAltText } from '@testing-library/jest-dom/extend-expect';
 import App from '../App';
@@ -43,8 +43,11 @@ test('Tests if exists a element with text `Encountered pokémons`', () => {
 });
 
 test('Tests the filters buttons`', () => {
-  const { queryAllByTestId } = renderWithRouter(<App />);
+  const { queryAllByTestId, queryByTestId } = renderWithRouter(<App />);
   const buttonFilter = queryAllByTestId('pokemon-type-button')[2];
   expect(buttonFilter).toBeInTheDocument();
   expect(buttonFilter).toHaveTextContent('Bug');
+  const pokemonName = queryByTestId('pokemon-name');
+  fireEvent.click(buttonFilter);
+  expect(pokemonName).toHaveTextContent('Caterpie');
 });
