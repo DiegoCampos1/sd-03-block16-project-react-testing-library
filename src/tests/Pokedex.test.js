@@ -68,4 +68,4 @@ describe('', () => {
     const titlePokedexPage = queryByText('Encountered pokémons');
     expect(titlePokedexPage).toBeInTheDocument();
   });
-})
+});
