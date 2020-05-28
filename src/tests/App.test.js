@@ -7,12 +7,12 @@ import App from '../App';
 
 function renderWithRouter(
   ui,
-  {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {},
+  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
     history,
-  }
+  };
 }
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -33,6 +33,13 @@ test('shows the Pokédex when the route is `/`', () => {
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
+test('Ao clicar no link "Home" na barra de navegação, a aplicação deve ser redirecionada para a página inicial, na URL "/"', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText(/Home/i));
+  const pathname = history.location.pathname;
+  expect(pathname).toBe('/');
 });
 
 test('Ao clicar no link "Home" na barra de navegação, a aplicação deve ser redirecionada para a página inicial, na URL "/"', () => {
