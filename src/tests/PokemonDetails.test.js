@@ -38,6 +38,9 @@ test('Renders PokemonDetails', () => {
   const resume = getByText('Summary');
   expect(resume).toBeInTheDocument();
 
+  const resumeText = getByText('For protection, it releases a horrible stench from the antennae on its head to drive away enemies.');
+  expect(resumeText).toBeInTheDocument();
+
   const checkFavoritePokemon = getByText('Pokémon favoritado?');
   expect(checkFavoritePokemon).toBeInTheDocument();
 
