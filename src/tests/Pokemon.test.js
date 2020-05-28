@@ -43,4 +43,8 @@ test('Renders Pokemon Cards', () => {
 
   const pokemonImg = getByAltText('Caterpie sprite');
   expect(pokemonImg).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/8/83/Spr_5b_010.png');
+
+  const pokemonMarkFavorite = getByAltText('Caterpie is marked as favorite');
+  expect(pokemonMarkFavorite).toBeInTheDocument();
+  expect(pokemonMarkFavorite).toHaveAttribute('src', '/star-icon.svg');
 });
