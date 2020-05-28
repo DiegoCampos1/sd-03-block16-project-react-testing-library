@@ -23,3 +23,8 @@ test('Renders Pokedex Page', () => {
   const nextButton = getByText('Próximo pokémon');
   expect(nextButton).toBeInTheDocument();
 });
+
+test('Renders only one Pokemon at time', () => {
+  const { queryAllByTestId } = renderWithRouter(<App />);
+  expect(queryAllByTestId('pokemon-name')).toHaveLength(1);
+});
