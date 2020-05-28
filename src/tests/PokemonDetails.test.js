@@ -36,5 +36,6 @@ test('Renders PokemonDetails', () => {
   expect(location1).toBeInTheDocument();
 
   const imageLocation = getAllByAltText('Caterpie location')[3];
-  expect(imageLocation.src).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png');
+  console.log(imageLocation.src);
+  expect(imageLocation).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png');
 });
