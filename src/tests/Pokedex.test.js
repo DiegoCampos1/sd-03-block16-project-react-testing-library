@@ -47,7 +47,7 @@ test('Tests the filters buttons`', () => {
   const buttonFilter = queryAllByTestId('pokemon-type-button')[2];
   expect(buttonFilter).toBeInTheDocument();
   expect(buttonFilter).toHaveTextContent('Bug');
-  const pokemonName = queryByTestId('pokemon-name');
+  const pokemon = queryByTestId('pokemon-name');
   fireEvent.click(buttonFilter);
-  expect(pokemonName).toHaveTextContent('Caterpie');
+  expect(pokemon).toHaveTextContent('Caterpie');
 });
