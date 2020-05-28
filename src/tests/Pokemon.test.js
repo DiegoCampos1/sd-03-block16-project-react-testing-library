@@ -4,7 +4,7 @@ import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../renderWithRouter';
 import Pokemons from '../data';
 
-describe('Test of the Pokemon Page', () => {
+describe('Test of the Pokemon Page-', () => {
   afterEach(cleanup);
   test('The average weight of the Pokémon must be displayed', () => {
     const { queryByText } = renderWithRouter(<Pokemon
