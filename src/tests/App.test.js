@@ -49,7 +49,7 @@ test('Ao clicar no link "About" na barra de navegação, a aplicação deve ser 
   expect(pathname).toBe('/about');
 });
 
-test('O terceiro link deve possuir o texto Favorite Pokémons com a URL /favorites', () => {
+test('Ao clicar no link "Favorite Pokémons" na barra de navegação, a aplicação deve ser redirecionada para a página de pokémons favoritados, na URL "/favorites"', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Favorite Pokémons/i));
   const pathname = history.location.pathname;
