@@ -5,46 +5,41 @@ import data from '../data';
 
 const isPokemonFavoriteById = {
   25: true,
-  4: false,
-  10: true,
-  23: false,
   65: true,
-  151: false,
-  78: true,
-  143: false,
   148: true,
+  78: true,
+  4: false,
+  23: false,
+  143: false,
+  151: false,
 };
 
 const favoritePokemons = data.filter(({ id }) => isPokemonFavoriteById[id]);
 const notFavoritePokemons = data.filter(({ id }) => !isPokemonFavoriteById[id]);
 
 describe('Tests "FavoritePokemons.js" file...', () => {
-  test('shows notFound text in FavoritePokemons page when dont have fav pokemons', () => {
+  test('Test if it shows a "not Found" text on the "Favorite Pokemons" page, when there are no favorite pokemons...', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[]} />);
-
     const notFound = getByText('No favorite pokemon found');
 
     expect(notFound).toBeInTheDocument();
   });
 
-  test('shows favorites pokemons cards in FavoritePokemons page', () => {
-    const { getByText, container } = renderWithRouter(
+  test('Tests if it shows all favorites pokemons cards in the "FavoritePokemons" page...', () => {
+    const { getByText } = renderWithRouter(
       <FavoritePokemons pokemons={favoritePokemons} />,
-      { route: '/favorites' },
     );
+    const cards = document.querySelectorAll('.favorite-pokemon');
 
-    const cards = container.querySelectorAll('.favorite-pokemon');
-
-    expect(cards.length).toBe(5);
+    expect(cards.length).toBe(4);
     favoritePokemons.forEach(({ name }) => {
       expect(getByText(name)).toBeInTheDocument();
     });
   });
 
-  test('dont shows not favorites pokemons cards in FavoritePokemons page', () => {
+  test('Tests if it does not show any favorites pokemons cards in FavoritePokemons page', () => {
     const { queryByText } = renderWithRouter(
       <FavoritePokemons pokemons={favoritePokemons} />,
-      { route: '/favorites' },
     );
 
     notFavoritePokemons.forEach(({ name }) => {
