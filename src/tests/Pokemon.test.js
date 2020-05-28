@@ -19,7 +19,7 @@ function renderWithRouter(
 }
 
 test('Renders Pokemon Cards', () => {
-  const { queryByTestId, getByText } = renderWithRouter(
+  const { queryByTestId } = renderWithRouter(
     <Pokemon
       pokemon={pokemons[2]}
       showDetailsLink
@@ -36,5 +36,5 @@ test('Renders Pokemon Cards', () => {
   expect(pokemonType.innerHTML).toBeInTheDocument();
 
   const pokemonAveWeight = queryByTestId('pokemon-weight');
-  expect(pokemonAveWeight).toBeInTheDocument();
+  expect(pokemonAveWeight.innerHTML).toBeInTheDocument();
 });
