@@ -17,7 +17,7 @@ function renderWithRouter(
 }
 
 test('Renders PokemonDetails', () => {
-  const { getByText, getByAltText } = renderWithRouter(<App />);
+  const { getByText, getAllByAltText } = renderWithRouter(<App />);
 
   const filterButton = getByText('Bug');
   fireEvent.click(filterButton);
@@ -35,6 +35,6 @@ test('Renders PokemonDetails', () => {
   const location1 = getByText('Johto National Park');
   expect(location1).toBeInTheDocument();
 
-  const imageLocation = getByAltText('Caterpie location').toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png');
-  console.log(imageLocation);
+  const imageLocation = getAllByAltText('Caterpie location')[3];
+  expect(imageLocation.src).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png')
 });
