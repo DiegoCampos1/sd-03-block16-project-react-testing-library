@@ -35,7 +35,12 @@ test('Renders PokemonDetails', () => {
   const location1 = getByText('Johto National Park');
   expect(location1).toBeInTheDocument();
 
+  const resume = getByText('Summary');
+  expect(resume).toBeInTheDocument();
+
+  const checkFavoritePokemon = getByText('Pokémon favoritado?');
+  expect(checkFavoritePokemon).toBeInTheDocument();
+
   const imageLocation = getAllByAltText('Caterpie location')[3];
-  console.log(imageLocation.src);
   expect(imageLocation).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png');
 });
