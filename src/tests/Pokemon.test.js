@@ -19,7 +19,7 @@ function renderWithRouter(
 }
 
 test('Renders Pokemon Cards', () => {
-  const { queryByTestId } = renderWithRouter(
+  const { queryByTestId, getByText, getByAltText} = renderWithRouter(
     <Pokemon
       pokemon={pokemons[2]}
       showDetailsLink
@@ -37,4 +37,10 @@ test('Renders Pokemon Cards', () => {
 
   const pokemonAveWeight = queryByTestId('pokemon-weight');
   expect(pokemonAveWeight.innerHTML).toEqual('Average weight:2.9kg');
+
+  const linkMore = getByText('More details');
+  expect(linkMore).toHaveAttribute('href', '/pokemons/10');
+
+  const pokemonImg = getByAltText('Caterpie sprite');
+  expect(pokemonImg).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/8/83/Spr_5b_010.png');
 });
