@@ -18,23 +18,9 @@ const isPokemonFavoriteById = {
 const favoritePokemons = data.filter(({ id }) => isPokemonFavoriteById[id]);
 const notFavoritePokemons = data.filter(({ id }) => !isPokemonFavoriteById[id]);
 
-describe('tests FavoritePokemons.js', () => {
-  test('shows Favorites Pokemons page', () => {
-    const { getByText } = renderWithRouter(
-      <FavoritePokemons pokemons={favoritePokemons} />,
-      { route: '/favorites' },
-    );
-
-    const heading = getByText('Favorite pokémons');
-
-    expect(heading).toBeInTheDocument();
-  });
-
+describe('Tests "FavoritePokemons.js" file...', () => {
   test('shows notFound text in FavoritePokemons page when dont have fav pokemons', () => {
-    const { getByText } = renderWithRouter(
-      <FavoritePokemons pokemons={[]} />,
-      { route: '/favorites' },
-    );
+    const { getByText } = renderWithRouter(<FavoritePokemons pokemons={[]} />);
 
     const notFound = getByText('No favorite pokemon found');
 
