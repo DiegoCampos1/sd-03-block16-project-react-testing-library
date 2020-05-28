@@ -40,7 +40,7 @@ describe('Test of the Pokemon Page', () => {
   test('image must contain a src attribute with the URL of the pokémon image', () => {
     const { getByAltText } = renderWithRouter(<Pokemon
       pokemon={Pokemons[0]}
-      isFavorite={true}
+      isFavorite
     />);
     const favoriteIcon = getByAltText('Pikachu is marked as favorite');
     expect(favoriteIcon.src).toBe('http://localhost/star-icon.svg');
@@ -50,7 +50,7 @@ describe('Test of the Pokemon Page', () => {
   test('Type of Pokemon must be in the page', () => {
     const { getByTestId } = renderWithRouter(<Pokemon
       pokemon={Pokemons[0]}
-      isFavorite={true}
+      isFavorite={false}
     />);
     const pokemonType = getByTestId('pokemonType');
     expect(pokemonType.innerHTML).toBe('Electric');
