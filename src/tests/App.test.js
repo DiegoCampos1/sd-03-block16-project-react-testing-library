@@ -41,10 +41,3 @@ test('Ao clicar no link "Home" na barra de navegação, a aplicação deve ser r
   const pathname = history.location.pathname;
   expect(pathname).toBe('/');
 });
-
-test('Ao clicar no link "Home" na barra de navegação, a aplicação deve ser redirecionada para a página inicial, na URL "/"', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-  fireEvent.click(getByText(/Home/i));
-  const pathname = history.location.pathname;
-  expect(pathname).toBe('/');
-});
