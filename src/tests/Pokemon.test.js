@@ -31,4 +31,10 @@ test('Renders Pokemon Cards', () => {
   console.log(pokemonName.innerHTML);
   const pokemonH2Name = getByText('Caterpie');
   expect(pokemonH2Name).toBeInTheDocument();
+
+  const pokemonType = queryByTestId('pokemonType');
+  expect(pokemonType).toBeInTheDocument();
+
+  const pokemonAveWeight = queryByTestId('pokemon-weight');
+  expect(pokemonAveWeight).toBeInTheDocument();
 });
