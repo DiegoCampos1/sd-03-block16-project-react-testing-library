@@ -24,13 +24,20 @@ test('Renders Pokedex Page', () => {
   expect(nextButton).toBeInTheDocument();
 });
 
-test('Renders only one Pokemon at time', () => {
-  const { queryAllByTestId } = renderWithRouter(<App />);
-  expect(queryAllByTestId('pokemon-name')).toHaveLength(1);
-});
-
-test('Renders only one Pokemon at time', () => {
+test('Tests if exists a element with text `All`', () => {
   const { getByText } = renderWithRouter(<App />);
   const buttonAll = getByText('All');
+  expect(buttonAll).toBeInTheDocument();
+});
+
+test('Tests if exists a element with id `pokemon-type-button`', () => {
+  const { queryAllByTestId } = renderWithRouter(<App />);
+  const buttonAll = queryAllByTestId('pokemon-type-button')[0];
+  expect(buttonAll).toBeInTheDocument();
+});
+
+test('Tests if exists a element with text `Encountered pokémons`', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const buttonAll = getByText('Encountered pokémons');
   expect(buttonAll).toBeInTheDocument();
 });
