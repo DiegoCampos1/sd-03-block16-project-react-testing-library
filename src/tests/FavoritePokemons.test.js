@@ -31,3 +31,9 @@ test('não exibir nenhum card de pokemon não favoritado', () => {
   const pikachu = getByText('Pikachu');
   expect(pikachu).toBeInTheDocument();
 });
+
+test('Cards favorite in page', () => {
+  const { getByText } = renderWithRouter(<Favorite />);
+  const card = getByText(/No favorite pokemon found/i);
+  expect(card).toBeInTheDocument();
+});
