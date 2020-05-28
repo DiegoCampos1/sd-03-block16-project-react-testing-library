@@ -25,41 +25,27 @@ describe('Tests "App.js" file...', () => {
 
   test('redirect to `/` when click in the link Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const { location: { pathname } } = history;
-
     const home = getByText('Home');
 
     fireEvent.click(home);
-
-    expect(pathname).toBe('/');
-
-    fireEvent.click(getByText('More details'));
-    fireEvent.click(home);
-
-    expect(pathname).toBe('/');
-    expect(getByText('Pokédex')).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/');
   });
 
   test('redirect to `/about` when click in the link About', () => {
     const { getByText, history } = renderWithRouter(<App />);
-
     const about = getByText('About');
 
     fireEvent.click(about);
-
     expect(history.location.pathname).toBe('/about');
-    expect(getByText('About Pokédex')).toBeInTheDocument();
   });
 
   test('redirect to `/favorites` when click in the link Favorites Pokémons', () => {
     const { getByText, history } = renderWithRouter(<App />);
-
     const favorites = getByText('Favorite Pokémons');
 
     fireEvent.click(favorites);
-
     expect(history.location.pathname).toBe('/favorites');
-    expect(getByText('Favorite pokémons')).toBeInTheDocument();
+    expect(favorites).toBeInTheDocument();
   });
 
   test('redirect to Not Found page', () => {

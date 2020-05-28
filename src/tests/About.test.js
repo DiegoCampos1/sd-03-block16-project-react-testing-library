@@ -12,15 +12,15 @@ describe('Tests "About.js" file...', () => {
   });
 
   test('Tests if "About Pokédex" page has 2 `p` tags in it.', () => {
-    const { container } = renderWithRouter(<About />);
-    const pTag = container.querySelectorAll('p');
+    renderWithRouter(<About />);
+    const pTag = document.querySelectorAll('p');
 
     expect(pTag.length).toBe(2);
   });
 
   test('Tests if "About Pokédex" page has a rendered img tag', () => {
-    const { container } = renderWithRouter(<About />);
-    const img = container.querySelector('IMG');
+    renderWithRouter(<About />);
+    const img = document.querySelector('img');
 
     expect(img).toBeInTheDocument();
     expect(img.src).toBe(
