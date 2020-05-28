@@ -8,19 +8,19 @@ import renderWithRouter from './renderWithRouter';
 afterEach(cleanup);
 
 test('Test if is a detail page of a pokemon is showing', () => {
-    const { getByText, getByTestId, history } = renderWithRouter(<App />);
-    const pokeNameTitle = getByTestId('pokemon-name');
-    const pokeName = getNodeText(pokeNameTitle);
+  const { getByText, getByTestId, history } = renderWithRouter(<App />);
+  const pokeNameTitle = getByTestId('pokemon-name');
+  const pokeName = getNodeText(pokeNameTitle);
 
-    const detailsLink = getByText('More details');
-    const destinationPage = detailsLink.href;
-    fireEvent.click(detailsLink);
-    const pathName = history.location.pathname;
-    expect(destinationPage.includes(pathName)).toBe(true);
+  const detailsLink = getByText('More details');
+  const destinationPage = detailsLink.href;
+  fireEvent.click(detailsLink);
+  const pathName = history.location.pathname;
+  expect(destinationPage.includes(pathName)).toBe(true);
 
-    const detailsPokeNameTitle = getByTestId('pokemon-name');
-    const detailsPokeName = getNodeText(detailsPokeNameTitle);
-    expect(pokeName).toBe(detailsPokeName);
+  const detailsPokeNameTitle = getByTestId('pokemon-name');
+  const detailsPokeName = getNodeText(detailsPokeNameTitle);
+  expect(pokeName).toBe(detailsPokeName);
 });
 
 test('Testing if details page contains `pokemon name` Details text', () => {
@@ -75,9 +75,9 @@ test('Details page must have a map with the location of pokemon', () => {
   const selectedPokemon = pokemons.find((e) => e.name === pokeName);
   const images = getAllByRole('img');
   const imagesUrl = images.map((e) => e.src);
-  const pokeLocationImagesUrl = selectedPokemon.foundAt.map((e) => e.map );
-  pokeLocationImagesUrl.map(e =>
-    expect(imagesUrl.includes(e)).toBe(true)
+  const pokeLocationImagesUrl = selectedPokemon.foundAt.map((e) => e.map);
+  pokeLocationImagesUrl.map((e) =>
+    expect(imagesUrl.includes(e)).toBe(true),
   );
 
   const imagesAlt = images.map((e) => e.alt);
@@ -94,7 +94,7 @@ test('Details page must have a map with the location of pokemon', () => {
 });
 
 test('Test if Details page can favorite a Pokemon', () => {
-  const { getByText, getByTestId, getAllByRole, getByLabelText } = renderWithRouter(<App />);
+  const { getByText, getAllByRole, getByLabelText } = renderWithRouter(<App />);
   const detailsLink = getByText('More details');
   fireEvent.click(detailsLink);
 
@@ -105,10 +105,10 @@ test('Test if Details page can favorite a Pokemon', () => {
     const images = getAllByRole('img');
     const imagesUrl = images.map((e) => e.src);
     const comparingArray = imagesUrl.map((e) => e.includes('/star-icon.svg'));
-    const comparingArrayResult = comparingArray.reduce((e,acc) => {
-      acc = acc || e;
-      return acc;
-    }, false);
+    const comparingArrayResult = comparingArray.reduce(
+      ((e, acc) => acc || e),
+      false,
+    );
     expect(comparingArrayResult).toBe(false);
     fireEvent.click(favoriteCheck);
   }
@@ -116,10 +116,10 @@ test('Test if Details page can favorite a Pokemon', () => {
     const images = getAllByRole('img');
     const imagesUrl = images.map((e) => e.src);
     const comparingArray = imagesUrl.map((e) => e.includes('/star-icon.svg'));
-    const comparingArrayResult = comparingArray.reduce((e,acc) => {
-      acc = acc || e;
-      return acc;
-    }, false);
+    const comparingArrayResult = comparingArray.reduce(
+      ((e, acc) => acc || e),
+      false,
+    );
     expect(comparingArrayResult).toBe(true);
   }
 });
