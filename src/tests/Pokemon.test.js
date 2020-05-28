@@ -24,7 +24,7 @@ test('Renders Pokemon Cards', () => {
       pokemon={pokemons[2]}
       showDetailsLink
       isFavorite
-    />
+    />,
   );
   const pokemonName = queryByTestId('pokemon-name');
   expect(pokemonName).toBeInTheDocument();
