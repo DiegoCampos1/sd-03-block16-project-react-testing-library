@@ -56,6 +56,6 @@ test('filter type Pokémon', () => {
 
   expect(nextPokemonButton).toBeEnabled();
   fireEvent.click(nextPokemonButton);
-  
+
   expect(getByTestId('pokemonType')).toContainHTML('Fire');
 });
