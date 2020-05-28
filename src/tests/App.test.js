@@ -4,14 +4,14 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Tests "App.js" file...', () => {
-  test('shows the Pokédex when the route is `/`', () => {
+  test('Tests if it shows the "Pokédex" page when the route is `/`...w', () => {
     const { getByText } = renderWithRouter(<App />);
     const pokédex = getByText('Pokédex');
 
     expect(pokédex).toBeInTheDocument();
   });
 
-  test('verify if nav bar links', () => {
+  test('Tests if all nav bar links are assigned correctly to its specific href...', () => {
     const { getByText } = renderWithRouter(<App />);
 
     const home = getByText('Home');
@@ -23,7 +23,7 @@ describe('Tests "App.js" file...', () => {
     expect(favorites.href).toBe('http://localhost/favorites');
   });
 
-  test('redirect to `/` when click in the link Home', () => {
+  test('Tests whether, when clicked in the "Home" link, it redirects to "/" url...', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const home = getByText('Home');
 
@@ -31,7 +31,7 @@ describe('Tests "App.js" file...', () => {
     expect(history.location.pathname).toBe('/');
   });
 
-  test('redirect to `/about` when click in the link About', () => {
+  test('Tests whether, when clicked in the "About" link, it redirects to "/about" url...', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const about = getByText('About');
 
@@ -39,7 +39,7 @@ describe('Tests "App.js" file...', () => {
     expect(history.location.pathname).toBe('/about');
   });
 
-  test('redirect to `/favorites` when click in the link Favorites Pokémons', () => {
+  test('Tests whether, when clicked in the "Favorites Pokémons" link, redirects to "/favorites" url...', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const favorites = getByText('Favorite Pokémons');
 
@@ -48,7 +48,7 @@ describe('Tests "App.js" file...', () => {
     expect(favorites).toBeInTheDocument();
   });
 
-  test('redirect to Not Found page', () => {
+  test('Tests whether it redirects to "Not Found" page when a unknown url is given...', () => {
     const { getByText } = renderWithRouter(<App />, { route: '/not-found' });
 
     expect(getByText('Page requested not found')).toBeInTheDocument();
