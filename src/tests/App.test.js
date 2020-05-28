@@ -25,7 +25,6 @@ describe('Routes', () => {
         <App />
       </MemoryRouter>,
     );
-
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
@@ -61,6 +60,5 @@ describe('Routes', () => {
     const notFoundPage = getByText(/Page requested not found/i);
     expect(notFoundPage).toBeInTheDocument();
     expect(history.location.pathname).toBe('/test');
-
   });
 });
