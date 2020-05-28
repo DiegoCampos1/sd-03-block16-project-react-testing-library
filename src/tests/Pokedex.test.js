@@ -43,11 +43,14 @@ test('Tests if exists a element with text `Encountered pokémons`', () => {
 });
 
 test('Tests the filters buttons`', () => {
-  const { queryAllByTestId, queryByTestId } = renderWithRouter(<App />);
+  const { queryAllByTestId, queryByTestId, getByText } = renderWithRouter(<App />);
   const buttonFilter = queryAllByTestId('pokemon-type-button')[2];
   expect(buttonFilter).toBeInTheDocument();
   expect(buttonFilter).toHaveTextContent('Bug');
   const pokemon = queryByTestId('pokemon-name');
   fireEvent.click(buttonFilter);
   expect(pokemon).toHaveTextContent('Caterpie');
+  const buttonAll = getByText('All');
+  fireEvent.click(buttonAll);
+  expect(buttonAll).toBeInTheDocument();
 });
