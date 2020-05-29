@@ -30,10 +30,10 @@ test('Deve conter um heading h2 com o texto Game Locations of <name>, exibir tod
 
   const locationText = getByText('Game Locations of Pikachu');
   expect(locationText).toBeInTheDocument();
-  
+
   const location1 = getByText('Kanto Viridian Forest');
   expect(location1).toBeInTheDocument();
-  
+
   const location2 = getByText('Kanto Power Plant');
   expect(location2).toBeInTheDocument();
 
