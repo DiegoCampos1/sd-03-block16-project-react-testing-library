@@ -43,5 +43,4 @@ test('Deve conter botões de filtro por tipo e um botão para resetar o filtro.'
   fireEvent.click(getByText(/Próximo pokémon/i));
   const nextPokemon = getByTestId('pokemon-name');
   expect(nextPokemon.textContent).toBe('Charmander');
-
 });
