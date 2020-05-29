@@ -28,8 +28,7 @@ describe('Testando o details', () => {
       norefactor: true,
     };
     const { getByText } = MemoryHistory(
-      <PokemonDetails isFavoritePokemonById pokemons={pikachu} />
-      );
+      <PokemonDetails isFavoritePokemonById pokemons={pikachu} />);
     const lugar = getByText(`Game locations of ${pikachu.name}`);
     expect(lugar.innerText).toBe('Game locations of Pikachu');
   });
