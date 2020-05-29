@@ -25,11 +25,12 @@ describe('Testando o details', () => {
         },
       ],
       summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      norefactor: true,
     };
     const { getByText } = MemoryHistory(<PokemonDetails
-      isFavoritePokemonById pokemons={pikachu} />);
-      const lugar = getByText(`Game locations of ${pikachu.name}`);
-      expect(lugar.innerText).toBe('Game locations of Pikachu');
-
+      isFavoritePokemonById pokemons={pikachu}
+      />);
+    const lugar = getByText(`Game locations of ${pikachu.name}`);
+    expect(lugar.innerText).toBe('Game locations of Pikachu');
   });
 });
