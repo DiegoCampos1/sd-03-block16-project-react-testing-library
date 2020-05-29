@@ -13,5 +13,6 @@ describe('Testando o NotFound', () => {
     const { getByAltText } = MemoryHistory(<NotFound />);
     const foto = getByAltText('Pikachu crying because the page requested was not found');
     expect(foto).toBeInTheDocument();
+    expect(foto.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
