@@ -15,6 +15,12 @@ test('O peso médio do pokémon deve ser exibido.', () => {
   expect(pokemonWeight.textContent).toBe('Average weight:6.0kg');
 });
 
+test('O tipo de pokémon deve ser exibido.', () => {
+  const { getByTestId } = renderWithRouter(<App />);
+  const pokemonType = getByTestId('pokemonType');
+  expect(pokemonType.textContent).toBe('Electric');
+});
+
 test('A imagem deve conter um atributo src com a URL da imagem e alt com o texto <name> sprite.', () => {
   const { queryByAltText } = renderWithRouter(<App />);
   const pokemonImg = queryByAltText('Pikachu sprite');
