@@ -1,57 +1,115 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import data from '../data';
+import componentFunction from '../components/componentFunction';
 
-afterEach(cleanup);
+describe('tests PokemonDetails.js', () => {
+  test('should have details from just the select pokemon', () => {
+    const { getByText } = renderWithRouter(<App />);
 
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+    data.forEach(({ name }, index) => {
+      componentFunction(index, getByText);
 
-describe('Testes do arquivo PokemonDetails.js', () => {
-  it('Deve conter mais informações sobre apenas o pokémon selecionado', () => {
-    const { getByText, queryByText, getAllByAltText } = renderWithRouter(<App />);
+      const moreDetails = getByText('More details');
 
-    const pokemonLink = queryByText(/More details/i);
-    expect(pokemonLink).toBeInTheDocument();
-    expect(pokemonLink).toHaveAttribute('href', '/pokemons/25');
-    fireEvent.click(pokemonLink);
-    const clickDetails = getByText(/Pikachu Details/i);
-    expect(clickDetails).toHaveTextContent('Pikachu Details');
+      fireEvent.click(moreDetails);
 
-    const notPokemonLink = queryByText(/More details/i);
-    expect(notPokemonLink).not.toBeInTheDocument();
+      const heading = getByText(`${name} Details`);
 
-    const sumaryText = queryByText(/Summary/i);
-    expect(sumaryText).toBeInTheDocument();
+      expect(heading).toBeInTheDocument();
+      expect(heading.tagName).toBe('H2');
 
-    const resumeText = queryByText(/This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat./i);
-    expect(resumeText).toBeInTheDocument();
+      fireEvent.click(getByText('Home'));
+    });
+  });
 
-    const gameLocations = queryByText(/Game Locations of Pikachu/i);
-    expect(gameLocations).toBeInTheDocument();
+  test('link more details dont have to exist in details page', () => {
+    const { getByText } = renderWithRouter(<App />);
 
-    const KantoViridianForest = queryByText(/Kanto Viridian Forest/i);
-    expect(KantoViridianForest).toBeInTheDocument();
-    const KantoRoute = getAllByAltText(/Pikachu location/i)[0];
-    expect(KantoRoute).toBeInTheDocument();
-    expect(KantoRoute.src).toEqual('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    data.forEach((_, index) => {
+      componentFunction(index, getByText);
 
-    const KantoPowerPlant = queryByText(/Kanto Power Plant/i);
-    expect(KantoPowerPlant).toBeInTheDocument();
-    const CeladonCity = getAllByAltText(/Pikachu location/i)[1];
-    expect(CeladonCity).toBeInTheDocument();
-    expect(CeladonCity.src).toEqual('https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+      const moreDetails = getByText('More details');
 
-    const Pokemonfavoritado = queryByText(/Pokémon favoritado?/i);
-    expect(Pokemonfavoritado).toBeInTheDocument();
+      fireEvent.click(moreDetails);
+
+      expect(moreDetails).not.toBeInTheDocument();
+
+      fireEvent.click(getByText('Home'));
+    });
+  });
+
+  test('details page should contain summary', () => {
+    const { getByText } = renderWithRouter(<App />);
+
+    data.forEach(({ summary }, index) => {
+      componentFunction(index, getByText);
+
+      const moreDetails = getByText('More details');
+
+      fireEvent.click(moreDetails);
+
+      const heading = getByText('Summary');
+
+      expect(heading).toBeInTheDocument();
+      expect(heading.tagName).toBe('H2');
+      expect(getByText(summary)).toBeInTheDocument();
+      expect(getByText(summary).tagName).toBe('P');
+
+      fireEvent.click(getByText('Home'));
+    });
+  });
+
+  test('details page should contain pokemon locations', () => {
+    const { getByText, getAllByAltText } = renderWithRouter(<App />);
+
+    data.forEach(({ name, foundAt }, index) => {
+      componentFunction(index, getByText);
+
+      const moreDetails = getByText('More details');
+
+      fireEvent.click(moreDetails);
+
+      const heading = getByText(`Game Locations of ${name}`);
+
+      expect(heading).toBeInTheDocument();
+      expect(heading.tagName).toBe('H2');
+
+      foundAt.forEach(({ location, map }, indice) => {
+        const img = getAllByAltText(`${name} location`);
+        expect(getByText(location)).toBeInTheDocument();
+        expect(img[indice].src).toBe(map);
+        expect(img[indice].alt).toBe(`${name} location`);
+      });
+
+      fireEvent.click(getByText('Home'));
+    });
+  });
+
+  test('details page should contain a checkbox to favorite a pokemon', () => {
+    const { getByText, getByRole } = renderWithRouter(<App />);
+
+    data.forEach((_, index) => {
+      componentFunction(index, getByText);
+
+      const moreDetails = getByText('More details');
+
+      fireEvent.click(moreDetails);
+
+      const checkbox = getByRole('checkbox');
+
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox.checked).toBeFalsy();
+
+      fireEvent.click(checkbox);
+
+      expect(checkbox.checked).toBeTruthy();
+      expect(checkbox.parentNode.tagName).toBe('LABEL');
+      expect(checkbox.parentNode.innerHTML).toMatch('Pokémon favoritado?');
+
+      fireEvent.click(getByText('Home'));
+    });
   });
 });

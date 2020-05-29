@@ -1,31 +1,68 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
-import App from '../App';
+import renderWithRouter from '../renderWithRouter';
+import FavoritePokemons from '../components/FavoritePokemons';
+import data from '../data';
 
-test('testing favorite pokémons page', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
- );
+const isPokemonFavoriteById = {
+  25: true,
+  4: false,
+  10: true,
+  23: false,
+  65: true,
+  151: false,
+  78: true,
+  143: false,
+  148: true,
+};
 
-  const pokeLinkFavorite = getByText(/Favorite/i);
-  fireEvent.click(pokeLinkFavorite);
+const favoritePokemons = data.filter(({ id }) => isPokemonFavoriteById[id]);
+const notFavoritePokemons = data.filter(({ id }) => !isPokemonFavoriteById[id]);
 
-  const noFavoriteFound = getByText('No favorite pokemon found');
-  expect(noFavoriteFound).toBeInTheDocument();
+describe('tests FavoritePokemons.js', () => {
+  test('shows Favorites Pokemons page', () => {
+    const { getByText } = renderWithRouter(
+      <FavoritePokemons pokemons={favoritePokemons} />,
+      { route: '/favorites' },
+    );
 
-  const homeLink = getByText(/Home/i);
-  fireEvent.click(homeLink);
+    const heading = getByText('Favorite pokémons');
 
-  const detailsLink = getByText(/More details/i);
-  fireEvent.click(detailsLink);
+    expect(heading).toBeInTheDocument();
+  });
 
-  const checkboxFav = getByText(/Pokémon favoritado?/i);
-  fireEvent.click(checkboxFav);
-  fireEvent.click(pokeLinkFavorite);
+  test('shows notFound text in FavoritePokemons page when dont have fav pokemons', () => {
+    const { getByText } = renderWithRouter(
+      <FavoritePokemons pokemons={[]} />,
+      { route: '/favorites' },
+    );
 
-  const pokemonFav = getByText(/Pikachu/i);
-  expect(pokemonFav).toBeInTheDocument();
+    const notFound = getByText('No favorite pokemon found');
+
+    expect(notFound).toBeInTheDocument();
+  });
+
+  test('shows favorites pokemons cards in FavoritePokemons page', () => {
+    const { getByText, container } = renderWithRouter(
+      <FavoritePokemons pokemons={favoritePokemons} />,
+      { route: '/favorites' },
+    );
+
+    const cards = container.querySelectorAll('.favorite-pokemon');
+
+    expect(cards.length).toBe(5);
+    favoritePokemons.forEach(({ name }) => {
+      expect(getByText(name)).toBeInTheDocument();
+    });
+  });
+
+  test('dont shows not favorites pokemons cards in FavoritePokemons page', () => {
+    const { queryByText } = renderWithRouter(
+      <FavoritePokemons pokemons={favoritePokemons} />,
+      { route: '/favorites' },
+    );
+
+    notFavoritePokemons.forEach(({ name }) => {
+      expect(queryByText(name)).toBeNull();
+    });
+  });
 });

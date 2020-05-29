@@ -1,67 +1,105 @@
 import React from 'react';
-import { MemoryRouter, Route } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import pokemons from '../data';
+import data from '../data';
+import componentFunction from '../components/componentFunction';
 
-describe('Tesing all pokemons info to be on the card', () => {
-  pokemons.forEach(({
-    name, averageWeight: { value, measurementUnit }, image, type,
-  }, index) => {
-    test(`pokemon ${name} Card test`, async () => {
-      const {
-        getByText, getByAltText, getByTestId,
-      } = render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>,
-      );
-      if (index === pokemons.length - 1) return null;
-      Array(index).fill(index).forEach(() => fireEvent.click(getByText(/próximo pokémon/i)));
+describe('tests Pokemon.js', () => {
+  test('should have one pokemon card in the page', () => {
+    const { container, getByText } = renderWithRouter(<App />);
 
-      const testCard = () => {
-        expect(getByText(name)).toBeInTheDocument();
-        expect(getByTestId('pokemonType').innerHTML).toBe(type);
-        expect(getByText(`Average weight:${value}${measurementUnit}`)).toBeInTheDocument();
-        const imageNode = getByAltText(`${name} sprite`);
-        expect(imageNode.alt).toMatch(`${name} sprite`);
-        expect(imageNode.src).toMatch(image);
-      };
-      return testCard();
+    const nextPokemon = getByText('Próximo pokémon');
+
+    data.forEach(({ name }) => {
+      const card = container.querySelectorAll('.pokemon');
+      const pokemon = getByText(name);
+      expect(card.length).toBe(1);
+      expect(pokemon).toBeInTheDocument();
+      fireEvent.click(nextPokemon);
     });
   });
-  pokemons.forEach(({ name, id }, index) => {
-    test(`details and favorite from ${name}`, () => {
-      let locationMock;
-      const {
-        getByText, getByAltText, getByRole,
-      } = render(
-        <MemoryRouter>
-          <App />
-          <Route
-            path="*"
-            render={({ location }) => {
-              locationMock = location;
-              return null;
-            }}
-          />
-        </MemoryRouter>,
+
+  test('card should contain the pokemon type', () => {
+    const { getByText, getAllByText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText('Próximo pokémon');
+
+    data.forEach(({ type }) => {
+      expect(getAllByText(type)[1]).toBeInTheDocument();
+      fireEvent.click(nextPokemon);
+    });
+  });
+
+  test('card should contain the pokemon weight', () => {
+    const { getByText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText('Próximo pokémon');
+
+    data.forEach(({ averageWeight: { value, measurementUnit } }) => {
+      const averageWeight = getByText(
+        `Average weight:${value}${measurementUnit}`,
       );
-      Array(index).fill(index).forEach(() => fireEvent.click(getByText(/Próximo pokémon/i)));
-      const testDetails = () => {
-        const detailsLink = getByText('More details');
-        fireEvent.click(detailsLink);
-        expect(locationMock.pathname.split('/pokemons/')[1]).toBe(id.toString());
+      expect(averageWeight).toBeInTheDocument();
+      fireEvent.click(nextPokemon);
+    });
+  });
 
-        const favoriteCheckbox = getByRole('checkbox');
-        fireEvent.click(favoriteCheckbox);
+  test('card should contain the pokemon image', () => {
+    const { container, getByText } = renderWithRouter(<App />);
 
-        const starIcon = getByAltText(`${name} is marked as favorite`);
-        expect(starIcon).toBeInTheDocument();
-        expect(starIcon.src).toMatch('/star-icon.svg');
-        // const homeLink = getByText('Home');
-      };
-      return testDetails();
+    const nextPokemon = getByText('Próximo pokémon');
+
+    data.forEach(({ name, image }) => {
+      const img = container.querySelector('IMG');
+      expect(img.src).toBe(image);
+      expect(img.alt).toBe(`${name} sprite`);
+      fireEvent.click(nextPokemon);
+    });
+  });
+
+  test('card should contain a link for more details', () => {
+    const { getByText } = renderWithRouter(<App />);
+
+    const nextPokemon = getByText('Próximo pokémon');
+    const moreDetails = getByText('More details');
+
+    data.forEach(({ id }) => {
+      expect(moreDetails.href).toBe(`http://localhost/pokemons/${id}`);
+      fireEvent.click(nextPokemon);
+    });
+  });
+
+  test('a clink in more details should redirect for `/pokemons/id`', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+
+    const moreDetails = getByText('More details');
+    const id = data[0].id;
+
+    fireEvent.click(moreDetails);
+    expect(history.location.pathname).toBe(`/pokemons/${id}`);
+  });
+
+  test('fav pokemons should have a star icon', () => {
+    const {
+      getByText,
+      getByAltText,
+    } = renderWithRouter(<App />);
+
+    data.forEach(({ name }, index) => {
+      componentFunction(index, getByText);
+
+      const moreDetails = getByText('More details');
+
+      fireEvent.click(moreDetails);
+      fireEvent.click(getByText('Pokémon favoritado?'));
+
+      const favStar = getByAltText(`${name} is marked as favorite`);
+
+      expect(favStar).toHaveAttribute('src', '/star-icon.svg');
+      expect(favStar).toBeInTheDocument();
+
+      fireEvent.click(getByText('Home'));
     });
   });
 });

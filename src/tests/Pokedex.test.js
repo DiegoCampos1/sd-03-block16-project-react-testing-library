@@ -1,155 +1,148 @@
 import React from 'react';
-import { cleanup, fireEvent } from '@testing-library/react';
-import renderWithRouter from './RenderWithRouter';
+import { fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import Pokedex from '../components/Pokedex';
-import pokemons from '../data';
+import data from '../data';
 
-const mockPokemons = [
-  {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map: 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-    summary: 'This intelligent Pokémon roasts hard berries ',
-  },
-  {
-    id: 4,
-    name: 'Charmander',
-    type: 'Fire',
-    averageWeight: {
-      value: '8.5',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Alola Route 3',
-        map: 'https://cdn.bulbagarden.net/upload/9/93/Alola_Route_3_Map.png',
-      },
-      {
-        location: 'Kanto Route 3',
-        map: 'https://cdn.bulbagarden.net/upload/4/4a/Kanto_Route_3_Map.png',
-      },
-      {
-        location: 'Kanto Route 4',
-        map: 'https://cdn.bulbagarden.net/upload/2/24/Kanto_Route_4_Map.png',
-      },
-      {
-        location: 'Kanto Rock Tunnel',
-        map: 'https://cdn.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
-      },
-    ],
-    summary: 'The flame on its tail shows the strength of its life force.',
-  },
+const pokemonTypes = [
+  ...new Set(data.reduce((types, { type }) => [...types, type], [])),
 ];
 
-const labelButtons = () => pokemons.reduce((acc, e) => {
-  if (acc.includes(e.type)) {
-    return acc;
-  }
-  acc.push(e.type);
-  return acc;
-}, []);
-
-
-const mockIsPokemonFavoriteById = {
-  25: false,
-  4: false,
-};
-
-afterEach(cleanup);
-
-test('testing next pokémon button', () => {
-  const { getByTestId } = renderWithRouter(<App />);
-
-  const nextPokeButton = getByTestId('next-pokemon');
-  expect(nextPokeButton).toBeInTheDocument();
-  expect(nextPokeButton).toHaveTextContent('Próximo pokémon');
-  pokemons.forEach((e) => {
-    const pokemonName = getByTestId('pokemon-name');
-    expect(pokemonName).toHaveTextContent(e.name);
-    fireEvent.click(nextPokeButton);
+function forEachFunction(getByText) {
+  data.forEach(({ name }) => {
+    const nextPokemon = getByText('Próximo pokémon');
+    expect(getByText(name)).toBeInTheDocument();
+    fireEvent.click(nextPokemon);
   });
-  expect(getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
-});
+}
 
-test('testing if pokedex has only one pokemon displayed', () => {
-  const { queryAllByTestId } = renderWithRouter(
-    <Pokedex
-      pokemons={mockPokemons}
-      isPokemonFavoriteById={mockIsPokemonFavoriteById}
-    />,
-  );
-  expect(queryAllByTestId('pokemon-name')).toHaveLength(1);
-});
+describe('tests Pokedex.js', () => {
+  test('shows next pokemon button in Pokedex page', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
 
-test('testing if Encountered pokémons exists', () => {
-  const { getByText } = renderWithRouter(
-    <Pokedex
-      pokemons={mockPokemons}
-      isPokemonFavoriteById={mockIsPokemonFavoriteById}
-    />,
-  );
+    const nextPokemonButton = getByText('Próximo pokémon');
 
-  const nextPokeButton = getByText('Encountered pokémons');
-  expect(nextPokeButton).toBeInTheDocument();
-});
+    expect(nextPokemonButton).toBeInTheDocument();
+  });
 
-test('testing if pokedex has button all', () => {
-  const { getByText, getByTestId, getAllByTestId } = renderWithRouter(
-    <Pokedex
-      pokemons={mockPokemons}
-      isPokemonFavoriteById={mockIsPokemonFavoriteById}
-    />,
-  );
+  test('next pokemon button show next pokemon', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
 
-  const typeButtonFire = getAllByTestId('pokemon-type-button');
-  console.log(typeButtonFire[0].textContent);
-  const buttonAll = getByText('All');
-  const pokemonName = getByTestId('pokemon-name');
-  expect(buttonAll).toBeInTheDocument();
-  fireEvent.click(typeButtonFire[1]);
-  expect(pokemonName).toHaveTextContent('Charmander');
-  fireEvent.click(buttonAll);
-  expect(pokemonName).toHaveTextContent('Pikachu');
-});
 
-test('testing dinamicaly generated buttons', () => {
-  const { queryAllByTestId } = renderWithRouter(<App />);
+    forEachFunction(getByText);
+  });
 
-  const typesButton = queryAllByTestId('pokemon-type-button');
-  const typesInScreen = typesButton.map((e) => e.textContent);
-  expect(typesButton).toHaveLength(labelButtons().length);
-  expect(typesInScreen).toStrictEqual(labelButtons());
-});
+  test('after last pokemon a new click should show the first pokemon', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
 
-test('testing next pokemon', () => {
-  const { getByTestId, getAllByTestId } = renderWithRouter(
-    <Pokedex
-      pokemons={mockPokemons}
-      isPokemonFavoriteById={mockIsPokemonFavoriteById}
-    />,
-  );
+    const nextPokemonButton = getByText('Próximo pokémon');
 
-  const nextPokeButton = getByTestId('next-pokemon');
-  const typeButtonFire = getAllByTestId('pokemon-type-button');
-  fireEvent.click(typeButtonFire[1]);
-  expect(nextPokeButton).toBeDisabled();
+    data.forEach(() => fireEvent.click(nextPokemonButton));
+    expect(getByText(data[0].name)).toBeInTheDocument();
+  });
+
+  test('should show just one pokemon at once', () => {
+    const { getByText, getAllByText } = renderWithRouter(
+      <App />,
+    );
+
+    const moreDetails = getAllByText('More details');
+
+    expect(moreDetails.length).toBe(1);
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
+
+  test('Pokedex page should have filter buttons with the name equal the type', () => {
+    const { getAllByTestId } = renderWithRouter(
+      <App />,
+    );
+
+    pokemonTypes.forEach((type, index) => {
+      const button = getAllByTestId('pokemon-type-button')[index];
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveTextContent(type);
+    });
+  });
+
+  test('clink in a filter button should shows just pokemons of that type', () => {
+    const { getByText, getAllByTestId } = renderWithRouter(
+      <App />,
+    );
+
+    const nextPokemonButton = getByText('Próximo pokémon');
+
+    pokemonTypes.forEach((type, index) => {
+      const button = getAllByTestId('pokemon-type-button')[index];
+
+      fireEvent.click(button);
+
+      const filtredPokemons = data.filter((pokemon) => pokemon.type === type);
+
+      filtredPokemons.forEach((pokemon, _, array) => {
+        expect(getByText(pokemon.name)).toBeInTheDocument();
+        if (array.length > 1) fireEvent.click(nextPokemonButton);
+      });
+    });
+  });
+
+  test('Pokedex page should have a reset button', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
+
+    const all = getByText('All');
+
+    expect(all).toBeInTheDocument();
+  });
+
+  test('click in All button should show all the pokemons', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
+
+    const all = getByText('All');
+
+    fireEvent.click(all);
+    forEachFunction(getByText);
+  });
+
+  test('verify if the all button is load first', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
+
+    forEachFunction(getByText);
+
+    expect(getByText(data[0].name)).toBeInTheDocument();
+  });
+
+  test('Pokedex page should a button filter for each type of pokemon', () => {
+    const { getByText, getAllByText } = renderWithRouter(
+      <App />,
+    );
+
+    pokemonTypes.forEach((type) => {
+      const button = getAllByText(type)[1] || getByText(type);
+      expect(button).toBeInTheDocument();
+    });
+  });
+
+  test('next pokemon button should disabled if theres only one pokemon', () => {
+    const { getByText } = renderWithRouter(
+      <App />,
+    );
+
+    const nextPokemonButton = getByText('Próximo pokémon');
+    const bug = getByText('Bug');
+
+    fireEvent.click(bug);
+
+    expect(nextPokemonButton).toBeDisabled();
+  });
 });
