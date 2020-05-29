@@ -4,13 +4,13 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('tests App.js', () => {
-  test('shows the Pokédex when the route is `/`', () => {
+  test('shows the Pokédex when the route is /', () => {
     const { getByText } = renderWithRouter(<App />);
 
     expect(getByText('Pokédex')).toBeInTheDocument();
   });
 
-  test('verify if nav bar links', () => {
+  test('if nav bar links', () => {
     const { getByText } = renderWithRouter(<App />);
 
     const home = getByText('Home');
@@ -28,7 +28,7 @@ describe('tests App.js', () => {
     expect(favorites.href).toBe('http://localhost/favorites');
   });
 
-  test('redirect to `/` when click in the link Home', () => {
+  test('redirect to / when click in the Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const home = getByText('Home');
@@ -44,7 +44,7 @@ describe('tests App.js', () => {
     expect(getByText('Pokédex')).toBeInTheDocument();
   });
 
-  test('redirect to `/about` when click in the link About', () => {
+  test('redirect to /about when click in the About', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     const about = getByText('About');

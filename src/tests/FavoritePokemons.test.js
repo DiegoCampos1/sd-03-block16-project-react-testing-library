@@ -1,9 +1,10 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
-import FavoritePokemons from '../components/FavoritePokemons';
 import data from '../data';
+import FavoritePokemons from '../components/FavoritePokemons';
+import renderWithRouter from '../renderWithRouter';
 
-const isPokemonFavoriteById = {
+
+const pokemonFavoriteById = {
   25: true,
   4: false,
   10: true,
@@ -15,8 +16,8 @@ const isPokemonFavoriteById = {
   148: true,
 };
 
-const favoritePokemons = data.filter(({ id }) => isPokemonFavoriteById[id]);
-const notFavoritePokemons = data.filter(({ id }) => !isPokemonFavoriteById[id]);
+const favoritePokemons = data.filter(({ id }) => pokemonFavoriteById[id]);
+const notFavoritePokemons = data.filter(({ id }) => !pokemonFavoriteById[id]);
 
 describe('tests FavoritePokemons.js', () => {
   test('shows Favorites Pokemons page', () => {

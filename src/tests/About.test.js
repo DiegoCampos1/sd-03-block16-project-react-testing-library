@@ -2,8 +2,8 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import About from '../components/About';
 
-describe('tests About.js', () => {
-  test('shows About Pokédex page', () => {
+describe('all tests About.js', () => {
+  test('shows About Pokedex page', () => {
     const { getByText } = renderWithRouter(<About />, { route: '/about' });
 
     const heading = getByText('About Pokédex');
@@ -12,7 +12,7 @@ describe('tests About.js', () => {
     expect(heading.tagName).toBe('H2');
   });
 
-  test('About Pokédex page has 2 `p` tags', () => {
+  test('About Pokedex page with 2 p tags', () => {
     const { container } = renderWithRouter(<About />, { route: '/about' });
 
     const paragraphs = container.querySelectorAll('P');
@@ -20,7 +20,7 @@ describe('tests About.js', () => {
     expect(paragraphs.length).toBe(2);
   });
 
-  test('About Pokédex page has img tag', () => {
+  test('About Pokedex page with img tag', () => {
     const { container } = renderWithRouter(<About />, { route: '/about' });
 
     const img = container.querySelector('IMG');

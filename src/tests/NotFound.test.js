@@ -1,6 +1,6 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
 import NotFound from '../components/NotFound';
+import renderWithRouter from '../renderWithRouter';
 
 describe('tests NotFound.js', () => {
   test('shows Not Found page text', () => {
