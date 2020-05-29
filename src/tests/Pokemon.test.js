@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getByTestId} from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import MemoryHistory from './MemoryHistory';
 import Pokemon from '../components/Pokemon';
 
@@ -27,7 +27,7 @@ describe('Testando o componente Pokemon', () => {
       ],
       summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
     };
-    const { getByTestId, getByAltText } = MemoryHistory(<Pokemon pokemon={pikachu} isFavorite={true}/>);
+    const { getByTestId, getByAltText } = MemoryHistory(<Pokemon pokemon={pikachu} isFavorite />);
     const nome = getByTestId('pokemon-name');
     const tipo = getByTestId('pokemonType');
     const peso = getByTestId('pokemon-weight');
@@ -38,6 +38,6 @@ describe('Testando o componente Pokemon', () => {
     expect(peso.innerText).toBe('Average weight:6.0kg');
     expect(pikature.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(favorito.src).toBe('/star-icon.svg');
-
+    fireEvent.click(pikature);
   });
 });
