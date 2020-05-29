@@ -14,4 +14,4 @@ describe('Testando o NotFound', () => {
     const foto = getByAltText('Pikachu crying because the page requested was not found');
     expect(foto).toBeInTheDocument();
   });
-})
+});
