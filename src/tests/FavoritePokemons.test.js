@@ -1,19 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
 import FavoritePokemons from '../components/FavoritePokemons';
+import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
 
 test('Caso a pessoa não tenha pokémons favoritos, a mensagem No favorite pokemon found deve aparecer na tela.', () => {
   const { getByText } = render(<FavoritePokemons />);
