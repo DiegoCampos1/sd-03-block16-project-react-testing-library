@@ -26,7 +26,11 @@ test('A Pokédex deve exibir apenas um pokémon por vez.', () => {
 });
 
 test('Deve conter botões de filtro por tipo e um botão para resetar o filtro.', () => {
-  const { getByText, getByTestId } = renderWithRouter(<App />);
+  const { queryAllByTestId, getByText, getByTestId } = renderWithRouter(<App />);
+
+  const typeButton = queryAllByTestId('pokemon-type-button')[1];
+  expect(typeButton).toBeInTheDocument();
+  expect(typeButton.textContent).toBe('Fire');
 
   fireEvent.click(getByText(/Fire/i));
   const firstPokemon = getByTestId('pokemon-name');
@@ -43,4 +47,11 @@ test('Deve conter botões de filtro por tipo e um botão para resetar o filtro.'
   fireEvent.click(getByText(/Próximo pokémon/i));
   const nextPokemon = getByTestId('pokemon-name');
   expect(nextPokemon.textContent).toBe('Charmander');
+});
+
+test('Deve conter um heading com o texto Encountered pokémons.', () => {
+  const { getByText } = renderWithRouter(<App />);
+
+  const headEncountered = getByText('Encountered pokémons');
+  expect(headEncountered).toBeInTheDocument();
 });
