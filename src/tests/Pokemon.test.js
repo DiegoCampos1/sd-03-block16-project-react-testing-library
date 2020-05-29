@@ -14,3 +14,9 @@ test('O peso médio do pokémon deve ser exibido.', () => {
   const pokemonWeight = getByTestId('pokemon-weight');
   expect(pokemonWeight.textContent).toBe('Average weight:6.0kg');
 });
+
+test('A imagem deve conter um atributo src com a URL da imagem do pokémon e um atributo alt com o texto <name> sprite, onde <name> é o nome do pokémon.', () => {
+  const { queryByAltText } = renderWithRouter(<App />);
+  const pokemonImg = queryByAltText('Pikachu sprite');
+  expect(pokemonImg.src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+});
