@@ -1,19 +1,8 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { cleanup } from '@testing-library/react';
 import pokemons from '../data';
 import PokemonDetails from '../components/PokemonDetails';
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from '../services/renderWithRouter';
 
 const match = { params: { id: '143' } };
 
@@ -21,7 +10,7 @@ afterEach(cleanup);
 
 test('Testing the name of the pokémon in Details', () => {
   const { getByText } = renderWithRouter(<PokemonDetails
-    pokemons={[ pokemons[7]]}
+    pokemons={[pokemons[7]]}
     isPokemonFavoriteById={{ 143: false }}
     match={match}
     onUpdateFavoritePokemon={() => null}

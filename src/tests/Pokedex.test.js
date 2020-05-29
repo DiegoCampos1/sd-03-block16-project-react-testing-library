@@ -1,20 +1,9 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { fireEvent, cleanup } from '@testing-library/react';
 import pokemons from '../data';
 import Pokedex from '../components/Pokedex';
 import App from '../App';
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from '../services/renderWithRouter';
 
 const typeButtons = () => pokemons.reduce((acc, e) => {
   if (acc.includes(e.type)) {

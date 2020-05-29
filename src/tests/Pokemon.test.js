@@ -1,19 +1,8 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, cleanup } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { cleanup } from '@testing-library/react';
 import pokemons from '../data';
 import Pokemon from '../components/Pokemon';
-
-function renderWithRouter(
-  ui,
-  { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {},
-) {
-  return {
-    ...render(<Router history={history}>{ui}</Router>),
-    history,
-  };
-}
+import renderWithRouter from '../services/renderWithRouter';
 
 afterEach(cleanup);
 
