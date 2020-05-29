@@ -17,3 +17,31 @@ test('Ao apertar o botão de próximo, a página deve exibir o próximo pokémon
   const nextPokemon2 = getByText('Caterpie');
   expect(nextPokemon2).toBeInTheDocument();
 });
+
+test('A Pokédex deve exibir apenas um pokémon por vez.', () => {
+  const { getAllByTestId } = renderWithRouter(<App />);
+
+  const onlyOnePokemon = getAllByTestId('pokemon-name');
+  expect(onlyOnePokemon).toHaveLength(1);
+});
+
+test('Deve conter botões de filtro por tipo e um botão para resetar o filtro.', () => {
+  const { getByText, getByTestId } = renderWithRouter(<App />);
+
+  fireEvent.click(getByText(/Fire/i));
+  const firstPokemon = getByTestId('pokemon-name');
+  expect(firstPokemon.textContent).toBe('Charmander');
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  const secondPokemon = getByTestId('pokemon-name');
+  expect(secondPokemon.textContent).toBe('Rapidash');
+
+  const allButton = getByText('All');
+  expect(allButton).toBeInTheDocument();
+  fireEvent.click(getByText(/All/i));
+  const initialPokemon = getByTestId('pokemon-name');
+  expect(initialPokemon.textContent).toBe('Pikachu');
+  fireEvent.click(getByText(/Próximo pokémon/i));
+  const nextPokemon = getByTestId('pokemon-name');
+  expect(nextPokemon.textContent).toBe('Charmander');
+
+});
