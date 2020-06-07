@@ -1,3 +1,4 @@
+import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -21,27 +22,30 @@ describe('Test for the routes on the App component', () => {
   });
 
   test('Verify redirect to Home path', () => {
+    const { getByText, history } = renderWithRouter(<App />);
     const home = getByText('Home');
 
-    fireEvent.click(about);
-    expect(history.location.pathname).toBe('/')
+    fireEvent.click(home);
+    expect(history.location.pathname).toBe('/');
     expect(getByText(/encountered pokémons/i)).toBeInTheDocument();
   });
 
   test('Verify redirect to About path', () => {
+    const { getByText, history } = renderWithRouter(<App />);
     const about = getByText('About');
 
     fireEvent.click(about);
-    expect(history.location.pathname).toBe('/about')
+    expect(history.location.pathname).toBe('/about');
     expect(getByText(/about pokédex/i)).toBeInTheDocument();
   });
 
   test('Verify redirect to Favorites path', () => {
+    const { getByText, history } = renderWithRouter(<App />);
     const favorites = getByText('Favorite Pokémons');
 
     fireEvent.click(favorites);
-    expect(history.location.pathname).toBe('/favorites')
-    expect(getByText(/favorite pokémons/i)).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/favorites');
+    expect(getByText('Favorite pokémons')).toBeInTheDocument();
   });
 
   test('Verify redirect to Not Found page', () => {
