@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('', () => {
+test('Tests About', () => {
   const { getByText, getByRole } = render(
     <MemoryRouter initialEntries={[{ pathname: '/about' }]}>
       <App />
