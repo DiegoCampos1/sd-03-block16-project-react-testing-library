@@ -19,6 +19,17 @@ const favorited = data.filter(({ id }) => favoritedById[id]);
 const notFavorited = data.filter(({ id }) => !favoritedById[id]);
 
 describe('Favorite Pokemons page tests', () => {
+  test('shows Favorites Pokemons page', () => {
+    const { getByText } = renderWithRouter(
+      <FavoritePokemons pokemons={favorited} />,
+      { route: '/favorites' },
+    );
+
+    const heading = getByText('Favorite pokémons');
+
+    expect(heading).toBeInTheDocument();
+  });
+
   test('Verify no favorited pokémons message', () => {
     const { getByText } = renderWithRouter(
       <FavoritePokemons pokemons={[]} />,
