@@ -26,6 +26,16 @@ describe('Pokemon card tests', () => {
     });
   });
 
+  test('Verify the type of the pokemon', () => {
+    const { getByTestId, getByText } = renderWithRouter(<App />);
+    const nextButton = getByText('Próximo pokémon');
+
+    data.forEach(({ type }) => {
+      expect(getByTestId('pokemonType').textContent).toBe(type);
+      fireEvent.click(nextButton);
+    });
+  });
+
   test('Verify the weight of the pokemon', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText('Próximo pokémon');
