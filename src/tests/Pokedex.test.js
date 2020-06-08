@@ -16,8 +16,6 @@ function forEachPokemon(getByText) {
   });
 }
 
-afterEach(cleanup);
-
 describe('tests Pokedex.js', () => {
   test('Verify the button next pokemon in page', () => {
     const { getByText } = renderWithRouter(<App />, { route: '/'});
@@ -107,7 +105,7 @@ describe('tests Pokedex.js', () => {
     });
   });
 
-  test('next pokemon button should disabled if theres only one pokemon', () => {
+  test('Verify if type button is disable for types with just one pokémon', () => {
     const { getByText } = renderWithRouter(<App />, { route: '/'});
     const nextButton = getByText('Próximo pokémon');
     const dragonTypeButton = getByText('Dragon');
