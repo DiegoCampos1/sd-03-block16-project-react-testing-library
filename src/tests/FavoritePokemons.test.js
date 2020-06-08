@@ -33,7 +33,7 @@ describe('Favorite Pokemons page tests', () => {
   test('Verify no favorited pokémons message', () => {
     const { getByText } = renderWithRouter(
       <FavoritePokemons pokemons={[]} />,
-      { route: "/favorites" },
+      { route: '/favorites' },
     );
 
     const notFound = getByText('No favorite pokemon found');
@@ -43,7 +43,7 @@ describe('Favorite Pokemons page tests', () => {
   test('Case no favorite pokemons, shows no card', () => {
     const { queryByText } = renderWithRouter(
       <FavoritePokemons pokemons={favorited} />,
-      { route: "/favorites" },
+      { route: '/favorites' },
     );
 
     notFavorited.forEach(({ name }) => {
@@ -54,11 +54,12 @@ describe('Favorite Pokemons page tests', () => {
   test('Case favorite pokemons, shows all favorites cards', () => {
     const { getByText, container } = renderWithRouter(
       <FavoritePokemons pokemons={favorited} />,
-      { route: "/favorites" },
+      { route: '/favorites' },
     );
 
     const pokemonCard = container.querySelectorAll('.favorite-pokemon');
 
+    expect(pokemonCard.length).toBe(4);
     favorited.forEach(({ name }) => {
       expect(getByText(name)).toBeInTheDocument();
     });
