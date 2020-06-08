@@ -6,14 +6,14 @@ import data from '../data';
 
 describe('PokemonDetails page tests', () => {
   test('Verify if the page just shows one pokemon', () => {
-    const { container } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { container } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const pageContainer = container.querySelectorAll('.pokemon-details');
 
     expect(pageContainer.length).toBe(1);
   });
 
   test('Verify if the page just shows the details of the selected pokemon', () => {
-    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const heading = getByText('Pikachu Details');
 
     expect(heading).toBeInTheDocument();
@@ -21,14 +21,14 @@ describe('PokemonDetails page tests', () => {
   });
 
   test('Verify if the page just shows the details of the selected pokemon', () => {
-    const { queryByText } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { queryByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const detailsButton = queryByText('More Details');
 
     expect(detailsButton).toBeNull();
   });
 
   test('Verify if the page just has a Summary title text', () => {
-    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const headingSummary = getByText('Summary');
 
     expect(headingSummary).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('PokemonDetails page tests', () => {
   });
 
   test('Verify if the page has the summary paragraph of the pokemon', () => {
-    const { getByText, container } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const { summary } = data[0];
 
     expect(getByText(summary)).toBeInTheDocument();
@@ -44,21 +44,21 @@ describe('PokemonDetails page tests', () => {
   });
 
   test('Verify if the page has the location title', () => {
-    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
 
     expect(getByText('Game Locations of Pikachu')).toBeInTheDocument();
     expect(getByText('Game Locations of Pikachu').tagName).toBe('H2');
   });
 
   test('Verify if the page shows all the locations', () => {
-    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
 
     expect(getByText('Kanto Viridian Forest')).toBeInTheDocument();
     expect(getByText('Kanto Power Plant')).toBeInTheDocument();
   });
 
   test('Verify the image on the page', () => {
-    const { container, getAllByAltText } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { container, getAllByAltText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const img = container.querySelectorAll('IMG');
     expect(img[0]).toBeInTheDocument();
     expect(img[1]).toBeInTheDocument();
@@ -66,7 +66,7 @@ describe('PokemonDetails page tests', () => {
   });
 
   test('Verify the checkbox element in the page', () => {
-    const { getByRole } = renderWithRouter(<App pokemon={data[0]} />, { route:'/pokemons/25' });
+    const { getByRole } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
     const checkbox = getByRole('checkbox');
 
     expect(checkbox).toBeInTheDocument();
