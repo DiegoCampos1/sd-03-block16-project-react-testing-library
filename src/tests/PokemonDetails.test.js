@@ -57,7 +57,7 @@ describe('PokemonDetails page tests', () => {
       for (let i = 0; i < index; i += 1) {
         const nestButton = getByText('Próximo pokémon');
         fireEvent.click(nestButton);
-      };
+      }
 
       const moreDetails = getByText('More details');
 
