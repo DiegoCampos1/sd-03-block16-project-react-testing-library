@@ -36,6 +36,8 @@ describe('tests Pokedex.js', () => {
     data.forEach(() => fireEvent.click(nextButton));
 
     expect(getByText(data[0].name)).toBeInTheDocument();
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+
   });
 
   test('Verify if the Pokedex shows just one pokemon at once', () => {
@@ -55,7 +57,7 @@ describe('tests Pokedex.js', () => {
     });
   });
 
-  test('clink in a filter button should shows just pokemons of that type', () => {
+  test('Verify if filter buttons should shows the just right type', () => {
     const { getByText, getAllByTestId } = renderWithRouter(<App />, { route: '/' });
 
     const nextButton = getByText('Próximo pokémon');
