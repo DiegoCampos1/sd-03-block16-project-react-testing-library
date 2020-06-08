@@ -46,7 +46,7 @@ describe('tests Pokedex.js', () => {
   });
 
   test('Verify filter buttons with the name equal the type', () => {
-    const { getAllByTestId } = renderWithRouter(<App />, { route: '/'});
+    const { getAllByTestId } = renderWithRouter(<App />, { route: '/' });
 
     pokemonTypes.forEach((type, index) => {
       const typeButton = getAllByTestId('pokemon-type-button')[index];
