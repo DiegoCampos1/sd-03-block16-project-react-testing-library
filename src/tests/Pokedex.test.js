@@ -37,7 +37,6 @@ describe('tests Pokedex.js', () => {
 
     expect(getByText(data[0].name)).toBeInTheDocument();
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
-
   });
 
   test('Verify if the Pokedex shows just one pokemon at once', () => {

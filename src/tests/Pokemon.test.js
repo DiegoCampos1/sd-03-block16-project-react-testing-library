@@ -4,6 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import Pokemon from '../components/Pokemon';
 import data from '../data';
+
 afterEach(cleanup);
 
 describe('Pokemon card tests', () => {
@@ -39,10 +40,10 @@ describe('Pokemon card tests', () => {
     const { container, getByText } = renderWithRouter(<App />);
     const nextButton = getByText('Próximo pokémon');
     const img = container.querySelector('IMG');
-    
+
     data.forEach(({ name, image }) => {
       expect(img.src).toBe(image);
-      expect(img.alt).toBe(`${name} sprite`)
+      expect(img.alt).toBe(`${name} sprite`);
       fireEvent.click(nextButton);
     });
   });
@@ -51,7 +52,7 @@ describe('Pokemon card tests', () => {
     const { getByText } = renderWithRouter(<App />);
     const nextButton = getByText('Próximo pokémon');
     const detailsButton = getByText('More details');
-    
+
     data.forEach(({ id }) => {
       expect(detailsButton.href).toBe(`http://localhost/pokemons/${id}`);
       fireEvent.click(nextButton);
@@ -64,12 +65,12 @@ describe('Pokemon card tests', () => {
 
     fireEvent.click(detailsButton);
 
-    expect(history.location.pathname).toBe(`/pokemons/25`)
+    expect(history.location.pathname).toBe('/pokemons/25');
   });
 
   test('Should contain favorite icon with correct alt', () => {
     const { getByAltText } = renderWithRouter(
-      <Pokemon pokemon={data[0]} isFavorite={true} />,
+      <Pokemon pokemon={data[0]} isFavorite />,
     );
     const favIcon = getByAltText('Pikachu is marked as favorite');
     expect(favIcon).toBeInTheDocument();
