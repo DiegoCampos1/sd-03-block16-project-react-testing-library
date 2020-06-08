@@ -51,10 +51,31 @@ describe('PokemonDetails page tests', () => {
   });
 
   test('Verify if the page shows all the locations', () => {
-    const { getByText } = renderWithRouter(<App pokemon={data[0]} />, { route: '/pokemons/25' });
+    const { getByText, getAllByAltText } = renderWithRouter(<App />);
 
-    expect(getByText('Kanto Viridian Forest')).toBeInTheDocument();
-    expect(getByText('Kanto Power Plant')).toBeInTheDocument();
+    data.forEach(({ name, foundAt }, index) => {
+      for (let i = 0; i < index; i += 1) {
+        const nestButton = getByText('Próximo pokémon');
+        fireEvent.click(nestButton);
+      };
+
+      const moreDetails = getByText('More details');
+
+      fireEvent.click(moreDetails);
+
+      const heading = getByText(`Game Locations of ${name}`);
+
+      expect(heading).toBeInTheDocument();
+      expect(heading.tagName).toBe('H2');
+
+      foundAt.forEach(({ location, map }, indice) => {
+        const img = getAllByAltText(`${name} location`);
+        expect(getByText(location)).toBeInTheDocument();
+        expect(img[indice].src).toBe(map);
+        expect(img[indice].alt).toBe(`${name} location`);
+      });
+      fireEvent.click(getByText('Home'));
+    });
   });
 
   test('Verify the image on the page', () => {
