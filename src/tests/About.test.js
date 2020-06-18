@@ -15,7 +15,7 @@ describe('file About.js', () => {
     const paragraphs = document.querySelectorAll('p');
     expect(paragraphs.length).toBe(2);
   });
-  VídeosVídeos
+
   test('Pokédex image', () => {
     const { getByAltText } = render(<About />);
     const img = getByAltText('Pokédex');
