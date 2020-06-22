@@ -17,7 +17,7 @@ describe('Test FavoritePokemon.js', () => {
     const { getAllByAltText, getByText, getByLabelText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const pokemonDetail = getByText(/More details/i);
     fireEvent.click(pokemonDetail);

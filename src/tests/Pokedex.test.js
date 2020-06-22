@@ -9,10 +9,7 @@ afterEach(cleanup);
 describe('Test Pokedex.js', () => {
   test('Button `Próximo pokémon` should show next pokemon in the list`', () => {
     const { getByText, getByTestId } = renderWithRouter(
-      <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={isPokemonFavoriteById}
-      />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
     expect(getByTestId('pokemon-name').textContent).toBe('Pikachu');
     const nextPokemonButton = getByText('Próximo pokémon');
@@ -24,22 +21,17 @@ describe('Test Pokedex.js', () => {
     expect(getByTestId('pokemon-name').textContent).toBe('Pikachu');
   });
 
+
   test('Pokedex should show only one pokemon', () => {
     const { getAllByTestId } = renderWithRouter(
-      <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={isPokemonFavoriteById}
-      />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
     expect(getAllByTestId('pokemon-name').length).toBe(1);
   });
 
   test('Contain all filters buttons and `all` button to reset', () => {
     const { getAllByTestId, getByTestId, getByText } = renderWithRouter(
-      <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={isPokemonFavoriteById}
-      />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
     const pokemonTypeButtons = getAllByTestId('pokemon-type-button');
     expect(pokemonTypeButtons.length).toBe(2);
@@ -64,10 +56,7 @@ describe('Test Pokedex.js', () => {
 
   test('Button `Próximo pokémon` should be disabled if there is only one pokemon in list', () => {
     const { getByText, getAllByTestId } = renderWithRouter(
-      <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={isPokemonFavoriteById}
-      />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
     fireEvent.click(getAllByTestId('pokemon-type-button')[0]);
     const nextPokemonButton = getByText('Próximo pokémon');
@@ -76,10 +65,7 @@ describe('Test Pokedex.js', () => {
 
   test('Contain a h2 heading with "Encountered pokémons" text', () => {
     const { getByText } = renderWithRouter(
-      <Pokedex
-        pokemons={pokemons}
-        isPokemonFavoriteById={isPokemonFavoriteById}
-      />
+      <Pokedex pokemons={pokemons} isPokemonFavoriteById={isPokemonFavoriteById} />,
     );
     const heading = getByText('Encountered pokémons');
     expect(heading).toBeInTheDocument();

@@ -11,7 +11,7 @@ describe('file App.js', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -22,9 +22,7 @@ describe('file App.js', () => {
     const linkToHome = getByText(/home/i); // Unterminated regular expression
     expect(linkToHome).toBeInTheDocument();
     fireEvent.click(linkToHome);
-    const {
-      location: { pathname },
-    } = history;
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/');
   });
 
@@ -33,9 +31,7 @@ describe('file App.js', () => {
     const linkToAbout = getByText(/About/i);
     expect(linkToAbout).toBeInTheDocument();
     fireEvent.click(linkToAbout);
-    const {
-      location: { pathname },
-    } = history;
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
   });
 
@@ -44,9 +40,7 @@ describe('file App.js', () => {
     const linkToFavorite = getByText(/Favorite Pokémons/i);
     expect(linkToFavorite).toBeInTheDocument();
     fireEvent.click(linkToFavorite);
-    const {
-      location: { pathname },
-    } = history;
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
   });
 });
